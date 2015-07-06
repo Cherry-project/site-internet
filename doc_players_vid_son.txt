@@ -1,0 +1,40 @@
+Le player de son est dewplayer. Il joue les mp3.
+Pour l'utiliser, il faut le fichier dewplayer-playlist.swf, pour l'instant dans la racine (pour d'autres skins que le playlist, aller télécharger d'autres .swf sur le site)
+Puis une playlist en .xml (cf expemple playlist.xml) qui indique les fichiers à lire.
+(AF: chercher un moyen de générer le fichier xml)
+Dans le fichier html, copier le code ci dessous et remplacer [path] par le chemin nécessaire.
+
+<object type="application/x-shockwave-flash" data="[path]dewplayer-playlist.swf" id="dewplayerpls" name="dewplayerpls" width="240" height="200">
+        <param name="movie" value="[path]dewplayer-playlist.swf">
+        <param name="flashvars" value="xml=[path]playlist.xml">
+        </object>
+
+------------------------------------------------------
+
+Le player vidéo est JWPlayer. Il joue les MP4, WebM et FLV, ainsi que des formats audio.
+
+Pour l'utiliser, il faut les fichiers jwplayer.js, jwplayer.html5.js et jwplayer.flash.swf, pour l'instant à la racine.
+
+Dans le bloc header, copier en remplacant [path] :
+
+<script type="text/javascript">
+        document.createElement('video');document.createElement('audio');document.createElement('track');
+        </script>
+        ?<script src="[path]jwplayer.js" ></script>
+        <script>jwplayer.key="Cjd8Xr6I0ioLaFl64eNFuYC0SS6y+tmBOiSkRg==";</script>
+
+La key est la clé utilisateur du compte Cherry.
+
+A l'endroit où l'on souhaite la vidéo, copier
+
+<div id="vidplayer">Loading the player...</div>
+        <script type="text/javascript">
+        var playerInstance = jwplayer("vidplayer");
+        playerInstance.setup({
+        file: "[path video.mp4]",
+        image: "[path image]",
+        width: 640,
+        height: 360
+        });
+
+L'image s'affiche avant que la vidéo soit jouée, si on ne met rien on aura une image noire.
