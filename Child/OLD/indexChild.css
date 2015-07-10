@@ -6,19 +6,16 @@ body {
   background-size: cover; /* version standardisée */
 }
 
-
-.imageflottante:hover {
-	-moz-transform:rotate(10deg);
-	-webkit-transform:rotate(10deg);
-	transform:rotate(10deg);
-}
-img:hover {
-	-moz-transform:rotate(10deg);
-	-webkit-transform:rotate(10deg);
-	transform:rotate(10deg);
+.imageflottante
+{
+    position: absolute;
+	bottom : 10px;
+	left : 10px;
+	max-width: 80px;
+	height: auto;
 }
 
-#cafe
+.imageflottante1
 {
     position: fixed;
 	top : 20%;
@@ -27,7 +24,7 @@ img:hover {
 	height: auto;
 }
 
-#jeux
+.imageflottante2
 {
     position: fixed;
 	top : 30%;
@@ -36,7 +33,7 @@ img:hover {
 	height: auto;
 }
 
-#hopital
+.imageflottante3
 {
     position: fixed;
 	top : 40%;
@@ -45,7 +42,7 @@ img:hover {
 	height: auto;
 }
 
-#bib
+.imageflottante4
 {
     position: fixed;
 	top : 65%;
@@ -54,7 +51,7 @@ img:hover {
 	height: auto;
 }
 
-#ecole
+.imageflottante5
 {
     position: fixed;
 	top : 70%;
@@ -63,9 +60,15 @@ img:hover {
 	height: auto;
 }
 
+.imagecarte
+{
+    position: relative;
+	top: 50%;
+	left:50%;
+	max-width: 100%;
+	height: auto;
+}
 
-
-/*HEADER*/
 .page-header {
 	margin: 0px 0;
     padding-bottom: 0px;
@@ -98,8 +101,6 @@ img:hover {
 	height: auto;
 }
 
-
-/*FOOTER*/
 .image1
 {
     position: absolute;

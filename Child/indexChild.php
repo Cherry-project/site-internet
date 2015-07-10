@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Enfant</title>
+        <title>Cherry -- Village</title>
 		<!--[if lt IE 9]>
             <script src="http://github.com/aFarkas/html5shiv/blob/master/dist/html5shiv.js"></script>
         <![endif]-->
@@ -23,29 +23,27 @@
 		    <header>
 					
 				<div class="page-header">
-					<img src="../Affichage/avatar1.png" class="avatar" alt="Image" />
-					<img src="../Affichage/rouages.png" class="parametre" alt="Image" />
-					<img src="../Affichage/compte.png" class="compte" alt="Image" />
+					<img src="../Affichage/avatar1.png" class="avatar" alt="avatar" />
+					<img src="../Affichage/rouages.png" class="parametre" alt="paramètres" />
+					<img src="../Affichage/compte.png" class="compte" alt="compte" />
 				</div>
 				
 			</header>
 						
 			
 			<section>
-			
-			<a href="Cafe/indexCafe.php"> <img src="image/personnage/groupe.png" class="imageflottante1" alt="Image flottante" /></a>
-			<a href="Games/indexGames.php"> <img src="image/logo/des.png" class="imageflottante2" alt="Image flottante" /></a>
-			<a href="Hospital/indexHospital.php"> <img src="image/logo/heart.png" class="imageflottante3" alt="Image flottante" /></a>
-			<a href="Libraries/indexLibraries.php"> <img src="image/logo/livres.png" class="imageflottante4" alt="Image flottante" /></a>
-			<a href="School/indexSchool.php"> <img src="image/logo/cartable.png" class="imageflottante5" alt="Image flottante" /></a>
+
+			<a href="Cafe/indexCafe.php"> <img src="image/personnage/groupe.png" id="cafe" class="imageflottante" alt="cafe" /></a>
+			<a href="Games/indexGames.php"> <img src="image/logo/des.png" id="jeux" class="imageflottante" alt="jeux" /></a>
+			<a href="Hospital/indexHospital.php"> <img src="image/logo/heart.png" id="hopital" class="imageflottante" alt="Hôpital" /></a>
+			<a href="Libraries/indexLibraries.php"> <img src="image/logo/livres.png" id="bib" class="imageflottante" alt="Bibliothèque" /></a>
+			<a href="School/indexSchool.php"> <img src="image/logo/cartable.png" id="ecole" class="imageflottante" alt="école" /></a>
 			
 			</section>
 		
               
 			<footer>
-			 <p> <a href="../Accueil/index.html"> <img src="image/logo/disconnect.png" class="image1" alt="Image" /></a></p>    	
-			
-
+			 <p> <a href="../Accueil/index.html"> <img src="image/logo/disconnect.png" class="image1" alt="Déconnexion" /></a></p>
 			</footer>
 		
 		</div>
