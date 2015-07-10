@@ -82,6 +82,7 @@ footer img:hover {
 	float:left;
 	position: fixed;
 	margin-top: 5rem;
+	margin-left: 0.5%;
 	z-index:1000;
 }
 
