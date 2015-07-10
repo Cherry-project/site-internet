@@ -132,7 +132,7 @@ changement['primakid'] = function(id) {
     		afficheLength = affiche.length;
     		for (var i = 0 ; i < afficheLength ; i++) {
     			affiche[i].className="contafficheTRUE";
-    		
+    		}
 
     		var encadre = document.querySelectorAll('.encadre_def'),
     		encadreLength = encadre.length;
