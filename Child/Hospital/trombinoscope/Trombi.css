@@ -1,75 +1,27 @@
+.contenuaffiche div{
+	display: inline-block;
+	width: 25%
 
-body{ 
-  margin:0; /* fond d'écran */
-  padding:0;
-  background: url(../../image/fond/campagne.png) no-repeat center fixed; 
-  -webkit-background-size: cover; /* pour anciens Chrome et Safari */
-  background-size: cover; /* version standardisée */
+}
+.contenuaffiche h2{
+	position: relative;
+	max-width : 100%;
+	text-align: center;
+	font-size: 50px;
+	background-color: rgba(255,0,0, 0.7);
+	border: 1px black dashed;	
+	border-radius: 20px;
+	
 }
 
-.page-header {
-	margin: 0px 0;
-    padding-bottom: 0px;
-	height: 5rem;
+.contenuaffiche .imageCentrale{
+	position: relative;
+	left: 25%;
+	max-width : 100%;
 }
 
-.avatar
-{
-    position: absolute;
-	top : 10px;
-	left : 15px;
-	max-width: 90px;
-	height: auto;
-}
+.contenuaffiche div img{
+	position: relative;
+	left: 25%;
 
-.parametre
-{
-    position: absolute;
-	top : 10px;
-	right : 130px;
-	max-width: 90px;
-	height: auto;
-}
-
-.compte
-{
-    position: absolute;
-	top : 10px;
-	right : 10px;
-	max-width: 90px;
-	height: auto;
-}
-
-
-.imageMenu
-{
-    position: relative;
-	top: 40px;
-	max-width: 70px;
-	height: auto;
-}
-.image1
-{
-    position: relative;
-	left : 20px;
-	max-width: 70px;
-	height: auto;
-}
-
-
-
-.imageCentrale
-{
-    position: relative;
-	bottom : 10px;
-	left : 10%;
-	max-width: 80%;
-	height: auto;
-}
-
-.imageListe
-{
-    position: relative;
-	max-width: 150px;
-	height: auto;
 }

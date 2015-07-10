@@ -27,7 +27,7 @@
 		<img src="../image/logo/nurse.png" class="image_def" alt="trombinoscope" />
 		<h1 class = "titre_def">Trombinoscope</h1>
 		<div class="contenucateg"> 
-			<?php include("tombinoscope/trombi.php"); ?>
+			<?php include("trombinoscope/Trombi.php"); ?>
 		</div>
 	</div>
 	<div id="sejour" class="categorie_def">
