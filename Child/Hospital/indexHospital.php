@@ -7,6 +7,7 @@
 	<!--<script src="bootstrap/js/jquery.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>-->
 	<link rel="stylesheet" href="indexHospital.css" />
+	<link rel="icon" href="../../Affichage/favicon.png">
 	<!--aaaa<link href="../../bootstrap/css/bootstrap.css" rel="stylesheet">-->
 	<meta charset="utf-8" />
 </head>
@@ -14,23 +15,23 @@
 <body>
     <header>		
 		<div class="page-header">
-			<img src="../../Affichage/avatar1.png" class="avatar" alt="Image" />
-			<img src="../../Affichage/rouages.png" class="parametre" alt="Image" />
-			<img src="../../Affichage/compte.png" class="compte" alt="Image" />
+			<img src="../../Affichage/avatar1.png" class="avatar" alt="avatar" />
+			<img src="../../Affichage/rouages.png" class="parametre" alt="paramètres" />
+			<img src="../../Affichage/compte.png" class="compte" alt="compte" />
 		</div>
     </header>
 
  	<div id="encadre_def">  
 
 	<div id="trombi" class="categorie_def">
-		<img src="../image/logo/nurse.png" class="image_def" alt="Image" />
+		<img src="../image/logo/nurse.png" class="image_def" alt="trombinoscope" />
 		<h1 class = "titre_def">Trombinoscope</h1>
 		<div class="contenucateg"> 
 			<?php include("tombinoscope/trombi.php"); ?>
 		</div>
 	</div>
 	<div id="sejour" class="categorie_def">
-		<img src="../image/logo/heart.png" class="image_def" alt="Image" />
+		<img src="../image/logo/heart.png" class="image_def" alt="mon séjour" />
 		<h1 class = "titre_def">Mon séjour</h1>
 		<div class="contenucateg"> 
 			<p>  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque placerat quam sapien, nec venenatis enim ullamcorper ac. Nam luctus ex enim, in tristique nibh ullamcorper quis. Phasellus ac risus nec velit rhoncus vulputate nec in lacus. Quisque commodo nec nibh vitae maximus. Nam consectetur convallis tellus ac venenatis. Etiam rutrum lobortis tempus. Donec sit amet libero non magna sollicitudin molestie sit amet sit amet nisi. Ut nec mi risus. Vivamus non sapien est. Quisque sed finibus massa. Nulla facilisi.
@@ -43,7 +44,7 @@
 		</div>
 	</div>
 	<div id="quizz" class="categorie_def">
-		<img src="../image/logo/lexique.png" class="image_def" alt="Image" />
+		<img src="../image/logo/lexique.png" class="image_def" alt="Quizz" />
 		<h1 class = "titre_def">Quizz</h1>
 		<div class="contenucateg"> 
 			<img src="../image/logo/bubbles.png" alt="Image" />
@@ -57,7 +58,7 @@
 		</div>
 	</div>
 	<div id ="info" class="categorie_def">
-		<img src="../image/logo/croix.png" class="image_def" alt="Image" />
+		<img src="../image/logo/croix.png" class="image_def" alt="Informations" />
 		<h1 class = "titre_def">Informations</h1>
 		<div class="contenucateg"> 
 			<img src="../image/logo/prix.png" alt="Image" />
@@ -117,7 +118,7 @@
 
     <footer>
 
-    <p> <a href="../indexChild.php"> <img src="../image/logo/retour.png" class="image1" alt="Image" /></a></p>    
+    <p> <a href="../indexChild.php"> <img src="../image/logo/retour.png" class="image1" alt="Retour Village" /></a></p>    
 
     </footer>
 		

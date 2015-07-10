@@ -9,21 +9,22 @@
 	<link rel="stylesheet" href="indexCafe.css" />
 	<!--aaaa<link href="../../bootstrap/css/bootstrap.css" rel="stylesheet">-->
 	<meta charset="utf-8" />
+	<link rel="icon" href="../../Affichage/favicon.png">
 </head>
 
 <body>
     <header>		
 		<div class="page-header">
-			<img src="../../Affichage/avatar1.png" class="avatar" alt="Image" />
-			<img src="../../Affichage/rouages.png" class="parametre" alt="Image" />
-			<img src="../../Affichage/compte.png" class="compte" alt="Image" />
+			<img src="../../Affichage/avatar1.png" class="avatar" alt="avatar" />
+			<img src="../../Affichage/rouages.png" class="parametre" alt="Paramètres" />
+			<img src="../../Affichage/compte.png" class="compte" alt="Compte" />
 		</div>
     </header>
 
  	<div id="encadre_def">  
 
 	<div id="video" class="categorie_def">
-		<img src="../image/logo/webcam.png" class="image_def" alt="Image" />
+		<img src="../image/logo/webcam.png" class="image_def" alt="chat vidéo" />
 		<h1 class = "titre_def">Chat vidéo</h1>
 		<div class="contenucateg"> 
 			<p>  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque placerat quam sapien, nec venenatis enim ullamcorper ac. Nam luctus ex enim, in tristique nibh ullamcorper quis. Phasellus ac risus nec velit rhoncus vulputate nec in lacus. Quisque commodo nec nibh vitae maximus. Nam consectetur convallis tellus ac venenatis. Etiam rutrum lobortis tempus. Donec sit amet libero non magna sollicitudin molestie sit amet sit amet nisi. Ut nec mi risus. Vivamus non sapien est. Quisque sed finibus massa. Nulla facilisi.
@@ -36,7 +37,7 @@
 		</div>
 	</div>
 	<div id="email" class="categorie_def">
-		<img src="../image/logo/email.png" class="image_def" alt="Image" />
+		<img src="../image/logo/email.png" class="image_def" alt="email" />
 		<h1 class = "titre_def">Mes emails</h1>
 		<div class="contenucateg"> 
 			<p>  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque placerat quam sapien, nec venenatis enim ullamcorper ac. Nam luctus ex enim, in tristique nibh ullamcorper quis. Phasellus ac risus nec velit rhoncus vulputate nec in lacus. Quisque commodo nec nibh vitae maximus. Nam consectetur convallis tellus ac venenatis. Etiam rutrum lobortis tempus. Donec sit amet libero non magna sollicitudin molestie sit amet sit amet nisi. Ut nec mi risus. Vivamus non sapien est. Quisque sed finibus massa. Nulla facilisi.
@@ -49,7 +50,7 @@
 		</div>
 	</div>
 	<div id="chat" class="categorie_def">
-		<img src="../image/logo/bulle.png" class="image_def" alt="Image" />
+		<img src="../image/logo/bulle.png" class="image_def" alt="chat" />
 		<h1 class = "titre_def">Chat</h1>
 		<div class="contenucateg"> 
 			<img src="../image/logo/bubbles.png" alt="Image" />
@@ -63,7 +64,7 @@
 		</div>
 	</div>
 	<div id ="primakid" class="categorie_def">
-		<img src="../image/logo/webcam.png" class="image_def" alt="Image" />
+		<img src="../image/logo/webcam.png" class="image_def" alt="primakid" />
 		<h1 class = "titre_def">Primakid</h1>
 		<div class="contenucateg"> 
 			<img src="../image/logo/prix.png" alt="Image" />
@@ -123,7 +124,7 @@
 
     <footer>
 
-    <p> <a href="../indexChild.php"> <img src="../image/logo/retour.png" class="image1" alt="Image" /></a></p>    
+    <p> <a href="../indexChild.php"> <img src="../image/logo/retour.png" class="image1" alt="retour village" /></a></p>    
 
     </footer>
 		

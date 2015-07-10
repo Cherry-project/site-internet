@@ -13,6 +13,7 @@
        
 	   <meta charset="utf-8" />
 	   <link rel="stylesheet" href="indexChild.css" />
+	   <link rel="icon" href="../Affichage/favicon.png">
     </head>
     
 	
