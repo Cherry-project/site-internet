@@ -6,11 +6,11 @@ body {
   background-size: cover; /* version standardisée */
 }
 
-
+/*Transformations images*/
 .imageflottante:hover {
-	-moz-transform:rotate(10deg);
-	-webkit-transform:rotate(10deg);
-	transform:rotate(10deg);
+	-moz-transform:scale(1.2,1.2);
+	-webkit-transform:scale(1.2,1.2);
+	transform:scale(1.2,1.2);
 }
 img:hover {
 	-moz-transform:rotate(10deg);
@@ -18,6 +18,7 @@ img:hover {
 	transform:rotate(10deg);
 }
 
+/*Images des batiments + points d'exclamation associés*/
 #cafe
 {
     position: fixed;
@@ -26,6 +27,12 @@ img:hover {
 	max-width: 15%;
 	height: auto;
 }
+#ex_cafe{
+	position: fixed;
+	top : 20%;
+	left : 15%;
+}
+
 
 #jeux
 {
@@ -35,6 +42,12 @@ img:hover {
 	max-width: 9%;
 	height: auto;
 }
+#ex_jeux{
+	position: fixed;
+	top : 30%;
+	left : 80%;
+}
+
 
 #hopital
 {
@@ -44,6 +57,12 @@ img:hover {
 	max-width: 15%;
 	height: auto;
 }
+#ex_hopital{
+	position: fixed;
+	top : 40%;
+	left : 50%;
+}
+
 
 #bib
 {
@@ -53,6 +72,12 @@ img:hover {
 	max-width: 9%;
 	height: auto;
 }
+#ex_bib{
+	position: fixed;
+	top : 65%;
+	left : 25%;
+}
+
 
 #ecole
 {
@@ -62,6 +87,79 @@ img:hover {
 	max-width: 9%;
 	height: auto;
 }
+#ex_ecole{
+	position: fixed;
+	top : 70%;
+	left : 70%;
+}
+
+/*Personnage et ses différentes positions, d'entrée et de sortie des batiments*/
+/*!!!!! La position de sortie doit être différente de celle d'entrée pour que l'animation puis le changement de page aie lieu*/
+#personnage
+{
+	width: 30px;
+	height: 50px;
+	display: inline-block;
+	position: absolute;
+	z-index: 100;
+	left: 51%;
+	top: 41%;
+	background: url("image/sprites/Brock.png") no-repeat;
+}
+
+#personnage.hopital{
+	top: 40%;
+	left: 50%;
+	transition: 5s;
+	-moz-transition: 5s;
+}
+#personnage.hopital_sortie{
+	top: 45%;
+	left: 50%;
+}
+#personnage.cafe{
+	top: 20%;
+	left: 15%;
+	transition: 5s;
+	-moz-transition: 5s;
+}
+#personnage.cafe_sortie{
+	top: 25%;
+	left: 15%;
+}
+#personnage.jeux{
+	top: 30%;
+	left: 80%;
+	transition: 5s;
+	-moz-transition: 5s;
+}
+#personnage.jeux_sortie{
+	top: 35%;
+	left: 80%;
+}
+#personnage.bib{
+	top: 65%;
+	left: 25%;
+	transition: 5s;
+	-moz-transition: 5s;
+}
+#personnage.bib_sortie{
+	top: 70%;
+	left: 25%;
+}
+#personnage.ecole{
+	top: 70%;
+	left: 70%;
+	transition: 5s;
+	-moz-transition: 5s;
+}
+#personnage.ecole_sortie{
+	top: 75%;
+	left: 70%;
+}
+
+
+
 
 
 

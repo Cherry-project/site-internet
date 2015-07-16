@@ -13,13 +13,7 @@
 </head>
 
 <body>
-    <header>		
-		<div class="page-header">
-			<img src="../../Affichage/avatar1.png" class="avatar" alt="avatar" />
-			<img src="../../Affichage/rouages.png" class="parametre" alt="paramètres" />
-			<img src="../../Affichage/compte.png" class="compte" alt="compte" />
-		</div>
-    </header>
+    <?php include("../header_footer/header.php"); ?>
 
  	<div id="encadre_def">  
 
@@ -113,14 +107,13 @@
 		</div>
 	</div>
 
-    <script src="indexHospital.js" ></script>   
+    <script src="indexHospital.js" ></script>
 
+    <?php
+    $lieu="hopital"
+    ?> 
 
-    <footer>
-
-    <p> <a href="../indexChild.php"> <img src="../image/logo/retour.png" class="image1" alt="Retour Village" /></a></p>    
-
-    </footer>
+    <?php include("../header_footer/footer.php"); ?>  
 		
 		
     </body>

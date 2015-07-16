@@ -13,13 +13,7 @@
 </head>
 
 <body>
-    <header>		
-		<div class="page-header">
-			<img src="../../Affichage/avatar1.png" class="avatar" alt="avatar" />
-			<img src="../../Affichage/rouages.png" class="parametre" alt="Paramètres" />
-			<img src="../../Affichage/compte.png" class="compte" alt="Compte" />
-		</div>
-    </header>
+    <?php include("../header_footer/header.php"); ?>
 
  	<div id="encadre_def">  
 
@@ -121,12 +115,10 @@
 
     <script src="indexCafe.js" ></script>   
 
-
-    <footer>
-
-    <p> <a href="../indexChild.php"> <img src="../image/logo/retour.png" class="image1" alt="retour village" /></a></p>    
-
-    </footer>
+    <?php
+    $lieu="cafe"
+    ?>
+    <?php include("../header_footer/footer.php"); ?>
 		
 		
     </body>
