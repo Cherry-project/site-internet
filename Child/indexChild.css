@@ -22,142 +22,178 @@ img:hover {
 #cafe
 {
     position: fixed;
-	top : 20%;
-	left : 15%;
-	max-width: 15%;
+	top : 150px;
+	left : 200px;
+	max-width: 250px;
 	height: auto;
 }
 #ex_cafe{
 	position: fixed;
-	top : 20%;
-	left : 15%;
+	top : 150px;
+	left : 200px;
 }
 
 
 #jeux
 {
     position: fixed;
-	top : 30%;
-	left : 80%;
-	max-width: 9%;
+	top : 150px;
+	left : 1100px;
+	max-width: 250px;
 	height: auto;
 }
 #ex_jeux{
 	position: fixed;
-	top : 30%;
-	left : 80%;
+	top : 150px;
+	left : 1100px;
 }
 
 
 #hopital
 {
     position: fixed;
-	top : 40%;
-	left : 50%;
-	max-width: 15%;
+	top : 300px;
+	left : 650px;
+	max-width: 250px;
 	height: auto;
 }
 #ex_hopital{
 	position: fixed;
-	top : 40%;
-	left : 50%;
+	top : 300px;
+	left : 650px;
 }
 
 
 #bib
 {
     position: fixed;
-	top : 65%;
-	left : 25%;
-	max-width: 9%;
+	top : 525px;
+	left : 1150px;
+	max-width: 150px;
 	height: auto;
 }
 #ex_bib{
 	position: fixed;
-	top : 65%;
-	left : 25%;
+	top : 525px;
+	left : 1150px;
 }
 
 
 #ecole
 {
     position: fixed;
-	top : 70%;
-	left : 70%;
-	max-width: 9%;
+	top : 575px;
+	left : 225px;
+	max-width: 150px;
 	height: auto;
 }
 #ex_ecole{
 	position: fixed;
-	top : 70%;
-	left : 70%;
+	top : 575px;
+	left : 225px;
 }
 
 /*Personnage et ses différentes positions, d'entrée et de sortie des batiments*/
 /*!!!!! La position de sortie doit être différente de celle d'entrée pour que l'animation puis le changement de page aie lieu*/
+/*personnage et perso_image sont différenciés pour leur affecter des animations différentes*/
+/*personnage gère la trajectoire, dest la destination, perso_image l'animation du sprite*/
+#perso_image{
+	width: 32px;
+	height: 29px;
+	display: inline-block;
+	background: url("image/sprites/personnage.png") no-repeat;
+	transform: scale(2,2);
+}
+
 #personnage
 {
-	width: 30px;
-	height: 50px;
+	width: 32px;
+	height: 29px;
 	display: inline-block;
 	position: absolute;
 	z-index: 100;
 	left: 51%;
 	top: 41%;
-	background: url("image/sprites/Brock.png") no-repeat;
-}
-
-#personnage.hopital{
-	top: 40%;
-	left: 50%;
+	
 	transition: 5s;
 	-moz-transition: 5s;
+	transition-timing-function: linear;
+	-moz-transition-timing-function: linear;
+}
+
+#dest{
+	width: 1px;
+	height: 1px;
+	display: inline-block;
+	position: absolute;
+}
+
+#personnage.hopital, #dest.hopital{
+	top: 550px;
+	left: 800px;	
 }
 #personnage.hopital_sortie{
-	top: 45%;
-	left: 50%;
-}
-#personnage.cafe{
-	top: 20%;
-	left: 15%;
-	transition: 5s;
-	-moz-transition: 5s;
-}
-#personnage.cafe_sortie{
-	top: 25%;
-	left: 15%;
-}
-#personnage.jeux{
-	top: 30%;
-	left: 80%;
-	transition: 5s;
-	-moz-transition: 5s;
-}
-#personnage.jeux_sortie{
-	top: 35%;
-	left: 80%;
-}
-#personnage.bib{
-	top: 65%;
-	left: 25%;
-	transition: 5s;
-	-moz-transition: 5s;
-}
-#personnage.bib_sortie{
-	top: 70%;
-	left: 25%;
-}
-#personnage.ecole{
-	top: 70%;
-	left: 70%;
-	transition: 5s;
-	-moz-transition: 5s;
-}
-#personnage.ecole_sortie{
-	top: 75%;
-	left: 70%;
+	top: 570px;
+	left: 800px;
 }
 
+#personnage.cafe, #dest.cafe{
+	top: 400px;
+	left: 380px;	
+}
+#personnage.cafe_sortie{
+	top: 425px;
+	left: 400px;
+}
+
+#personnage.jeux, #dest.jeux{
+	top: 300px;
+	left: 1150px;	
+}
+#personnage.jeux_sortie{
+	top: 350px;
+	left: 1150px;
+}
+
+#personnage.bib, #dest.bib{
+	top: 700px;
+	left: 1200px;	
+}
+#personnage.bib_sortie{
+	top: 700px;
+	left: 1150px;
+}
+
+#personnage.ecole, #dest.ecole{
+	top: 700px;
+	left: 425px;
+	
+}
+#personnage.ecole_sortie{
+	top: 675px;
+	left: 500px;
+}
+
+
+/*Autres animations*/
+#oiseaux{
+	transition: 10s;
+	-moz-transition: 10s;
+	transition-timing-function: linear;
+	-moz-transition-timing-function: linear;
+}
+#helico{
+	transition: 10s;
+	-moz-transition: 10s;
+	transition-timing-function: linear;
+	-moz-transition-timing-function: linear;
+}
+#dauphin{
+	transition: 10s;
+	-moz-transition: 10s;
+	transition-timing-function: linear;
+	-moz-transition-timing-function: linear;
+}
 
 
 

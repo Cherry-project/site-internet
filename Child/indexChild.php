@@ -42,12 +42,17 @@
 			<img src="image/logo/exclam.gif" id="ex_bib" class="exclam" alt="Nouveau contenu!" />
 			<img src="image/logo/exclam.gif" id="ex_ecole" class="exclam" alt="Nouveau contenu!" />
 
+			<!-- Destination du personnage -->
+			<div id = "dest" class = "def"> </div>
+
     		<!-- avatar, lieu recupere de l url -->
     		<?php
     		if (isset($_GET['lieu'] ))
     		{
     			?>
-    			<div id="personnage" class= "<?php echo $_GET['lieu'].'_sortie'?>"> </div>
+    			<div id="personnage" class= "<?php echo $_GET['lieu'].'_sortie'?>">
+    			<div id="perso_image"></div>
+    			</div>
     			<?php
     		}
     		else 
@@ -58,9 +63,15 @@
     		}
     		?>
 			
+			<!-- autres animations -->
+			<img src="image/logo/exclam.gif" id="oiseaux" />
+			<img src="image/logo/exclam.gif" id="helico" />
+			<img src="image/logo/exclam.gif" id="dauphin" />
+
 
 			<!-- scripts -->
 			<script src="../jquery.js"></script>
+			<script src="jquery.animateSprite.min.js"></script>
 			<script src="indexChild.js"></script> 
               
 			<footer>
