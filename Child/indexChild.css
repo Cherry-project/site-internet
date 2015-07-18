@@ -1,36 +1,52 @@
 body { 
   margin:0; /* fond d'écran */
   padding:0;
-  background: url(image/fond/ciel.png) no-repeat center fixed; 
+  background: url(image/fond/nuages.png) no-repeat center fixed; 
   -webkit-background-size: cover; /* pour anciens Chrome et Safari */
   background-size: cover; /* version standardisée */
 }
 
 /*Transformations images*/
-.imageflottante:hover {
-	-moz-transform:scale(1.2,1.2);
-	-webkit-transform:scale(1.2,1.2);
-	transform:scale(1.2,1.2);
+.batiment:hover {
+	-moz-transform:scale(1.5,1.5) rotate(-10deg);
+	-webkit-transform:scale(1.5,1.5) rotate(-10deg);
+	transform:scale(1.5,1.5) rotate(-10deg);
 }
-img:hover {
+header img:hover {
+	-moz-transform:rotate(10deg);
+	-webkit-transform:rotate(10deg);
+	transform:rotate(10deg);
+}
+footer img:hover {
 	-moz-transform:rotate(10deg);
 	-webkit-transform:rotate(10deg);
 	transform:rotate(10deg);
 }
 
 /*Images des batiments + points d'exclamation associés*/
+#ile_cafe
+{
+    position: fixed;
+	top : 50px;
+	left : 50px;
+	z-index: 1;
+	max-width: 500px;
+	height: auto;
+}
 #cafe
 {
     position: fixed;
-	top : 150px;
+	top : 100px;
 	left : 200px;
-	max-width: 250px;
+	z-index: 2;
+	max-width: 130px;
 	height: auto;
 }
 #ex_cafe{
 	position: fixed;
-	top : 150px;
-	left : 200px;
+	top : 60px;
+	left : 180px;
+	z-index: 3;
 }
 
 
@@ -46,21 +62,42 @@ img:hover {
 	position: fixed;
 	top : 150px;
 	left : 1100px;
+	z-index: 3;
 }
 
 
+#ile_hopital
+{
+    position: fixed;
+	top : 200px;
+	left : 475px;
+	z-index: 1;
+	max-width: 500px;
+	height: auto;
+}
 #hopital
 {
     position: fixed;
-	top : 300px;
-	left : 650px;
-	max-width: 250px;
+	top : 270px;
+	left : 640px;
+	z-index: 2;
+	max-width: 175px;
+	height: auto;
+}
+#arbre_hopital
+{
+    position: fixed;
+	top : 350px;
+	left : 770px;
+	z-index: 3;
+	max-width: 90px;
 	height: auto;
 }
 #ex_hopital{
 	position: fixed;
 	top : 300px;
 	left : 650px;
+	z-index: 3;
 }
 
 
@@ -76,6 +113,7 @@ img:hover {
 	position: fixed;
 	top : 525px;
 	left : 1150px;
+	z-index: 3;
 }
 
 
@@ -91,6 +129,7 @@ img:hover {
 	position: fixed;
 	top : 575px;
 	left : 225px;
+	z-index: 3;
 }
 
 /*Personnage et ses différentes positions, d'entrée et de sortie des batiments*/
@@ -102,7 +141,6 @@ img:hover {
 	height: 29px;
 	display: inline-block;
 	background: url("image/sprites/personnage.png") no-repeat;
-	transform: scale(2,2);
 }
 
 #personnage

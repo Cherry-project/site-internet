@@ -36,7 +36,7 @@ $(function () {
     var idBuilding;
     //Losqu'on clique sur un batiment, on récupère son id, qui correspond à une classe de personnage
     //Le personnage se déplacera vers la position de cette nouvelle classe selon l'animation CSS
-    $(".imageflottante").on("click", function () {
+    $(".batiment").on("click", function () {
         idBuilding = $(this).attr("id");
         //On modifie le div de destination
         $("#dest").removeClass().addClass(idBuilding);

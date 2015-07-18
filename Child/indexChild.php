@@ -28,13 +28,19 @@
 			</header>
 			
 			<!-- Images batiments -->			
-			<section>
-			<img src="image/logo/stand.jpg" id="cafe" class="imageflottante" alt="cafe" />
-			<img src="image/logo/playground.png" id="jeux" class="imageflottante" alt="jeux" />
-			<img src="image/building/hospital.png" id="hopital" class="imageflottante" alt="Hôpital" />
-			<img src="image/logo/livres.png" id="bib" class="imageflottante" alt="Bibliothèque" />
-			<img src="image/logo/ecole.jpg" id="ecole" class="imageflottante" alt="école" />			
-			</section>
+			<img src="image/fond/cafe.png" id="cafe" class="batiment" alt="cafe" />
+			<img src="image/logo/playground.png" id="jeux" class="batiment" alt="jeux" />
+			<img src="image/fond/hopital.png" id="hopital" class="batiment" alt="Hôpital" />
+			<img src="image/logo/livres.png" id="bib" class="batiment" alt="Bibliothèque" />
+			<img src="image/logo/ecole.jpg" id="ecole" class="batiment" alt="école" />			
+
+			<!-- Images iles -->			
+			<img src="image/fond/cafe_ile.png" id="ile_cafe" class="ile" alt="cafe" />
+			<img src="image/fond/hopital_ile.png" id="ile_hopital" class="ile" alt="Hôpital" />
+			<!-- <img src="image/logo/playground.png" id="ile_jeux" class="ile" alt="jeux" />
+			<img src="image/building/hospital.png" id="ile_hopital" class="ile" alt="Hôpital" />
+			<img src="image/logo/livres.png" id="ile_bib" class="ile" alt="Bibliothèque" />
+			<img src="image/logo/ecole.jpg" id="ile_ecole" class="ile" alt="école" /> -->
 			<!-- Points d exclamation -->
 			<img src="image/logo/exclam.gif" id="ex_cafe" class="exclam" alt="Nouveau contenu!" />
 			<img src="image/logo/exclam.gif" id="ex_jeux" class="exclam" alt="Nouveau contenu!" />
@@ -64,6 +70,7 @@
     		?>
 			
 			<!-- autres animations -->
+			<img src="image/fond/hopital_arbre.png" id="arbre_hopital" />
 			<img src="image/logo/exclam.gif" id="oiseaux" />
 			<img src="image/logo/exclam.gif" id="helico" />
 			<img src="image/logo/exclam.gif" id="dauphin" />
