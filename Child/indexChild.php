@@ -56,15 +56,16 @@
     		if (isset($_GET['lieu'] ))
     		{
     			?>
-    			<div id="personnage" class= "<?php echo $_GET['lieu'].'_sortie'?>">
+    			<div id="personnage" class= "<?php echo $_GET['lieu']?>">
     			<div id="perso_image"></div>
+    			<img src="image/sprites/mong.png" id="mongolfiere" />
     			</div>
     			<?php
     		}
     		else 
     		{
     			?>
-    			<div id="personnage" class= "hopital_sortie"> </div>
+    			<div id="personnage" class= "hopital"> </div>
     			<?php
     		}
     		?>

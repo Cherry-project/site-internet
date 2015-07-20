@@ -21,7 +21,8 @@ $("#perso_image").animateSprite({
         lookRight: [6],
         walkRight: [7,8],
         lookLeft: [9],
-        walkLeft: [10,11]
+        walkLeft: [10,11],
+        nothing:[12,13]
     },
     loop: true,
     complete: function(){
@@ -29,7 +30,92 @@ $("#perso_image").animateSprite({
         alert("animation End");
     }
 });
-//$("#perso_image").animateSprite('stop');
+
+
+function deplacement_total(destination){//destination=idBuilding
+    //On modifie le div de destination
+    $("#dest").removeClass().addClass(destination);
+    //marche 100px vers le bas
+    $("#perso_image").animateSprite('play', 'walkDown');
+    $("#personnage").css({
+            "MozTransition"    : '1s linear 0.5s',
+            "transition"       : '1s linear 0.5s',
+            "top":"+=50"
+        });
+    $("#personnage").one('webkitTransitionEnd transitionend', function(e) { //fin 100px
+        $("#perso_image").animateSprite('play', 'lookDown');
+        $("#mongolfiere").css({"display":"inline-block"});
+        $("#perso_image").css({"display":"none"});
+        //decollage
+        /*$("#perso_image").css({
+            "MozTransition": "2s linear 0.5s",
+            "transition": "2s linear 0.5s", 
+            "transform": "scale(1.2,1.2)"
+        });
+        $("#perso_image").one('webkitTransitionEnd transitionend', function(e) { //fin décollage*/
+            deplacement_principal(destination);        
+        //});//fin décollage
+    });//fin 100px
+}//fin fonction deplacement_total
+
+function deplacement_principal(destination){
+    //changer le temps nécessaire à l'animation selon la distance aé parcourir
+    var dist=Math.sqrt(Math.pow(($("#personnage").position().top - $("#dest").position().top),2)+Math.pow(($("#personnage").position().left - $("#dest").position().left),2));
+    var time=dist/100;
+    //on donne sa destination au personnage 
+    //$("#personnage").removeClass().addClass(destination);
+    $("#personnage").css({
+        "MozTransition"    : time+'s linear 0.5s',
+        "transition"       : time+'s linear 0.5s',
+        "left" : $("#dest").position().left+'px',
+        "top" : $("#dest").position().top+'px'
+    });
+            
+    $("#personnage").one('webkitTransitionEnd transitionend', function(e) { //fin déplacement principal
+        //atterrissage
+        /*$("#perso_image").css({
+            "MozTransition": "2s linear 0.5s",
+            "transition": "2s linear 0.5s",
+            "transform": "scale(1,1)"
+        });
+        $("#perso_image").one('webkitTransitionEnd transitionend', function(e) { //fin aterrissage*/
+            deplacement_final(destination);
+        //});//fin atterrissage
+    });//fin deplacement principal
+}
+
+function deplacement_final(destination){
+    $("#perso_image").css({"display":"inline-block"});
+    $("#perso_image").animateSprite('play', 'walkUp');
+    $("#mongolfiere").css({"display":"none"});
+    $("#personnage").css({
+        "MozTransition": "2s linear 0.5s",
+        "transition": "2s linear 0.5s", 
+        "top":"-=50"
+    });
+    $("#personnage").one('webkitTransitionEnd transitionend', function(e) {
+        switch(destination) {
+            case "hopital":
+            window.location.href = "Hospital/indexHospital.php";
+            break;
+            case "cafe":
+            window.location.href = "Cafe/indexCafe.php";
+            break;
+            case "jeux":
+            window.location.href = "Games/indexGames.php";
+            break;
+            case "bib":
+            window.location.href = "Libraries/indexLibraries.php";
+            break;
+            case "ecole":
+            window.location.href = "School/indexSchool.php";
+            break;
+            default:
+            window.location.href = "#";
+        }
+    });
+}
+
 
 //Fonction pour animation
 $(function () {
@@ -38,73 +124,15 @@ $(function () {
     //Le personnage se déplacera vers la position de cette nouvelle classe selon l'animation CSS
     $(".batiment").on("click", function () {
         idBuilding = $(this).attr("id");
-        //On modifie le div de destination
-        $("#dest").removeClass().addClass(idBuilding);
 
-        //gestion animation de marche du sprite(--faire ac la distance à l'emplacement d'arrivée)
-        var a=$("#dest").position().left, b=$("#dest").position().top;
-        var x=$("#dest").position().left - $("#personnage").position().left;
-        var y=$("#dest").position().top - $("#personnage").position().top; 
-        if (y>=x && y>=(-x)){
-            $("#perso_image").animateSprite('play', 'walkDown');
+        //Si le perso n'est pas deja sur l'ile correspondante, on le fait voler
+        if(!($("#personnage").hasClass(idBuilding))){
+            deplacement_total(idBuilding);
         }
-        else if (y<=x && y<=(-x)){
-            $("#perso_image").animateSprite('play', 'walkUp');
+        else{
+            deplacement_final(idBuilding);
         }
-        else if (y>=x && y<=(-x)){
-            $("#perso_image").animateSprite('play', 'walkLeft');
-        }
-        else if (y<=x && y>=(-x)){
-            $("#perso_image").animateSprite('play', 'walkRight');
-        }
-        else {
-           $("#perso_image").animateSprite('play', 'walkDown'); 
-        }
-
-        //calculer temps nécessaire (a partir de la dist au batiment -- faire ac la distance à l'emplacement d'arrivée)
-        var dist=Math.sqrt(Math.pow(($("#personnage").position().top - $("#dest").position().top),2)+Math.pow(($("#personnage").position().left - $("#dest").position().left),2));
-        var time=dist/200;
-
-        //changer le temps nécessaire à l'animation selon la distance
-        $("#personnage").css({
-            "MozTransition"    : time+'s linear 0.5s',
-            "transition"       : time+'s linear 0.5s'
-        });
-        
-        //on donne une destination au personnage 
-        $("#personnage").removeClass().addClass(idBuilding);
-        
-        //a la fin de la transition, on passe à la page nécessaire
-        $("#personnage").one('webkitTransitionEnd transitionend', function(e) {
-            //$("#perso_image").animateSprite('play', 'atterrissage');
-            //$(#personnage).css({"MozTransition": "1 linear 0.2s","transition": "1 linear 0.2s", "transform": "scale(0.7,0.7)";});
-            //$("#personnage").one('webkitTransitionEnd transitionend', function(e) {
-                //$("#perso_image").animateSprite('play', 'walkUp');
-                //$(#personnage).css({"MozTransition": "1 linear 0.2s","transition": "1 linear 0.2s", "top":"-=100";});
-                //$("#personnage").one('webkitTransitionEnd transitionend', function(e) {
-            switch(idBuilding) {
-                case "hopital":
-                window.location.href = "Hospital/indexHospital.php";
-                break;
-                case "cafe":
-                window.location.href = "Cafe/indexCafe.php";
-                break;
-                case "jeux":
-                window.location.href = "Games/indexGames.php";
-                break;
-                case "bib":
-                window.location.href = "Libraries/indexLibraries.php";
-                break;
-                case "ecole":
-                window.location.href = "School/indexSchool.php";
-                break;
-                default:
-                window.location.href = "#";
-            //}}
-            }
-        });
     });
-    
 });
 
 

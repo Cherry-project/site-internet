@@ -23,7 +23,7 @@ footer img:hover {
 	transform:rotate(10deg);
 }
 
-/*Images des batiments + points d'exclamation associés*/
+/*Images des iles, batiments + points d'exclamation associés*/
 #ile_cafe
 {
     position: fixed;
@@ -100,7 +100,6 @@ footer img:hover {
 	z-index: 3;
 }
 
-
 #bib
 {
     position: fixed;
@@ -115,7 +114,6 @@ footer img:hover {
 	left : 1150px;
 	z-index: 3;
 }
-
 
 #ecole
 {
@@ -140,7 +138,17 @@ footer img:hover {
 	width: 32px;
 	height: 29px;
 	display: inline-block;
+	z-index: 99;
 	background: url("image/sprites/personnage.png") no-repeat;
+}
+#mongolfiere{
+	position: relative;
+	left :-20px;
+	top:-20px;
+	width: 60px;
+	height: auto;
+	display: none;
+	z-index: 100;
 }
 
 #personnage
@@ -167,50 +175,30 @@ footer img:hover {
 }
 
 #personnage.hopital, #dest.hopital{
-	top: 550px;
-	left: 800px;	
-}
-#personnage.hopital_sortie{
-	top: 570px;
-	left: 800px;
+	top: 440px;
+	left: 710px;	
 }
 
 #personnage.cafe, #dest.cafe{
-	top: 400px;
-	left: 380px;	
-}
-#personnage.cafe_sortie{
-	top: 425px;
-	left: 400px;
+	top: 220px;
+	left: 175px;	
 }
 
 #personnage.jeux, #dest.jeux{
 	top: 300px;
 	left: 1150px;	
 }
-#personnage.jeux_sortie{
-	top: 350px;
-	left: 1150px;
-}
 
 #personnage.bib, #dest.bib{
 	top: 700px;
 	left: 1200px;	
 }
-#personnage.bib_sortie{
-	top: 700px;
-	left: 1150px;
-}
 
 #personnage.ecole, #dest.ecole{
-	top: 700px;
-	left: 425px;
-	
+	top: 730px;
+	left: 300px;
 }
-#personnage.ecole_sortie{
-	top: 675px;
-	left: 500px;
-}
+
 
 
 /*Autres animations*/
