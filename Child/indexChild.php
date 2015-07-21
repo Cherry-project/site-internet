@@ -58,14 +58,17 @@
     			?>
     			<div id="personnage" class= "<?php echo $_GET['lieu']?>">
     			<div id="perso_image"></div>
-    			<img src="image/sprites/mong.png" id="mongolfiere" />
+    			<img src="image/sprites/mong3.png" id="mongolfiere" />
     			</div>
     			<?php
     		}
     		else 
     		{
     			?>
-    			<div id="personnage" class= "hopital"> </div>
+    			<div id="personnage" class= "hopital"> 
+    			<div id="perso_image"></div>
+    			<img src="image/sprites/mong3.png" id="mongolfiere" />
+    			</div>
     			<?php
     		}
     		?>
@@ -73,7 +76,7 @@
 			<!-- autres animations -->
 			<img src="image/fond/hopital_arbre.png" id="arbre_hopital" />
 			<img src="image/logo/exclam.gif" id="oiseaux" />
-			<img src="image/logo/exclam.gif" id="helico" />
+			<img src="image/sprites/helico.png" id="helico" />
 			<img src="image/logo/exclam.gif" id="dauphin" />
 
 

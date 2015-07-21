@@ -150,17 +150,13 @@ footer img:hover {
 	display: none;
 	z-index: 100;
 }
-
 #personnage
 {
 	width: 32px;
 	height: 29px;
 	display: inline-block;
 	position: absolute;
-	z-index: 100;
-	left: 51%;
-	top: 41%;
-	
+	z-index: 98;	
 	transition: 5s;
 	-moz-transition: 5s;
 	transition-timing-function: linear;
@@ -209,6 +205,10 @@ footer img:hover {
 	-moz-transition-timing-function: linear;
 }
 #helico{
+	position: absolute;
+	left : 670px ;
+	top:260px;
+	z-index:88;
 	transition: 10s;
 	-moz-transition: 10s;
 	transition-timing-function: linear;
