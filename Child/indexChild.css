@@ -26,7 +26,7 @@ footer img:hover {
 /*Images des iles, batiments + points d'exclamation associés*/
 #ile_cafe
 {
-    position: fixed;
+    position: absolute;
 	top : 50px;
 	left : 50px;
 	z-index: 1;
@@ -35,7 +35,7 @@ footer img:hover {
 }
 #cafe
 {
-    position: fixed;
+    position: absolute;
 	top : 100px;
 	left : 200px;
 	z-index: 2;
@@ -43,7 +43,7 @@ footer img:hover {
 	height: auto;
 }
 #ex_cafe{
-	position: fixed;
+	position: absolute;
 	top : 60px;
 	left : 180px;
 	z-index: 3;
@@ -52,14 +52,14 @@ footer img:hover {
 
 #jeux
 {
-    position: fixed;
+    position: absolute;
 	top : 150px;
 	left : 1100px;
 	max-width: 250px;
 	height: auto;
 }
 #ex_jeux{
-	position: fixed;
+	position: absolute;
 	top : 150px;
 	left : 1100px;
 	z-index: 3;
@@ -68,7 +68,7 @@ footer img:hover {
 
 #ile_hopital
 {
-    position: fixed;
+    position: absolute;
 	top : 200px;
 	left : 475px;
 	z-index: 1;
@@ -77,7 +77,7 @@ footer img:hover {
 }
 #hopital
 {
-    position: fixed;
+    position: absolute;
 	top : 270px;
 	left : 640px;
 	z-index: 2;
@@ -86,7 +86,7 @@ footer img:hover {
 }
 #arbre_hopital
 {
-    position: fixed;
+    position: absolute;
 	top : 350px;
 	left : 770px;
 	z-index: 3;
@@ -94,7 +94,7 @@ footer img:hover {
 	height: auto;
 }
 #ex_hopital{
-	position: fixed;
+	position: absolute;
 	top : 300px;
 	left : 650px;
 	z-index: 3;
@@ -102,14 +102,14 @@ footer img:hover {
 
 #bib
 {
-    position: fixed;
+    position: absolute;
 	top : 525px;
 	left : 1150px;
 	max-width: 150px;
 	height: auto;
 }
 #ex_bib{
-	position: fixed;
+	position: absolute;
 	top : 525px;
 	left : 1150px;
 	z-index: 3;
@@ -117,14 +117,14 @@ footer img:hover {
 
 #ecole
 {
-    position: fixed;
+    position: absolute;
 	top : 575px;
 	left : 225px;
 	max-width: 150px;
 	height: auto;
 }
 #ex_ecole{
-	position: fixed;
+	position: absolute;
 	top : 575px;
 	left : 225px;
 	z-index: 3;
@@ -198,23 +198,28 @@ footer img:hover {
 
 
 /*Autres animations*/
-#oiseaux{
-	transition: 10s;
-	-moz-transition: 10s;
-	transition-timing-function: linear;
-	-moz-transition-timing-function: linear;
+#ovis{
+	position: absolute;
+	z-index:99;
+	max-width: 100px;
+}
+#dest_ovis{
+	width: 1px;
+	height: 1px;
+	display: inline-block;
+	position: absolute;
 }
 #helico{
 	position: absolute;
 	left : 670px ;
 	top:260px;
-	z-index:88;
-	transition: 10s;
-	-moz-transition: 10s;
-	transition-timing-function: linear;
-	-moz-transition-timing-function: linear;
+	z-index:100;
 }
 #dauphin{
+	position: absolute;
+	left : 600px ;
+	top:200px;
+	z-index:100;
 	transition: 10s;
 	-moz-transition: 10s;
 	transition-timing-function: linear;
@@ -233,7 +238,7 @@ footer img:hover {
 }
 .avatar
 {
-    position: absolute;
+    position: fixed;
 	top : 10px;
 	left : 15px;
 	max-width: 90px;
@@ -242,7 +247,7 @@ footer img:hover {
 
 .parametre
 {
-    position: absolute;
+    position: fixed;
 	top : 10px;
 	right : 130px;
 	max-width: 90px;
@@ -251,7 +256,7 @@ footer img:hover {
 
 .compte
 {
-    position: absolute;
+    position:fixed;
 	top : 10px;
 	right : 10px;
 	max-width: 90px;
@@ -262,7 +267,7 @@ footer img:hover {
 /*FOOTER*/
 .image1
 {
-    position: absolute;
+    position: fixed;
 	bottom : 10px;
 	left : 10px;
 	max-width: 60px;

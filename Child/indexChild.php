@@ -75,7 +75,8 @@
 			
 			<!-- autres animations -->
 			<img src="image/fond/hopital_arbre.png" id="arbre_hopital" />
-			<img src="image/logo/exclam.gif" id="oiseaux" />
+			<img src="image/sprites/avion.png" id="ovis" />
+			<div id="dest_ovis"></div>
 			<img src="image/sprites/helico.png" id="helico" />
 			<img src="image/logo/exclam.gif" id="dauphin" />
 
