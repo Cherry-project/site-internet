@@ -60,6 +60,7 @@
     			<div id="perso_image"></div>
     			<img src="image/sprites/mong3.png" id="mongolfiere" />
     			</div>
+    			<div id="cherry"><div id="cherry_image"></div></div>
     			<?php
     		}
     		else 
@@ -67,8 +68,9 @@
     			?>
     			<div id="personnage" class= "hopital"> 
     			<div id="perso_image"></div>
-    			<img src="image/sprites/mong3.png" id="mongolfiere" />
+    			<img src="image/sprites/mongolfiere1.png" id="mongolfiere" />
     			</div>
+    			<div id="cherry"><div id="cherry_image"></div></div>
     			<?php
     		}
     		?>
@@ -78,8 +80,19 @@
 			<img src="image/sprites/avion.png" id="ovis" />
 			<div id="dest_ovis"></div>
 			<img src="image/sprites/helico.png" id="helico" />
-			<img src="image/logo/exclam.gif" id="dauphin" />
+			<div id="cadre_choix_perso" class="replie"><p>Choisis ton avatar</p></div>
 
+			<!-- fenetres -->
+			<div id="m_suggestion">
+     			<div class="contenu">
+          			<p>Content you want the user to see goes here.</p>
+     			</div>
+     			<div class="bouton1">
+          			<p>Allons-y!</p>
+     			</div>
+     			<img src="image/sprites/avion.png"/>
+     			<img src="image/sprites/avion.png" class="bouton_fermeture"/>
+			</div>
 
 			<!-- scripts -->
 			<script src="../jquery.js"></script>
