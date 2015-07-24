@@ -1,3 +1,15 @@
+var idleTime = 0;
+var is_deplacement=false;
+function timerIncrement() {
+    idleTime = idleTime + 1;
+    if (idleTime > 5) { // 10 sec
+        if (($("#m_suggestion").css("visibility")=="hidden")&&($("#m_visite").css("visibility")== "hidden")&&is_deplacement==false){
+            toggle_m_suggestion();
+            idleTime=0;
+        }
+    }
+}
+
 $("#cherry_image").animateSprite({
     fps: 3,
     animations: {
@@ -49,21 +61,47 @@ function set_exclamation (){//Mise en place des points d'exclamation
         }
     }
 }
-function set_avatars(){//mise en place du choix d'avatars
+function set_avatars(){//mise en place de l'avatar et du choix d'avatars
+    if ($.cookie('avatar')){
+       $('#perso_image').css("background-image", $.cookie('avatar')); 
+    }
     var tab_avatars=["image/sprites/personnage.png","image/sprites/perso_2.png"];
     for (i=0; i<tab_avatars.length;i++){
         $("#cadre_choix_perso").append("<div id ='choix_perso"+i+"' class='choix_perso'> </div>");
         $('#choix_perso'+i+'').css("background-image", "url("+tab_avatars[i]+")"); 
     }
 }
-function set_cherry(){
+function set_cherry(){//placement Cherry
     var top=$("#personnage").position().top-23;
     $("#cherry").css({
         "left" : $("#personnage").position().left+'px',
         "top" : top+'px'
     });
 }
+function set_m_suggestion(){//mise en place des events pour fenetre de suggestion
+    $("#cherry").click(function () {toggle_m_suggestion();});
+    $("#m_suggestion div img.bouton_fermeture").click(function () {
+        toggle_m_suggestion();
+    });
+    $("#m_suggestion div p.bouton1").click(function () {
+        toggle_m_suggestion();
+        deplacement_ile("cafe");
+    });
+}
 
+function deplacement_ile(destination){//choisit le déplacement adequat
+    //On empeche d'autres evenements de déranger celui-ci
+    is_deplacement=true;
+    $(".batiment").off("click");
+    $("#cherry").off("click");
+    //Si le perso n'est pas deja sur l'ile correspondante, on le fait voler
+    if(!($("#personnage").hasClass(destination))){
+        deplacement_total(destination);
+    }
+    else{//sinon il marche vers la porte
+        deplacement_final(destination);
+    }
+}
 function deplacement_total(destination){//deplacement vers le bas+principal+final
     //On modifie le div de destination
     $("#dest").removeClass().addClass(destination);
@@ -89,7 +127,6 @@ function deplacement_total(destination){//deplacement vers le bas+principal+fina
         });//fin décollage
     });//fin 100px*/
 }
-
 function deplacement_principal(destination){//mouvement d'une ile à l'autre
     //changer le temps nécessaire à l'animation selon la distance a parcourir
     var dist=Math.sqrt(Math.pow(($("#personnage").position().top - $("#dest").position().top),2)+Math.pow(($("#personnage").position().left - $("#dest").position().left),2));
@@ -117,7 +154,6 @@ function deplacement_principal(destination){//mouvement d'une ile à l'autre
         });
     });//fin deplacement principal
 }
-
 function deplacement_final(destination){//entrée dans un batiment
     $("#cherry").removeAttr('style');
     $("#cherry").css({
@@ -158,38 +194,136 @@ function deplacement_final(destination){//entrée dans un batiment
 
 //Fonction principale
 $(function () {
+    var idleInterval = setInterval(timerIncrement, 2000);//2sec
+    $(this).click(function (e) {idleTime = 0;});
+
     set_exclamation(); 
     set_avatars();
     set_cherry();
+    set_m_suggestion();
     //Losqu'on clique sur un batiment, on récupère son id
     //Le personnage se déplacera vers la position du batiment
     var idBuilding;
     $(".batiment").click( function () {//déplacement perso
         idBuilding = $(this).attr("id");
-        //Si le perso n'est pas deja sur l'ile correspondante, on le fait voler
-        if(!($("#personnage").hasClass(idBuilding))){
-            deplacement_total(idBuilding);
-        }
-        else{//sinon il marche vers la porte
-            deplacement_final(idBuilding);
-        }
+        deplacement_ile(idBuilding);
     });
     //choix perso
     $(".avatar").click(function () {toggle_cadre_perso();});
     $(".choix_perso").click(function () {
         var bg=$(this).css('background-image');
         $('#perso_image').css("background-image", bg);
+        $.cookie('avatar', bg, { expires: 10 });
         toggle_cadre_perso();
     });
+    $("#im_visite").click(function () {start_visite();});
     //autres animations
     var helico_time=Math.floor(Math.random()*10000);   
     setTimeout(helicopter, helico_time);
     
     var ovis_time=Math.floor(Math.random()*10000);
-    setTimeout(ovis, ovis_time);
-    
+    setTimeout(ovis, ovis_time);    
     
 });
+
+function start_visite(){
+    var i=0;
+    $("#m_visite").find('*').removeAttr('style');
+    $("#m_visite_contenu").html("Bonjour! Je peux te faire visiter l'Univers Cherry. Tu es prêt?");
+    $("#m_visite div p.bouton1").html("Allons-y!");
+    $("#m_visite").css("visibility", "visible");
+    $("#m_visite div img.bouton_fermeture").click(function () {$("#m_visite, #m_visite div img.bouton_fermeture").css("visibility", "hidden");});
+    $("#m_visite div p.bouton2").click(function () {$("#m_visite").css("visibility", "hidden");});
+    $("#m_visite div p.bouton1").click(function () {
+        i=i+1;
+        switch(i) {
+            case 1:
+                $("#m_visite div").css({
+                "left" : '300px',
+                "top" : '70px',
+                "width":"1000px"
+                });
+                $("#m_visite_contenu").html("En arrivant dans l'archipel, tu peux voir cinq batiments sur des îles : l'hôpital, le café, la bibliothèque, et le terrain de jeux. </br>Tu peux te déplacer entre les îles en cliquant sur le batiment que tu souhaites visiter. </br>Si un point d'exclamation flotte au dessus d'un batiment, c'est que tu as une nouvauté dedans. Un massage de tes amis par exemple!"); 
+                $("#m_visite div p.bouton1").html("Super!");
+                $("#m_visite div p").css({
+                "margin-top" : '130px',
+                "margin-left" : '130px',
+                "margin-right":"190px"
+                });
+                $("#m_visite div p.bouton1").css({
+                "margin-top" : '350px',
+                "margin-left" : '400px'
+                });
+                $("#m_visite div p.bouton2").css("visibility", "hidden");
+                $("#m_visite div img.im_cherry").css({
+                "left" : '66%',
+                "top" : '370px'
+                });
+                $("#m_visite div img.bouton_fermeture").css({
+                    "visibility":"visible",
+                "left" : '60px',
+                "top" : '50px',
+                "width":"65px"
+                });
+                break;
+            case 2:
+                $("#m_visite div").css({
+                "left" : '300px',
+                "top" : '70px',
+                "width":"1000px"
+                });
+                $("#m_visite_contenu").html("En haut, tu tu peux voir ton protrait. </br>Clique dessus pour changer l'apparence de ton personnage dans l'Univers Cherry!"); 
+                $("#m_visite div p.bouton1").html("D'accord.");
+                $("#m_visite div p").css({
+                "margin-top" : '130px',
+                "margin-left" : '130px',
+                "margin-right":"190px"
+                });
+                $("#m_visite div p.bouton1").css({
+                "margin-top" : '350px',
+                "margin-left" : '400px'
+                });
+                $("#m_visite div p.bouton2").css("visibility", "hidden");
+                $("#m_visite div img.im_cherry").css({
+                "left" : '66%',
+                "top" : '370px'
+                });
+                $("#m_visite div img.bouton_fermeture").css({
+                    "visibility":"visible",
+                "left" : '60px',
+                "top" : '50px',
+                "width":"65px"
+                });
+                break;
+            case 3:
+                
+                break;
+            case 4:
+                
+                break;
+            case 5:
+                
+                break;
+            case 6:
+                
+                break;
+            case 7:
+                
+                break;
+            case 8:
+                
+                break;
+            case 9:
+                
+                break;
+            default:
+                i=0;
+                $("#m_visite").find('*').removeAttr('style');
+                $("#m_visite").css("visibility", "hidden");
+        } 
+    });
+}
+
 
 function toggle_cadre_perso(){
     if($("#cadre_choix_perso").hasClass("replie")){
@@ -197,7 +331,24 @@ function toggle_cadre_perso(){
     }
     else{
         $("#cadre_choix_perso").removeClass().addClass("replie");
+    } 
+}
+
+function toggle_m_suggestion(){
+    if($("#m_suggestion").css("visibility")=="visible"){
+        $("#m_suggestion").css("visibility", "hidden");
     }
+    else{
+        $("#m_suggestion").css("visibility", "visible");
+        var t=$("#cherry").position().top-200;
+        var l=$("#cherry").position().left-300;
+        if (t<0){t=0;}
+        if (l<0){l=0;}
+        $("#m_suggestion div").css({
+            "top": t+"px",
+            "left": l+"px"
+        });
+    }   
 }
 
 function helicopter(){

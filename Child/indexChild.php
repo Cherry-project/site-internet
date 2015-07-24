@@ -41,6 +41,7 @@
 			<img src="image/building/hospital.png" id="ile_hopital" class="ile" alt="Hôpital" />
 			<img src="image/logo/livres.png" id="ile_bib" class="ile" alt="Bibliothèque" />
 			<img src="image/logo/ecole.jpg" id="ile_ecole" class="ile" alt="école" /> -->
+			
 			<!-- Points d exclamation -->
 			<img src="image/logo/exclam.gif" id="ex_cafe" class="exclam" alt="Nouveau contenu!" />
 			<img src="image/logo/exclam.gif" id="ex_jeux" class="exclam" alt="Nouveau contenu!" />
@@ -51,14 +52,14 @@
 			<!-- Destination du personnage -->
 			<div id = "dest" class = "def"> </div>
 
-    		<!-- avatar, lieu recupere de l url -->
+    		<!-- avatar, mongolfiere, cherry, lieu recupéré de l'url -->
     		<?php
     		if (isset($_GET['lieu'] ))
     		{
     			?>
     			<div id="personnage" class= "<?php echo $_GET['lieu']?>">
     			<div id="perso_image"></div>
-    			<img src="image/sprites/mong3.png" id="mongolfiere" />
+    			<img src="image/sprites/mongolfiere1.png" id="mongolfiere" />
     			</div>
     			<div id="cherry"><div id="cherry_image"></div></div>
     			<?php
@@ -80,22 +81,36 @@
 			<img src="image/sprites/avion.png" id="ovis" />
 			<div id="dest_ovis"></div>
 			<img src="image/sprites/helico.png" id="helico" />
-			<div id="cadre_choix_perso" class="replie"><p>Choisis ton avatar</p></div>
+			<img src="image/logo/help.png" id="im_visite" />
 
 			<!-- fenetres -->
+			<div id="cadre_choix_perso" class="replie"><p>Choisis ton avatar</p></div>
 			<div id="m_suggestion">
      			<div class="contenu">
-          			<p>Content you want the user to see goes here.</p>
+     				<img src="image/fond/bulle.png" class="im_fond"/>
+          			<p>Tu as un nouveau message au cybercafé! Et si on allait voir?</p>
+     				<p class="bouton1">Allons-y!</p>
+     				<img src="image/logo/cherry.png" class="im_cherry"/>
+     				<img src="image/logo/close.png" class="bouton_fermeture"/>
      			</div>
-     			<div class="bouton1">
-          			<p>Allons-y!</p>
+			</div>
+			<div id="m_visite">
+     			<div class="contenu">
+     				<img src="image/fond/bulle.png" class="im_fond"/>
+   
+          			<p id="m_visite_contenu">Bonjour! Je peux te faire visiter l'Univers Cherry. Tu es prêt?</p>
+
+     				<p class="bouton1">Allons-y!</p>
+     				<p class="bouton2">Pas maintenant.</p>
+     				<img src="image/logo/fleche.png" class="im_fleche"/>
+     				<img src="image/logo/cherry.png" class="im_cherry"/>
+     				<img src="image/logo/close.png" class="bouton_fermeture"/>
      			</div>
-     			<img src="image/sprites/avion.png"/>
-     			<img src="image/sprites/avion.png" class="bouton_fermeture"/>
 			</div>
 
 			<!-- scripts -->
 			<script src="../jquery.js"></script>
+			<script src="../jquery.cookie.js"></script>
 			<script src="jquery.animateSprite.min.js"></script>
 			<script src="indexChild.js"></script> 
               
