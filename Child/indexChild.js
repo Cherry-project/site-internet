@@ -1,6 +1,7 @@
 var idleTime = 0;
 var is_deplacement=false;
-function timerIncrement() {
+
+function timerIncrement() {//timer d'inactivité
     idleTime = idleTime + 1;
     if (idleTime > 5) { // 10 sec
         if (($("#m_suggestion").css("visibility")=="hidden")&&($("#m_visite").css("visibility")== "hidden")&&is_deplacement==false){
@@ -10,44 +11,44 @@ function timerIncrement() {
     }
 }
 
-$("#cherry_image").animateSprite({
-    fps: 3,
-    animations: {
-        lookDown:[0],
-        walkDown: [1,2],
-        lookUp: [3],
-        walkUp: [4,5],
-        lookRight: [6],
-        walkRight: [7,8],
-        lookLeft: [9],
-        walkLeft: [10,11],
-        nothing:[12,13]
-    },
-    loop: true,
-    complete: function(){
-        // use complete only when you set animations with 'loop: false'
-        alert("animation End");
-    }
-});
-$("#perso_image").animateSprite({
-    fps: 5,
-    animations: {
-        lookDown:[0],
-        walkDown: [1,2],
-        lookUp: [3],
-        walkUp: [4,5],
-        lookRight: [6],
-        walkRight: [7,8],
-        lookLeft: [9],
-        walkLeft: [10,11],
-        nothing:[12,13,14]
-    },
-    loop: true,
-    complete: function(){
-        // use complete only when you set animations with 'loop: false'
-        alert("animation End");
-    }
-});
+function set_sprites(){//mise en place des anims de sprites
+    $("#cherry_image").animateSprite({
+        fps: 3,
+        animations: {
+            lookDown:[0],
+            walkDown: [1,2],
+            lookUp: [3],
+            walkUp: [4,5],
+            lookRight: [6],
+            walkRight: [7,8],
+            lookLeft: [9],
+            walkLeft: [10,11],
+            nothing:[12,13]
+        },
+        loop: true,
+        complete: function(){
+            // use complete only when you set animations with 'loop: false'
+        }
+    });
+    $("#perso_image").animateSprite({
+        fps: 5,
+        animations: {
+            lookDown:[0],
+            walkDown: [1,2],
+            lookUp: [3],
+            walkUp: [4,5],
+            lookRight: [6],
+            walkRight: [7,8],
+            lookLeft: [9],
+            walkLeft: [10,11],
+            nothing:[12,13,14]
+        },
+        loop: true,
+        complete: function(){
+            // use complete only when you set animations with 'loop: false'
+        }
+    });
+}
 function set_exclamation (){//Mise en place des points d'exclamation
     var isnew=[1,0,0,1,0];
     var exclam = document.querySelectorAll('.exclam'),
@@ -197,10 +198,12 @@ $(function () {
     var idleInterval = setInterval(timerIncrement, 2000);//2sec
     $(this).click(function (e) {idleTime = 0;});
 
+    set_sprites();
     set_exclamation(); 
     set_avatars();
     set_cherry();
     set_m_suggestion();
+
     //Losqu'on clique sur un batiment, on récupère son id
     //Le personnage se déplacera vers la position du batiment
     var idBuilding;
@@ -208,7 +211,8 @@ $(function () {
         idBuilding = $(this).attr("id");
         deplacement_ile(idBuilding);
     });
-    //choix perso
+
+    //choix apparence de l'avatar
     $(".avatar").click(function () {toggle_cadre_perso();});
     $(".choix_perso").click(function () {
         var bg=$(this).css('background-image');
@@ -216,6 +220,7 @@ $(function () {
         $.cookie('avatar', bg, { expires: 10 });
         toggle_cadre_perso();
     });
+    //visite
     $("#im_visite").click(function () {start_visite();});
     //autres animations
     var helico_time=Math.floor(Math.random()*10000);   

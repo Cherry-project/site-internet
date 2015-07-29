@@ -357,9 +357,9 @@ footer img:hover {
 
 #im_visite{
 	position: absolute;
-    left: 1500px;
-    top: 800px;
-    width:100px;
+    left: 92%;
+    top: 86%;
+    width:6%;
     height:auto;
     z-index: 1000;
 }
