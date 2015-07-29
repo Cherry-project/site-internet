@@ -20,7 +20,7 @@ Dans le bloc header, copier en remplacant [path] :
 <script type="text/javascript">
         document.createElement('video');document.createElement('audio');document.createElement('track');
         </script>
-        ?<script src="[path]jwplayer.js" ></script>
+        <script src="[path]jwplayer.js" ></script>
         <script>jwplayer.key="Cjd8Xr6I0ioLaFl64eNFuYC0SS6y+tmBOiSkRg==";</script>
 
 La key est la clé utilisateur du compte Cherry.

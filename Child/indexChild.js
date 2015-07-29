@@ -238,92 +238,290 @@ function start_visite(){
         i=i+1;
         switch(i) {
             case 1:
-                $("#m_visite div").css({
+            $("#m_visite div").css({
                 "left" : '300px',
                 "top" : '70px',
                 "width":"1000px"
-                });
-                $("#m_visite_contenu").html("En arrivant dans l'archipel, tu peux voir cinq batiments sur des îles : l'hôpital, le café, la bibliothèque, et le terrain de jeux. </br>Tu peux te déplacer entre les îles en cliquant sur le batiment que tu souhaites visiter. </br>Si un point d'exclamation flotte au dessus d'un batiment, c'est que tu as une nouvauté dedans. Un massage de tes amis par exemple!"); 
-                $("#m_visite div p.bouton1").html("Super!");
-                $("#m_visite div p").css({
+            });
+            $("#m_visite_contenu").html("En arrivant dans l'archipel, tu peux voir cinq batiments sur des îles : l'hôpital, le café, la bibliothèque, et le terrain de jeux. </br>Tu peux te déplacer entre les îles en cliquant sur le batiment que tu souhaites visiter. </br>Si un point d'exclamation flotte au dessus d'un batiment, c'est que tu as une nouvauté dedans. Un massage de tes amis par exemple!"); 
+            $("#m_visite div p.bouton1").html("Super!");
+            $("#m_visite div p").css({
                 "margin-top" : '130px',
                 "margin-left" : '130px',
                 "margin-right":"190px"
-                });
-                $("#m_visite div p.bouton1").css({
+            });
+            $("#m_visite div p.bouton1").css({
                 "margin-top" : '350px',
                 "margin-left" : '400px'
-                });
-                $("#m_visite div p.bouton2").css("visibility", "hidden");
-                $("#m_visite div img.im_cherry").css({
+            });
+            $("#m_visite div p.bouton2").css("visibility", "hidden");
+            $("#m_visite div img.im_cherry").css({
                 "left" : '66%',
                 "top" : '370px'
-                });
-                $("#m_visite div img.bouton_fermeture").css({
-                    "visibility":"visible",
+            });
+            $("#m_visite div img.bouton_fermeture").css({
+                "visibility":"visible",
                 "left" : '60px',
                 "top" : '50px',
                 "width":"65px"
-                });
-                break;
+            });
+            break;
             case 2:
-                $("#m_visite div").css({
-                "left" : '300px',
-                "top" : '70px',
-                "width":"1000px"
-                });
-                $("#m_visite_contenu").html("En haut, tu tu peux voir ton protrait. </br>Clique dessus pour changer l'apparence de ton personnage dans l'Univers Cherry!"); 
-                $("#m_visite div p.bouton1").html("D'accord.");
-                $("#m_visite div p").css({
-                "margin-top" : '130px',
+            $("#m_visite div").css({
+                "left" : '700px',
+                "top" : '100px',
+                "width":"700px"
+            });
+            $("#m_visite_contenu").html("En haut, tu tu peux voir ton protrait. </br>Clique dessus pour changer l'apparence de ton personnage dans l'Univers Cherry!"); 
+            $("#m_visite div p.bouton1").html("D'accord.");
+            $("#m_visite div p").css({
+                "margin-top" : '120px',
                 "margin-left" : '130px',
                 "margin-right":"190px"
-                });
-                $("#m_visite div p.bouton1").css({
-                "margin-top" : '350px',
-                "margin-left" : '400px'
-                });
-                $("#m_visite div p.bouton2").css("visibility", "hidden");
-                $("#m_visite div img.im_cherry").css({
+            });
+            $("#m_visite div p.bouton1").css({
+                "margin-top" : '240px',
+                "margin-left" : '250px'
+            });
+            $("#m_visite div p.bouton2").css("visibility", "hidden");
+            $("#m_visite div img.im_cherry").css({
                 "left" : '66%',
                 "top" : '370px'
-                });
-                $("#m_visite div img.bouton_fermeture").css({
-                    "visibility":"visible",
-                "left" : '60px',
-                "top" : '50px',
+            });
+            $("#m_visite div img.bouton_fermeture").css({
+                "visibility":"visible",
+                "left" : '30px',
+                "top" : '25px',
                 "width":"65px"
-                });
-                break;
+            });
+            $("#m_visite div img.im_fleche").css({
+                "visibility":"visible",
+                "left" : '-600px',
+                "top" : '-20px',
+                "width":"100px",
+                "transform": 'rotate(-155deg)'
+            });
+            break;
             case 3:
-                
-                break;
+            $("#m_visite div").css({
+                "left" : '0px',
+                "top" : '500px',
+                "width":"700px"
+            });
+            $("#m_visite_contenu").html("A l'hopital, tu trouveras des informations sur la santé et des explications sur ton traitement. </br>Parfois, tu pourras faire des quizz pour vérifier que tu as bien tout compris."); 
+            $("#m_visite div p.bouton1").html("D'accord.");
+            $("#m_visite div p").css({
+                "margin-top" : '100px',
+                "margin-left" : '100px',
+                "margin-right":"160px"
+            });
+            $("#m_visite div p.bouton1").css({
+                "margin-top" : '240px',
+                "margin-left" : '250px'
+            });
+            $("#m_visite div p.bouton2").css("visibility", "hidden");
+            $("#m_visite div img.im_cherry").css({
+                "left" : '66%',
+                "top" : '200px'
+            });
+            $("#m_visite div img.bouton_fermeture").css({
+                "visibility":"visible",
+                "left" : '30px',
+                "top" : '25px',
+                "width":"65px"
+            });
+            $("#m_visite div img.im_fleche").css({
+                "visibility":"visible",
+                "left" : '800px',
+                "top" : '-300px',
+                "width":"100px",
+                "transform": 'rotate(155deg)'
+            });
+            break;
             case 4:
-                
-                break;
+            $("#m_visite div").css({
+                "left" : '600px',
+                "top" : '50px',
+                "width":"700px"
+            });
+            $("#m_visite_contenu").html("A l'école, tu trouveras tes cours, et tout ce qu'il faut pour apprendre. </br>Ton professeur pourra y mettre des documents, des exercices, ou des vidéos pour toi."); 
+            $("#m_visite div p.bouton1").html("D'accord.");
+            $("#m_visite div p").css({
+                "margin-top" : '90px',
+                "margin-left" : '100px',
+                "margin-right":"160px"
+            });
+            $("#m_visite div p.bouton1").css({
+                "margin-top" : '240px',
+                "margin-left" : '250px'
+            });
+            $("#m_visite div p.bouton2").css("visibility", "hidden");
+            $("#m_visite div img.im_cherry").css({
+                "left" : '66%',
+                "top" : '370px'
+            });
+            $("#m_visite div img.bouton_fermeture").css({
+                "visibility":"visible",
+                "left" : '30px',
+                "top" : '25px',
+                "width":"65px"
+            });
+            $("#m_visite div img.im_fleche").css({
+                "visibility":"visible",
+                "left" : '-200px',
+                "top" : '500px',
+                "width":"100px",
+                "transform": 'rotate(155deg)'
+            });
+            break;
             case 5:
-                
-                break;
+            $("#m_visite div").css({
+                "left" : '700px',
+                "top" : '400px',
+                "width":"700px"
+            });
+            $("#m_visite_contenu").html("Au cybercafé, tu pourras rencontrer tes amis et ta famille par un chat, ou en vidéo. </br>Tu pourras aussi envoyer et recevoir des emails."); 
+            $("#m_visite div p.bouton1").html("D'accord.");
+            $("#m_visite div p").css({
+                "margin-top" : '90px',
+                "margin-left" : '100px',
+                "margin-right":"160px"
+            });
+            $("#m_visite div p.bouton1").css({
+                "margin-top" : '240px',
+                "margin-left" : '250px'
+            });
+            $("#m_visite div p.bouton2").css("visibility", "hidden");
+            $("#m_visite div img.im_cherry").css({
+                "left" : '66%',
+                "top" : '270px'
+            });
+            $("#m_visite div img.bouton_fermeture").css({
+                "visibility":"visible",
+                "left" : '30px',
+                "top" : '25px',
+                "width":"65px"
+            });
+            $("#m_visite div img.im_fleche").css({
+                "visibility":"visible",
+                "left" : '-250px',
+                "top" : '-300px',
+                "width":"100px",
+                "transform": 'rotate(180deg)'
+            });
+            break;
             case 6:
-                
-                break;
+            $("#m_visite div").css({
+                "left" : '100px',
+                "top" : '200px',
+                "width":"700px"
+            });
+            $("#m_visite_contenu").html("A la bibliothèque se trouvent tous tes documents: livres, vidéos, musiques... </br>Tu pourras aussi en trouver de nouveaux."); 
+            $("#m_visite div p.bouton1").html("D'accord.");
+            $("#m_visite div p").css({
+                "margin-top" : '110px',
+                "margin-left" : '100px',
+                "margin-right":"160px"
+            });
+            $("#m_visite div p.bouton1").css({
+                "margin-top" : '240px',
+                "margin-left" : '250px'
+            });
+            $("#m_visite div p.bouton2").css("visibility", "hidden");
+            $("#m_visite div img.im_cherry").css({
+                "left" : '66%',
+                "top" : '270px'
+            });
+            $("#m_visite div img.bouton_fermeture").css({
+                "visibility":"visible",
+                "left" : '30px',
+                "top" : '25px',
+                "width":"65px"
+            });
+            $("#m_visite div img.im_fleche").css({
+                "visibility":"visible",
+                "left" : '1050px',
+                "top" : '200px',
+                "width":"100px",
+                "transform": 'rotate(90deg)'
+            });
+            break;
             case 7:
-                
-                break;
+            $("#m_visite div").css({
+                "left" : '300px',
+                "top" : '400px',
+                "width":"700px"
+            });
+            $("#m_visite_contenu").html("Enfin, tu peux aller au terrain de jeu pour t'amuser! </br>Coloriages, jeux d'adresse, jeux de réflexion... Il y en a pour tous les goûts."); 
+            $("#m_visite div p.bouton1").html("D'accord.");
+            $("#m_visite div p").css({
+                "margin-top" : '100px',
+                "margin-left" : '100px',
+                "margin-right":"160px"
+            });
+            $("#m_visite div p.bouton1").css({
+                "margin-top" : '240px',
+                "margin-left" : '250px'
+            });
+            $("#m_visite div p.bouton2").css("visibility", "hidden");
+            $("#m_visite div img.im_cherry").css({
+                "left" : '66%',
+                "top" : '270px'
+            });
+            $("#m_visite div img.bouton_fermeture").css({
+                "visibility":"visible",
+                "left" : '30px',
+                "top" : '25px',
+                "width":"65px"
+            });
+            $("#m_visite div img.im_fleche").css({
+                "visibility":"visible",
+                "left" : '900px',
+                "top" : '-100px',
+                "width":"100px",
+                "transform": 'rotate(-90deg)'
+            });
+            break;
             case 8:
-                
-                break;
-            case 9:
-                
-                break;
+            $("#m_visite div").css({
+                "left" : '400px',
+                "top" : '120px',
+                "width":"700px"
+            });
+            $("#m_visite_contenu").html("Voila, tu sais tout! </br>Moi, je serais dans le chariot, derrière toi. Si tu ne sais pas quoi faire, tu peux me demander en cliquant sur moi. </br> Amuse toi bien!"); 
+            $("#m_visite div p.bouton1").html("Merci! Allons-y!");
+            $("#m_visite div p").css({
+                "margin-top" : '80px',
+                "margin-left" : '95px',
+                "margin-right":"155px"
+            });
+            $("#m_visite div p.bouton1").css({
+                "margin-top" : '240px',
+                "margin-left" : '200px'
+            });
+            $("#m_visite div p.bouton2").css("visibility", "hidden");
+            $("#m_visite div img.im_cherry").css({
+                "left" : '66%',
+                "top" : '270px'
+            });
+            $("#m_visite div img.bouton_fermeture").css({
+                "visibility":"visible",
+                "left" : '30px',
+                "top" : '25px',
+                "width":"65px"
+            });
+            $("#m_visite div img.im_fleche").css({
+                "visibility":"hidden",
+            });
+
+            break;
             default:
-                i=0;
-                $("#m_visite").find('*').removeAttr('style');
-                $("#m_visite").css("visibility", "hidden");
+            i=0;
+            $("#m_visite").find('*').removeAttr('style');
+            $("#m_visite, #m_visite div img.bouton_fermeture, #m_visite div img.im_fleche").css("visibility", "hidden");
         } 
     });
 }
-
 
 function toggle_cadre_perso(){
     if($("#cadre_choix_perso").hasClass("replie")){
