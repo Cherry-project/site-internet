@@ -62,14 +62,20 @@ function set_exclamation (){//Mise en place des points d'exclamation
         }
     }
 }
-function set_avatars(){//mise en place de l'avatar et du choix d'avatars
+function set_avatars(){//mise en place de l'avatar et du choix d'avatars & de véhicules
     if ($.cookie('avatar')){
        $('#perso_image').css("background-image", $.cookie('avatar')); 
+       $('#mongolfiere').attr("src", $.cookie('vehicule'));
     }
     var tab_avatars=["image/sprites/personnage.png","image/sprites/perso_2.png"];
     for (i=0; i<tab_avatars.length;i++){
         $("#cadre_choix_perso").append("<div id ='choix_perso"+i+"' class='choix_perso'> </div>");
         $('#choix_perso'+i+'').css("background-image", "url("+tab_avatars[i]+")"); 
+    }
+    $("#cadre_choix_perso").append("<p>Choisis ton véhicule</p>");
+    var tab_vehicules=["image/sprites/mongolfiere1.png","image/sprites/mongolf2.png", "image/sprites/soucoupe.png"];
+    for (i=0; i<tab_vehicules.length;i++){
+        $("#cadre_choix_perso").append("<img src="+tab_vehicules[i]+" class='choix_vehicule'/>"); 
     }
 }
 function set_cherry(){//placement Cherry
@@ -218,6 +224,12 @@ $(function () {
         var bg=$(this).css('background-image');
         $('#perso_image').css("background-image", bg);
         $.cookie('avatar', bg, { expires: 10 });
+        toggle_cadre_perso();
+    });
+    $(".choix_vehicule").click(function () {
+        var source=$(this).attr("src");
+        $('#mongolfiere').attr("src", source);
+        $.cookie('vehicule', source, { expires: 10 });
         toggle_cadre_perso();
     });
     //visite

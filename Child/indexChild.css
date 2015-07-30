@@ -274,6 +274,13 @@ footer img:hover {
 	z-index: 100;
 	display: inline-block;
 }
+#cadre_choix_perso img{
+	width: 32px;
+	height: 35px;
+	z-index: 100;
+	display: inline-block;
+	margin-bottom: 5px;
+}
 
 #m_suggestion{
 	visibility:hidden;
