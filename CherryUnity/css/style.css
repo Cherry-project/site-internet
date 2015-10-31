@@ -1,0 +1,40 @@
+/*.navbar,.active,li{
+background-color: #FF0000;
+
+}
+.navbar-default .navbar-nav > .active > a {
+
+
+background-color: #FF0000;
+}
+*/
+
+/*label.error {
+    color:#FF0000;
+}*/
+
+
+
+
+/* Set the fixed height of the footer here */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+
+  background-color: #f5f5f5;
+}
+
+form{
+margin-top:50px;
+}
