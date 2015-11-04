@@ -28,8 +28,8 @@
         try {
             $client = DynamoDbClient::factory(array(
                 'credentials' => array(
-                    'key'    => 'AKIAD2KQ',
-                    'secret' => 'y4RR5fux2f',
+                    'key'    => '',
+                    'secret' => '',
                 ),
                 'region' => 'eu-west-1'
             ));
