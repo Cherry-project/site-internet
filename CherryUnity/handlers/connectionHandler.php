@@ -20,8 +20,8 @@ session_start();
         try {
             $client = DynamoDbClient::factory(array(
                     'credentials' => array(
-                            'key'    => 'AK2KQ',
-                            'secret' => 'y4WjJH+kee5K2uqRR5fux2f',
+                            'key'    => '',
+                            'secret' => '',
                     ),
                     'region' => 'eu-west-1'
             ));
