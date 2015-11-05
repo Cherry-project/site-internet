@@ -6,7 +6,7 @@ class Child extends User {
     private $teacherId;
     private $famillyContent;
     private $medicalContent;
-    //private $educationalContent;
+    private $teachingContent;
     
     function getFamillyId() {
         return $this->famillyId;
@@ -30,5 +30,29 @@ class Child extends User {
 
     function setTeacherId($teacherId) {
         $this->teacherId = $teacherId;
+    }
+    
+    function getFamillyContent() {
+        return $this->famillyContent;
+    }
+
+    function getMedicalContent() {
+        return $this->medicalContent;
+    }
+
+    function getTeachingContent() {
+        return $this->teachingContent;
+    }
+
+    function setFamillyContent($famillyContent) {
+        $this->famillyContent = $famillyContent;
+    }
+
+    function setMedicalContent($medicalContent) {
+        $this->medicalContent = $medicalContent;
+    }
+
+    function setTeachingContent($teachingContent) {
+        $this->teachingContent = $teachingContent;
     }
 }

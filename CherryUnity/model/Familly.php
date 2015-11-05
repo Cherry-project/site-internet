@@ -2,5 +2,4 @@
 
 class Familly extends User {
 
-    
 }

@@ -4,6 +4,9 @@
 <html>
     
 <head>
+    <?php include 'head.php' ?>
+    <title>Maison </title>
+    
     <script type="text/javascript" src="http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject.js"></script>
     <script type="text/javascript">
         function GetUnity() {
@@ -63,9 +66,6 @@
             width: 480px;
         }
     </style>
-    
-    <?php include 'head.php' ?>
-    <title>Maison </title>
 </head>
 
 <body>
