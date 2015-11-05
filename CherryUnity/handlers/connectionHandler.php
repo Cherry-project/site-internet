@@ -18,11 +18,7 @@ session_start();
 <body>
     <?php
         try {
-            echo getenv('HOME');
-            echo 'bonjour';
-            $client = DynamoDbClient::factory(array(
-                'region' => 'eu-west-1'
-            ));
+            $client = DynamoClient::get();
             
             $email = $_POST['email'];
             $password = $_POST['password'];
