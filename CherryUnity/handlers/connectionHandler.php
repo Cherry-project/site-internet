@@ -18,22 +18,20 @@ session_start();
 <body>
     <?php
         try {
+            echo getenv('HOME');
+            echo 'bonjour';
             $client = DynamoDbClient::factory(array(
-                    'credentials' => array(
-                            'key'    => '',
-                            'secret' => '',
-                    ),
-                    'region' => 'eu-west-1'
+                'region' => 'eu-west-1'
             ));
             
             $email = $_POST['email'];
             $password = $_POST['password'];
             
             $response = $client->getItem(array(
-                    'TableName' => 'Users',
-                    'Key' => array(
-                            'email' => array('S' => $email)
-                    )
+                'TableName' => 'Users',
+                'Key' => array(
+                    'email' => array('S' => $email)
+                )
             ));
             
             if ($response['Item'] != null) {

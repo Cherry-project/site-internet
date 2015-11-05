@@ -1,8 +1,51 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+// $type vaut "doctor", "teacher", "child", "parent"
 
+abstract class User {
+    protected $type;
+    protected $email;
+    protected $password;
+    protected $lastname;
+    protected $firstname;
+    
+    public function getType() {
+        return $this->type;
+    }
+    
+    public function setType($type) {
+        $this->type = $type;
+    }
+    
+    public function getEmail() {
+        return $this->email;
+    }
+    
+    public function setEmail($email) {
+        $this->email = $email;
+    }
+    
+    public function getPassword() {
+        return $this->password;
+    }
+    
+    public function setPassword($password) {
+        $this->passeword = $password;
+    }
+    
+    public function getLastname() {
+        return $this->lastname;
+    }
+    
+    public function setLastname($lastname) {
+        $this->lastname = $lastname;
+    }
+    
+    public function getFirstname() {
+        return $this->firstname;
+    }
+    
+    public function setFirstname($firstname) {
+        $this->firstname = $firstname;
+    }
+}

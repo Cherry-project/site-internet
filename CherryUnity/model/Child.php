@@ -1,8 +1,34 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+class Child extends User {
+    private $famillyId;
+    private $doctorId;
+    private $teacherId;
+    private $famillyContent;
+    private $medicalContent;
+    //private $educationalContent;
+    
+    function getFamillyId() {
+        return $this->famillyId;
+    }
 
+    function getDoctorId() {
+        return $this->doctorId;
+    }
+
+    function getTeacherId() {
+        return $this->teacherId;
+    }
+
+    function setFamillyId($famillyId) {
+        $this->famillyId = $famillyId;
+    }
+
+    function setDoctorId($doctorId) {
+        $this->doctorId = $doctorId;
+    }
+
+    function setTeacherId($teacherId) {
+        $this->teacherId = $teacherId;
+    }
+}
