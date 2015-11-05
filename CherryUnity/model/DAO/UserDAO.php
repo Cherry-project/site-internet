@@ -9,7 +9,7 @@ class UserDAO {
     }
     
     public function get ($email) {
-        $user = new User();
+        $user = $this->getUser();
         $userDTO = $this->getUserDTO($email);
         $this->fillUserAttributes($userDTO, $user);
         return $user;
@@ -26,6 +26,11 @@ class UserDAO {
         return $result;
     }
     
+    protected function getUser () {
+        return new User();
+    }
+
+
     protected function fillUserAttributes ($userDTO, $user) {
         $user->setEmail($userDTO['email']['S']);
         $user->setPassword($userDTO['password']['S']);
