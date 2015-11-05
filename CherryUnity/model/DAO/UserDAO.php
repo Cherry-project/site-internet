@@ -9,6 +9,13 @@ class UserDAO {
     }
     
     public function get ($email) {
+        $user = new User();
+        $userDTO = $this->getUserDTO($email);
+        $this->fillUserAttributes($userDTO, $user);
+        return $user;
+    }
+    
+    private function getUserDTO ($email) {
         $result = $this->client->getItem(array(
             'ConsistentRead' => true,
             'TableName' => 'Users',
@@ -16,7 +23,15 @@ class UserDAO {
                 'email' => array('N' => $email)
             )
         ));
-        // switch result.type
+        return $result;
+    }
+    
+    protected function fillUserAttributes ($userDTO, $user) {
+        $user->setEmail($userDTO['email']['S']);
+        $user->setPassword($userDTO['password']['S']);
+        $user->setLastname($userDTO['lastname']['S']);
+        $user->setFirstname($userDTO['firstname']['S']);
+        $user->setType($userDTO['type']['S']);
     }
     
     public function create ($user) {
@@ -39,7 +54,7 @@ class UserDAO {
         ));
     }
     
-    public function getArrayWithUserData ($user) {
+    protected function getArrayWithUserData ($user) {
         $array = array(
             'email'     => array('S' => $user.getEmail()),
             'password'  => array('S' => $user.getPassword()),

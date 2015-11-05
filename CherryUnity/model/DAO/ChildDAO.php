@@ -7,9 +7,14 @@ class ChildDAO extends UserDAO {
         parent::__construct($client);
     }
     
-    public function getArrayWithUserData ($child) {
+    protected function getArrayWithUserData ($child) {
         $array = parent::getArrayWithUserData($child);
         $array['teachingContent'] = array ('L' => $child.getTeachingContent()); 
         return $array;
     } 
+    
+    protected function fillUserAttributes ($childDTO, $child) {
+        parent::fillUserAttributes($childDTO, $child);
+        $user.setTeachingContent($childDTO['teachingContent']['L']);
+    }
 }

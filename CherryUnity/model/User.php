@@ -2,7 +2,7 @@
 
 // $type vaut "doctor", "teacher", "child", "parent"
 
-abstract class User {
+class User {
     protected $type;
     protected $email;
     protected $password;
