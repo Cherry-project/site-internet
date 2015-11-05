@@ -10,6 +10,8 @@ session_start();
     <?php
         require '../vendor/autoload.php';
         require '../DynamoClient.php';
+        require '../model/DAO/UserDAO.php';
+        require '../model/User.php';
         
         use Aws\DynamoDb\Exception\DynamoDbException;
         ?>
@@ -23,15 +25,24 @@ session_start();
             $email = $_POST['email'];
             $password = $_POST['password'];
             
-            $response = $client->getItem(array(
+            /*$user = $client->getItem(array(
                 'TableName' => 'Users',
                 'Key' => array(
                     'email' => array('S' => $email)
                 )
-            ));
+            ));*/
             
-            if ($response['Item'] != null) {
-                if ($response['Item']['password']['S'] == $password) {
+            
+            $dao = new UserDAO($client);
+            $user = $dao->get($email);
+            if ($user != null) {
+                echo 'firstname = ' . $user->getFirstname();
+            } else {
+                echo 'user null';
+            }
+            
+            /*if ($user['Item'] != null) {
+                if ($user['Item']['password']['S'] == $password) {
                     $_SESSION['email'] = $_POST['email'];
                     header('Location: ../room.php');
                 } else {
@@ -41,7 +52,7 @@ session_start();
             } else {
                 session_destroy();
                 echo "L'utilisateur n'existe pas.";
-            }
+            }*/
         } catch (DynamoDbException $e) {
             echo '<p>Exception dynamoDB reçue : ',  $e->getMessage(), "\n</p>";
         } catch (Exception $e) {

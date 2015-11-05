@@ -19,6 +19,6 @@ class ChildDAO extends UserDAO {
     
     protected function fillUserAttributes ($childDTO, $child) {
         parent::fillUserAttributes($childDTO, $child);
-        $user.setTeachingContent($childDTO['teachingContent']['L']);
+        $user.setTeachingContent($childDTO['Item']['teachingContent']['L']);
     }
 }

@@ -20,7 +20,7 @@ class UserDAO {
             'ConsistentRead' => true,
             'TableName' => 'Users',
             'Key' => array(
-                'email' => array('N' => $email)
+                'email' => array('S' => $email)
             )
         ));
         return $result;
@@ -30,13 +30,12 @@ class UserDAO {
         return new User();
     }
 
-
     protected function fillUserAttributes ($userDTO, $user) {
-        $user->setEmail($userDTO['email']['S']);
-        $user->setPassword($userDTO['password']['S']);
-        $user->setLastname($userDTO['lastname']['S']);
-        $user->setFirstname($userDTO['firstname']['S']);
-        $user->setType($userDTO['type']['S']);
+        $user->setEmail($userDTO['Item']['email']['S']);
+        $user->setPassword($userDTO['Item']['password']['S']);
+        $user->setLastname($userDTO['Item']['lastname']['S']);
+        $user->setFirstname($userDTO['Item']['firstname']['S']);
+        $user->setType($userDTO['Item']['type']['S']);
     }
     
     public function create ($user) {
