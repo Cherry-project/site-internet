@@ -9,8 +9,8 @@ session_start();
     <title>formHandler </title>
     <?php
         require '../vendor/autoload.php';
+        require '../DynamoClient.php';
         
-        use Aws\DynamoDb\DynamoDbClient;
         use Aws\DynamoDb\Exception\DynamoDbException;
         ?>
 </head>
