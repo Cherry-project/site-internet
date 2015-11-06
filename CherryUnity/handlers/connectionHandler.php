@@ -26,35 +26,34 @@ session_start();
             
             $email = $_POST['email'];
             $password = $_POST['password'];
-            
+            /*
             $user = $client->getItem(array(
                 'TableName' => 'Users',
                 'Key' => array(
                     'email' => array('S' => $email)
                 )
             ));
+            */
             
-            
-            $array = array ( 
-                '0' => array ( 
-                    '0' => array ( 'S' => '0' ),
-                    '1' => array ( 'S' => '2015-12-25' ) 
-                ),
-                '1' => array ( 
-                    '0' => array ( 'S' => '1' ),
-                    '1' => array ( 'S' => '2016-03-14' ) 
-                )
+            /*
+            $array = array (
+                array ('L' => array ( 
+                    array ('S' => '0'),
+                    array ('S' => '2015-12-25') 
+                )),
+                array ('L' => array ( 
+                    array ('S' => '1'),
+                    array ('S' => '2016-03-14') 
+                ))
             );
-            $array2 = [
-                [
-                    "0",
-                    "2015-12-25"
-                ],
-                [
-                    "1",
-                    "2016-03-14"
-                ]
-            ];
+            //*/
+            
+            // DELETE child
+            /*
+            $dao = new ChildDAO($client);
+            echo $email;
+            $dao->delete($email);
+            //*/
             
             
             // CREATE child
@@ -66,8 +65,8 @@ session_start();
             $child->setLastname("Pierre");
             $child->setFirstname('PaulJacques');
             $child->setType('child');
-            print_r($array2);
-            $child->setTeachingContent($array2);
+            print_r($array);
+            $child->setTeachingContent($array);
             $dao->create($child);
             //*/
             
@@ -94,8 +93,14 @@ session_start();
             }
             //*/
             
-            if ($user['Item'] != null) {
-                if ($user['Item']['password']['S'] == $password) {
+            
+            
+            //CONNECTION
+            //*
+            $dao = new UserDAO($client);
+            $user = $dao->get($email);
+            if ($user != null) {
+                if ($user->getPassword() == $password) {
                     $_SESSION['email'] = $_POST['email'];
                     header('Location: ../room.php');
                 } else {
@@ -106,6 +111,8 @@ session_start();
                 session_destroy();
                 echo "L'utilisateur n'existe pas.";
             }
+            //*/
+            
         } catch (DynamoDbException $e) {
             echo '<p>Exception dynamoDB reçue : ',  $e->getMessage(), "\n</p>";
         } catch (Exception $e) {
