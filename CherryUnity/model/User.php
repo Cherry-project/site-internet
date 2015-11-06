@@ -30,7 +30,7 @@ class User {
     }
     
     public function setPassword($password) {
-        $this->passeword = $password;
+        $this->password = $password;
     }
     
     public function getLastname() {

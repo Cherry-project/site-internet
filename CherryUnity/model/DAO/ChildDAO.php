@@ -9,7 +9,7 @@ class ChildDAO extends UserDAO {
     
     protected function getArrayWithUserData ($child) {
         $array = parent::getArrayWithUserData($child);
-        $array['teachingContent'] = array ('L' => $child.getTeachingContent()); 
+        $array['teachingContent'] = array('L' => $child->getTeachingContent());
         return $array;
     } 
     
@@ -19,6 +19,6 @@ class ChildDAO extends UserDAO {
     
     protected function fillUserAttributes ($childDTO, $child) {
         parent::fillUserAttributes($childDTO, $child);
-        $user.setTeachingContent($childDTO['Item']['teachingContent']['L']);
+        $child->setTeachingContent($childDTO['Item']['teachingContent']['L']);
     }
 }
