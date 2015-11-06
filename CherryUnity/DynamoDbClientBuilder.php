@@ -13,6 +13,6 @@ class DynamoDbClientBuilder {
                 'region' => 'eu-west-1'
             ));
         }
-        return $client;
+        return DynamoDbClientBuilder::$client;
     }
 }

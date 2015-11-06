@@ -1,6 +1,6 @@
 <?php
 
-use Aws\DynamoDb\S3Client;
+use Aws\S3\S3Client;
 
 class S3ClientBuilder {
     private static $client = null;
@@ -9,10 +9,8 @@ class S3ClientBuilder {
     
     public static function get () {
         if (S3ClientBuilder::$client == null) {
-            S3ClientBuilder::$client = S3Client::factory(array(
-                'region' => 'eu-west-1'
-            ));
+            S3ClientBuilder::$client = S3Client::factory();
         }
-        return $client;
+        return S3ClientBuilder::$client;
     }
 }

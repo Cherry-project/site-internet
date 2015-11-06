@@ -11,6 +11,8 @@ session_start();
         require '../vendor/autoload.php';
         
         require '../DynamoDbClientBuilder.php';
+        require '../S3ClientBuilder.php';
+        
         require '../model/DAO/UserDAO.php';
         require '../model/User.php';
         require '../model/DAO/ChildDAO.php';
@@ -27,14 +29,19 @@ session_start();
             
             $email = $_POST['email'];
             $password = $_POST['password'];
+            
+            // S3 upload file
             /*
-            $user = $client->getItem(array(
-                'TableName' => 'Users',
-                'Key' => array(
-                    'email' => array('S' => $email)
-                )
+            $s3Client = S3ClientBuilder::get();
+            $result = $s3Client->putObject(array(
+                'Bucket' => 'cherry-shared-content',
+                'Key'    => 'data.txt',
+                'Body'   => 'Hello!'
             ));
-            */
+            // Get the URL the object can be downloaded from
+            echo $result['ObjectURL'] . "</br>";
+            //*/
+            
             
             /*
             $array = array (
