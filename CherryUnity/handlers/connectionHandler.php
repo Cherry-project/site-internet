@@ -9,7 +9,8 @@ session_start();
     <title>formHandler </title>
     <?php
         require '../vendor/autoload.php';
-        require '../DynamoClient.php';
+        
+        require '../DynamoDbClientBuilder.php';
         require '../model/DAO/UserDAO.php';
         require '../model/User.php';
         require '../model/DAO/ChildDAO.php';
@@ -22,7 +23,7 @@ session_start();
 <body>
     <?php
         try {
-            $client = DynamoClient::get();
+            $client = DynamoDbClientBuilder::get();
             
             $email = $_POST['email'];
             $password = $_POST['password'];

@@ -2,14 +2,14 @@
 
 use Aws\DynamoDb\DynamoDbClient;
 
-class DynamoClient {
+class DynamoDbClientBuilder {
     private static $client = null;
     
     private function __construct () {}
     
     public static function get () {
-        if ($client == null) {
-            $client = DynamoDbClient::factory(array(
+        if (DynamoDbClientBuilder::$client == null) {
+            DynamoDbClientBuilder::$client = DynamoDbClient::factory(array(
                 'region' => 'eu-west-1'
             ));
         }
