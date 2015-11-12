@@ -2,8 +2,9 @@
 
 
 class UserDAO {
+    private static $TABLE_NAME = 'Users';
     private $client;
-    
+        
     public function __construct ($client) {
         $this->client = $client;
     }
@@ -17,7 +18,7 @@ class UserDAO {
     
     public function create ($user) {
         $this->client->putItem(array(
-            'TableName' => 'Users',
+            'TableName' => UserDAO::$TABLE_NAME,
             'Item' => $this->getArrayWithUserData($user)
         ));
     }
@@ -28,7 +29,7 @@ class UserDAO {
     
     public function delete ($email) {
         $this->client->deleteItem(array(
-            'TableName' => 'Users',
+            'TableName' => UserDAO::$TABLE_NAME,
             'Key' => array(
                 'email' => array('S' => $email)
             )
@@ -40,7 +41,7 @@ class UserDAO {
     private function getUserDTO ($email) {
         $result = $this->client->getItem(array(
             'ConsistentRead' => true,
-            'TableName' => 'Users',
+            'TableName' => UserDAO::$TABLE_NAME,
             'Key' => array(
                 'email' => array('S' => $email)
             )

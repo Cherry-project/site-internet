@@ -13,10 +13,6 @@ class User {
         return $this->type;
     }
     
-    public function setType($type) {
-        $this->type = $type;
-    }
-    
     public function getEmail() {
         return $this->email;
     }

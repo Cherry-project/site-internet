@@ -23,6 +23,7 @@ session_start();
 </head>
 
 <body>
+    <a href="../drop.php">Drop</a>
     <?php
         try {
             $client = DynamoDbClientBuilder::get();
@@ -36,7 +37,7 @@ session_start();
             $result = $s3Client->putObject(array(
                 'Bucket' => 'cherry-shared-content',
                 'Key'    => 'data.txt',
-                'Body'   => 'Hello!'
+                'Body'   => 'Helfssdlo!'
             ));
             // Get the URL the object can be downloaded from
             echo $result['ObjectURL'] . "</br>";
@@ -104,7 +105,7 @@ session_start();
             
             
             //CONNECTION
-            //*
+            /*
             $dao = new UserDAO($client);
             $user = $dao->get($email);
             if ($user != null) {

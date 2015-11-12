@@ -1,15 +1,19 @@
 <?php
 
 class Child extends User {
-    private $famillyId;
+    private $familyId;
     private $doctorId;
     private $teacherId;
-    private $famillyContent;
+    private $familyContent;
     private $medicalContent;
     private $teachingContent;
     
-    function getFamillyId() {
-        return $this->famillyId;
+    public function __construct() {
+        $this->type = "child";
+    }
+    
+    function getFamilyId() {
+        return $this->familyId;
     }
 
     function getDoctorId() {
@@ -20,8 +24,8 @@ class Child extends User {
         return $this->teacherId;
     }
 
-    function setFamillyId($famillyId) {
-        $this->famillyId = $famillyId;
+    function setFamilyId($familyId) {
+        $this->familyId = $familyId;
     }
 
     function setDoctorId($doctorId) {
@@ -32,8 +36,8 @@ class Child extends User {
         $this->teacherId = $teacherId;
     }
     
-    function getFamillyContent() {
-        return $this->famillyContent;
+    function getFamilyContent() {
+        return $this->familyContent;
     }
 
     function getMedicalContent() {
@@ -44,8 +48,8 @@ class Child extends User {
         return $this->teachingContent;
     }
 
-    function setFamillyContent($famillyContent) {
-        $this->famillyContent = $famillyContent;
+    function setFamilyContent($familyContent) {
+        $this->familyContent = $familyContent;
     }
 
     function setMedicalContent($medicalContent) {
@@ -54,5 +58,29 @@ class Child extends User {
 
     function setTeachingContent($teachingContent) {
         $this->teachingContent = $teachingContent;
+    }
+    
+    function addContentByType($keyOfFile, $date, $type) {
+        $elt = array ('L' => array ( 
+                    array ('S' => $keyOfFile),
+                    array ('S' => $date) 
+                ));
+        if ($type == "medical") {
+            array_push($this->medicalContent, $elt);
+        } else if ($type == "teaching") {
+            array_push($this->teachingContent, $elt);
+        } else if ($type == "family") {
+            array_push($this->familyContent, $elt);
+        }
+    }
+    
+    function getContentByType($type) {
+        if ($type == "medical") {
+            return $this->medicalContent;
+        } else if ($type == "teaching") {
+            return $this->teachingContent;
+        } else if ($type == "family") {
+            return $this->familyContent;
+        }
     }
 }

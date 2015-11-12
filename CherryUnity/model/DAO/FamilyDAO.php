@@ -1,7 +1,7 @@
 <?php
 
 
-class FamillyDAO extends UserDAO {
+class FamilyDAO extends UserDAO {
    
     public function __construct ($client) {
         parent::__construct($client);
