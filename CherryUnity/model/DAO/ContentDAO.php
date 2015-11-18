@@ -20,17 +20,22 @@ class ContentDAO {
                 'type'    => array('S' => $content->getType())
                 )
         ));
-        
+        echo 'apres putItem de content</br>';
         $length = count($children);
         $childDAO = new ChildDAO(DynamoDbClientBuilder::get());
-        
         for ($i = 0; $i < $length; $i++) {
-            $child = $childDAO->get($children[$i][0]);//email
-            $child->addContent(
-                    $content,
-                    $children[$i][1]//date 
-                    );
-            $childDAO->update($child);
+            $email = $children[$i]['email'];
+            $child = $childDAO->get($email);
+            echo 'on recupere enfant dont email vaut : '. $email .'</br>';
+            if ($child != null) {
+                echo 'enfant récupéré</br>';
+                $child->addContent(
+                        $content,
+                        $children[$i]['date']); // date
+                echo 'contenu ajouté</br>';
+                $childDAO->update($child);
+                echo 'enfant mis a jour</br>';
+            }
         }
     }
 }

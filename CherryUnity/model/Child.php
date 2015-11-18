@@ -60,17 +60,48 @@ class Child extends User {
         $this->teachingContent = $teachingContent;
     }
     
-    function addContentByType($keyOfFile, $date, $type) {
-        $elt = array ('L' => array ( 
-                    array ('S' => $keyOfFile),
-                    array ('S' => $date) 
-                ));
+    public function addContent($content, $date) {
+        $elt = array ('M' => array (
+                        'name' => array ('S' => $content->getName()),
+                        'owner' => array ('S' => $content->getEmailOwner()),
+                        'date' => array ('S' => $date) 
+                    ));
+        $type = $content->getType();
         if ($type == "medical") {
-            array_push($this->medicalContent, $elt);
+            $this->addContentIfMissing($this->medicalContent, $elt);
         } else if ($type == "teaching") {
-            array_push($this->teachingContent, $elt);
+            $this->addContentIfMissing($this->teachingContent, $elt);
         } else if ($type == "family") {
-            array_push($this->familyContent, $elt);
+            $this->addContentIfMissing($this->familyContent, $elt);
+        }
+    }
+    
+    private function addContentIfMissing (&$array, $elt) {
+        echo 'Add content!!!!!</br>';
+        $eltIsInArray = false;
+        $length = count($array);
+        if ($length == 0) {
+            echo 'length == 0</br>';
+            $array = array($elt);
+            return;
+        }
+        for ($i = 0; $i < $length; $i++) {
+            $e = $array[$i];
+            if ($e['M']['name']['S'] == $elt['M']['name']['S'] &&
+                $e['M']['owner']['S'] == $elt['M']['owner']['S']) {
+                
+                if ($e['M']['date']['S'] != $elt['M']['date']['S']) {
+                    // l'element est deja dans le tableau il faut juste changer la date
+                    $array[$i]['M']['date']['S'] = $elt['M']['date']['S'];
+                }
+                echo 'elt deja present</br>';
+                $eltIsInArray = true;
+                break;
+            }
+        }
+        if (!$eltIsInArray) {
+            echo 'AJOUT ELEMENT</br>';
+            array_push($array, $elt);
         }
     }
     

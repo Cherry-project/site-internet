@@ -12,15 +12,24 @@ class UserDAO {
     public function get ($email) {
         $user = $this->getUser();
         $userDTO = $this->getUserDTO($email);
-        $this->fillUserAttributes($userDTO, $user);
-        return $user;
+        if ($userDTO != null) {
+            $this->fillUserAttributes($userDTO, $user);
+            return $user;
+        } else {
+            return null;
+        }
     }
     
     public function create ($user) {
+        $arrayOfUser = $this->getArrayWithUserData($user);
+        try {
         $this->client->putItem(array(
             'TableName' => UserDAO::$TABLE_NAME,
-            'Item' => $this->getArrayWithUserData($user)
+            'Item' => $arrayOfUser
         ));
+        } catch (Exception $e) {
+            echo '<p>Exception reçue : ',  $e->getMessage(), "\n</p>";
+        }
     }
     
     public function update ($user) {

@@ -9,10 +9,12 @@ class ChildDAO extends UserDAO {
     
     protected function getArrayWithUserData ($child) {
         $array = parent::getArrayWithUserData($child);
-        $array['teachingContent'] = array('L' => $child->getTeachingContent());
-        $array['medicalContent'] = array('L' => $child->getMedicalContent());
-        $array['familyContent'] = array('L' => $child->getfamilyContent());
-        
+        $arrayTeaching = $child->getTeachingContent();
+        $arrayMedical = $child->getMedicalContent();
+        $arrayFamily = $child->getfamilyContent();
+        if (!empty($arrayTeaching)) {$array['teachingContent'] = array('L' => $arrayTeaching);}
+        if (!empty($arrayMedical)) {$array['medicalContent'] = array('L' => $arrayMedical);}
+        if (!empty($arrayFamily)) {$array['familyContent'] = array('L' => $arrayFamily);}
         return $array;
     } 
     

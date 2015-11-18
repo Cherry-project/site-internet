@@ -17,7 +17,7 @@ class Content {
     }
 
     function getEmailOwner() {
-        return $this->email_owner;
+        return $this->emailOwner;
     }
 
     function setName($name) {
@@ -28,8 +28,8 @@ class Content {
         $this->url = $url;
     }
 
-    function setEmailOwner($email_owner) {
-        $this->email_owner = $email_owner;
+    function setEmailOwner($emailOwner) {
+        $this->emailOwner = $emailOwner;
     }
 
     function getType() {

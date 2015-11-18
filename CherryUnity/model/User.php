@@ -25,6 +25,10 @@ class User {
         return $this->password;
     }
     
+    function setType($type) {
+        $this->type = $type;
+    }
+    
     public function setPassword($password) {
         $this->password = $password;
     }
