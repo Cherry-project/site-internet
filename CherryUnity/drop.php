@@ -3,11 +3,18 @@
   <head>
     <meta charset="utf-8">
     <title>Drag n drop </title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
   </head>
   <body>
+      
+      <?php
+      $childDao = new ChildDAO(DynamoDbClientBuilder::get());
+      $chidldren = childDao.getChidlren();  //TODO
+      ?>
+      
 
     <nav class="navbar navbar-default">
       <div class="container-fluid">
@@ -43,23 +50,33 @@
         <div class="col-md-3">
           Faites glisser les documents à ajouter
 	  <form enctype="multipart/form-data" id="yourregularuploadformId" method="post" action="handlers/fileHandler.php">
-	    <input type="file" name="files[]" multiple="multiple">
+	    <input type="file" name="files[]" multiple="multiple" class="hidden">
 
 
 	  </form>
 
           <div id="drag">
-            
+              <ul> </ul>
           </div>
 	  <div>
 <br/>
 	    <button id="submit" class="btn btn-default">Submit</button>
 	  </div>
         </div>
+     
+      <div class="col-md-offset-3 col-md-3">
+    Enfants <br/>
+<?php
+foreach($children as $child){
+echo ' <p> <input type="checkbox" name="child" value="' . $child.getEmail() .  '">'  . $child.getFirstname()  . 'Date: <input type="text" class="datepicker"> </p>' ;
+}
+?>
+
+</div>
       </div>
       
     </div>
-
+  
 
 
     <footer class="footer">
@@ -74,8 +91,11 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>  
     <script src="js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script>
       $( document ).ready(function() {
+      $(".datepicker" ).datepicker();
+  });    
       var uploadFormData = new FormData($("#yourregularuploadformId")[0]); 
       var dropper = document.querySelector('#drag');
 
@@ -96,15 +116,16 @@
 			  // alert(uploadFormData);
 			  //uploadFormData.append("text","hello");  
 			  for(var f = 0; f < files.length; f++) { 		 
-					     uploadFormData.append("files[]",files[f]); 
-					     // uploadFormData.append("files[]",file); 
-					     alert(uploadFormData.file); 
+					     uploadFormData.append("files[]",files[f]);
+                                              $("#drag ul").append("<li>"+files[f].name+"</li>"); 
+					   
+					     
 					     }
 
 					     }); 
 					     $("#submit").click(function(){
-
-					     uploadFormData.append("text","hello"); 
+                                               $("input:checked").each(function() {
+  						  uploadFormData.append("children[]",[$(this).val(),$(this).next(".datepicker").val()]); 
 					     $.ajax({
 					     type: 'POST',
 					     url: 'handlers/fileHandler.php',

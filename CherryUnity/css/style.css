@@ -21,7 +21,9 @@ height: 300px;
 
 }
 
-
+#hidden{
+ visibility:hidden
+}
 
 /* Set the fixed height of the footer here */
 html {
