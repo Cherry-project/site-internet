@@ -20,22 +20,35 @@ class ContentDAO {
                 'type'    => array('S' => $content->getType())
                 )
         ));
-        echo 'apres putItem de content</br>';
         $length = count($children);
         $childDAO = new ChildDAO(DynamoDbClientBuilder::get());
         for ($i = 0; $i < $length; $i++) {
             $email = $children[$i]['email'];
             $child = $childDAO->get($email);
-            echo 'on recupere enfant dont email vaut : '. $email .'</br>';
             if ($child != null) {
-                echo 'enfant récupéré</br>';
                 $child->addContent(
                         $content,
                         $children[$i]['date']); // date
-                echo 'contenu ajouté</br>';
                 $childDAO->update($child);
-                echo 'enfant mis a jour</br>';
             }
         }
+    }
+    
+    //méthode à tester
+    public function get($name, $owner) {
+        $dto = $this->client->getItem(array(
+            'ConsistentRead' => true,
+            'TableName' => ContentDAO::$TABLE_NAME,
+            'Key' => array(
+                'name' => array('S' => $name),
+                'owner' => array('S' => $owner)
+            )
+        ));
+        $content = new Content();
+        $content->setName($dto['Item']['name']['S']);
+        $content->setType($dto['Item']['type']['S']);
+        $content->setEmailOwner($dto['Item']['owner']['S']);
+        $content->setUrl($dto['Item']['url']['S']);
+        return $content;
     }
 }

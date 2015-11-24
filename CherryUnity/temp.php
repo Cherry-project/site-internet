@@ -1,21 +1,23 @@
 <?php
 
     include "includes.php";
-
-    echo 'temp.php</br>';
     
-    // INSERT SUR DYNAMO
     $contentDao = new ContentDAO(DynamoDbClientBuilder::get());
-    $content = new Content();
-    $content->setEmailOwner("nicolas@enseirb.fr");
-    $content->setName("tutu.txt");
-    $content->setType("teaching");
-    $content->setUrl("urlblabla");
-    $children = array (
-        array ('email' => 'child1@gmail.com', 'date' => '2016-02-12')
-    );
-    echo $children[0]['email'];
-    echo 'avant create</br>';
-    $contentDao->create($content, $children);
-    echo 'fin Dynamo</br>';
+    $childDao = new ChildDAO(DynamoDbClientBuilder::get());
+    $child = $childDao->get("child1@gmail.com");
     
+    $teachingContent = $child->getTeachingContent();
+    $length = count($teachingContent);
+    
+    echo '<ul>';
+    for ($i = 0; $i < $length; $i++) {
+        //pour l'instant on ne récupère que les teachingContent
+        $contentInfo = $teachingContent[$i];
+        $name = $contentInfo['M']['name']['S'];
+        $owner = $contentInfo['M']['owner']['S'];
+        $date = $contentInfo['M']['date']['S'];
+        $content = $contentDao->get($name, $owner);
+        $url = $content->getUrl();
+        echo '<li>'. '<a href='.$url.'>'.$name.'</a>' .'</li>';
+    }
+    echo '</ul>';
