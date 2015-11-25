@@ -18,6 +18,17 @@ class ChildDAO extends UserDAO {
         return $array;
     } 
     
+    public function getChildren($emailAdult){
+        return $client ->scan([
+        'TableName' => 'Child',
+        'ExpressionAttributeValues' => [
+            ':val1' => $emailAdult] ,    
+        'FilterExpression' => '(:val1=familyId) or (:val1=doctorId) or (:val1=teacherId) ' ,
+]);
+    }
+        
+    
+    
     protected function getUser () {
         return new Child();
     }

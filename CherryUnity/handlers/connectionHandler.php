@@ -105,12 +105,13 @@ session_start();
             
             
             //CONNECTION
-            /*
+            
             $dao = new UserDAO($client);
             $user = $dao->get($email);
             if ($user != null) {
                 if ($user->getPassword() == $password) {
                     $_SESSION['email'] = $_POST['email'];
+                    $_SESSION['type']  = $user->getType(); 
                     header('Location: ../room.php');
                 } else {
                     session_destroy();
@@ -120,7 +121,7 @@ session_start();
                 session_destroy();
                 echo "L'utilisateur n'existe pas.";
             }
-            //*/
+            
             
         } catch (DynamoDbException $e) {
             echo '<p>Exception dynamoDB reçue : ',  $e->getMessage(), "\n</p>";

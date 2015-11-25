@@ -3,7 +3,7 @@
 
 class UserDAO {
     private static $TABLE_NAME = 'Users';
-    private $client;
+    protected $client;
         
     public function __construct ($client) {
         $this->client = $client;

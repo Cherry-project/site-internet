@@ -13,7 +13,7 @@
     //get the children from the request
      $children =  array();
      for($i=0;$i<count($_POST['children']);$i++)
-     $array[] = $_POST['children'][$i];
+     $children[] = $_POST['children'][$i];
     
     //print_r($_FILES['files']); 
 
