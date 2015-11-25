@@ -11,15 +11,24 @@ class S3Access {
     
     public function createFile($name, $path) {
         try {
-            echo 'name = '.$name.'</br>';
-            echo 'path = '.$path.'</br>';
             $result = $this->client->putObject(array(
                 'Bucket'     => S3Access::$BUCKET,
                 'Key'        => $name,
                 'SourceFile' => $path
             ));
-            echo 'fin create file </br>';
             return $result['ObjectURL'];
+        } catch (Exception $e) {
+            echo '<p>Exception reçue : ',  $e->getMessage(), "\n</p>";
+        }
+    }
+    
+    public function getFile($name) {
+        try {
+            $result = $this->client->getObject(array(
+                'Bucket'     => S3Access::$BUCKET,
+                'Key'        => $name
+            ));
+            return $result;
         } catch (Exception $e) {
             echo '<p>Exception reçue : ',  $e->getMessage(), "\n</p>";
         }

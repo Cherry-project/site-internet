@@ -10,14 +10,15 @@
     $length = count($teachingContent);
     
     echo '<ul>';
-    for ($i = 0; $i < $length; $i++) {
+    for ($i = 0; $i < 1 /*$length*/; $i++) {
         //pour l'instant on ne récupère que les teachingContent
         $contentInfo = $teachingContent[$i];
         $name = $contentInfo['M']['name']['S'];
         $owner = $contentInfo['M']['owner']['S'];
         $date = $contentInfo['M']['date']['S'];
         $content = $contentDao->get($name, $owner);
-        $url = $content->getUrl();
-        echo '<li>'. '<a href='.$url.'>'.$name.'</a>' .'</li>';
+        if ($content != null) {
+            echo '<li>'. '<a href=downloadFile.php?name='.$name.'>'.$name.'</a>' .'</li>';
+        }
     }
     echo '</ul>';

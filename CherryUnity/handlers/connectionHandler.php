@@ -23,7 +23,7 @@ session_start();
 </head>
 
 <body>
-    <a href="../temp.php">temp.php</a>
+    <!-- <a href="../temp.php">temp.php</a> -->
     <?php
         try {
             $client = DynamoDbClientBuilder::get();
