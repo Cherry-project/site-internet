@@ -16,7 +16,7 @@
             return null;
         }
         if (typeof unityObject != "undefined") {
-            unityObject.embedUnity("unityPlayer", "Build.unity3d", 480, 320);
+            unityObject.embedUnity("unityPlayer", "Build.unity3d", 700, 600);
         }
     </script>
     
