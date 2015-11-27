@@ -19,14 +19,29 @@ class ChildDAO extends UserDAO {
     } 
     
     public function getChildren($emailAdult){
-        return $client ->scan([
-        'TableName' => 'Child',
-        'ExpressionAttributeValues' => [
-            ':val1' => $emailAdult] ,    
-        'FilterExpression' => '(:val1=familyId) or (:val1=doctorId) or (:val1=teacherId) ' ,
-]);
-    }
+        try {
+            $result = $this->client->scan([
+                'TableName' => 'Users',
+                'ExpressionAttributeValues' => [
+                    ':val1' => ['S' => $emailAdult]
+                ],    
+                'FilterExpression' => '(:val1=familyId) or (:val1=doctorId) or (:val1=teacherId) ',
+            ]);
+        } catch (Exception $e) {
+            echo '<p>Exception reçue : ',  $e->getMessage(), "\n</p>";
+        }
         
+        $childrenDTO = $result['Items'];
+        $children = array();
+        foreach($childrenDTO as $childDTO) {
+            $child = new Child();
+            $child->setEmail($childDTO['email']['S']);
+            $child->setFirstname($childDTO['firstname']['S']);
+            $child->setLastname($childDTO['lastname']['S']);
+            array_push($children, $child);
+        }
+        return $children;
+    }
     
     
     protected function getUser () {
@@ -40,3 +55,4 @@ class ChildDAO extends UserDAO {
         $child->setFamilyContent($childDTO['Item']['familyContent']['L']);
     }
 }
+

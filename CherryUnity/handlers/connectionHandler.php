@@ -9,15 +9,10 @@ session_start();
     <title>formHandler </title>
     <?php
         require '../vendor/autoload.php';
-        
-        require '../DynamoDbClientBuilder.php';
-        require '../S3ClientBuilder.php';
-        
-        require '../model/DAO/UserDAO.php';
-        require '../model/User.php';
-        require '../model/DAO/ChildDAO.php';
-        require '../model/Child.php';
-        
+        echo 'avantInclude</br>';
+        //include '../includes.php';
+        require_once ('../DynamoDbClientBuilder.php');
+        echo 'apresInclude</br>';
         use Aws\DynamoDb\Exception\DynamoDbException;
         ?>
 </head>
@@ -26,8 +21,9 @@ session_start();
     <!-- <a href="../temp.php">temp.php</a> -->
     <?php
         try {
+            echo 'avantBase</br>';
             $client = DynamoDbClientBuilder::get();
-            
+            echo 'apresBase</br>';
             $email = $_POST['email'];
             $password = $_POST['password'];
             
@@ -105,14 +101,26 @@ session_start();
             
             
             //CONNECTION
-            
+            echo 'avant</br>';
+            header('Location: ../drop.php');
+             echo 'apres</br>';
+            /*
             $dao = new UserDAO($client);
             $user = $dao->get($email);
             if ($user != null) {
                 if ($user->getPassword() == $password) {
-                    $_SESSION['email'] = $_POST['email'];
-                    $_SESSION['type']  = $user->getType(); 
-                    header('Location: ../room.php');
+                    $_SESSION['email'] = $email;
+                    $type = $user->getType();
+                    $_SESSION['type']  = $type; 
+                    if ($type == "child") {
+                        header('Location: ../room.php');
+                    } else if ($type == "teacher") {
+                        header('Location: ../drop.php');
+                    } else if ($type == "doctor") {
+                        
+                    } else if ($type == "family") {
+                        
+                    }
                 } else {
                     session_destroy();
                     echo "Mot de passe incorrect.";
@@ -121,7 +129,7 @@ session_start();
                 session_destroy();
                 echo "L'utilisateur n'existe pas.";
             }
-            
+            */
             
         } catch (DynamoDbException $e) {
             echo '<p>Exception dynamoDB reçue : ',  $e->getMessage(), "\n</p>";

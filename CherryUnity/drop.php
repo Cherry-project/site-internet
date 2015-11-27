@@ -6,13 +6,18 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-
+    
+    <?php 
+    include 'includes.php'; 
+    ?>
   </head>
   <body>
       
       <?php
+      //$email = $_SESSION['email'];
+      $email = 'nicolas@enseirb.fr';
       $childDao = new ChildDAO(DynamoDbClientBuilder::get());
-      $chidldren = childDao.getChidlren();  //TODO
+      $children = $childDao->getChildren($email);  //TODO
       ?>
       
 
@@ -68,7 +73,7 @@
     Enfants <br/>
 <?php
 foreach($children as $child){
-echo ' <p> <input type="checkbox" name="child" value="' . $child.getEmail() .  '">'  . $child.getFirstname()  . 'Date: <input type="text" class="datepicker"> </p>' ;
+echo ' <p> <input type="checkbox" name="child" value="' . $child->getEmail() .  '">'  . $child->getFirstname()  . 'Date: <input type="text" class="datepicker"> </p>' ;
 }
 ?>
 
