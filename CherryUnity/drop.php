@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!doctype html>
 <html>
   <head>
@@ -14,10 +17,10 @@
   <body>
       
       <?php
-      //$email = $_SESSION['email'];
-      $email = 'nicolas@enseirb.fr';
+      $email = $_SESSION['email'];
+      //$email = 'nicolas@enseirb.fr';
       $childDao = new ChildDAO(DynamoDbClientBuilder::get());
-      $children = $childDao->getChildren($email);  //TODO
+      $children = $childDao->getChildren($email);
       ?>
       
 
@@ -69,16 +72,17 @@
 	  </div>
         </div>
      
-      <div class="col-md-offset-3 col-md-3">
-    Enfants <br/>
-<?php
-foreach($children as $child){
-echo ' <p> <input type="checkbox" name="child" value="' . $child->getEmail() .  '">'  . $child->getFirstname()  . 'Date: <input type="text" class="datepicker"> </p>' ;
-}
-?>
-
-</div>
-      </div>
+    <div class="col-md-offset-3 col-md-3">
+        Enfants <br/>
+        <?php
+        foreach($children as $child){
+        echo ' <p> <input type="checkbox" name="child" value="' . $child->getEmail() .  '">'. 
+                $child->getFirstname()  . '</br> Date: <input type="text" class="datepicker"> </p>' ;
+        }
+        ?>
+    </div>
+          
+    </div>
       
     </div>
   
@@ -138,8 +142,11 @@ echo ' <p> <input type="checkbox" name="child" value="' . $child->getEmail() .  
 					     contentType: false,
 					     data: uploadFormData,
 					     success: function (data) {
-					     alert(data)
+                                                alert(data);
 					     },
+                                             error: function (exception) {
+                                                alert("Exception : " + JSON.stringify(exception));
+                                             }
 					     });
 
 					     });			 

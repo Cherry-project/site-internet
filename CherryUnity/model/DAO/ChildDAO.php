@@ -15,6 +15,9 @@ class ChildDAO extends UserDAO {
         if (!empty($arrayTeaching)) {$array['teachingContent'] = array('L' => $arrayTeaching);}
         if (!empty($arrayMedical)) {$array['medicalContent'] = array('L' => $arrayMedical);}
         if (!empty($arrayFamily)) {$array['familyContent'] = array('L' => $arrayFamily);}
+        $array['teacherId'] = array('S' => $child->getTeacherId());
+        $array['familyId'] = array('S' => $child->getFamilyId());
+        $array['doctorId'] = array('S' => $child->getDoctorId());
         return $array;
     } 
     
@@ -53,6 +56,9 @@ class ChildDAO extends UserDAO {
         $child->setTeachingContent($childDTO['Item']['teachingContent']['L']);
         $child->setMedicalContent($childDTO['Item']['medicalContent']['L']);
         $child->setFamilyContent($childDTO['Item']['familyContent']['L']);
+        $child->setTeacherId($childDTO['Item']['teacherId']['S']);
+        $child->setFamilyId($childDTO['Item']['familyId']['S']);
+        $child->setDoctorId($childDTO['Item']['doctorId']['S']);
     }
 }
 

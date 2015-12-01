@@ -39,11 +39,22 @@
                 <div class="form-group">
                     <label class="control-label" for="type">Type </label>
                     <select id="type" name="type">
-                        <option value="child" selected>Enfant</option>
-                        <option value="teacher">Enseignant</option>
+                        <option value="child" >Enfant</option>
+                        <option value="teacher" selected>Enseignant</option>
                         <option value="doctor">Médecin</option>
                         <option value="family">Membre de la famille</option>
                     </select>
+                </div>
+                
+                <div class="form-group" id="adultsInput">
+                    <label class="control-label" for="email">Email enseignant</label>
+                    <input id="teacher" name="emailTeacher" class="form-control" placeholder="Entrez un email" type="email">
+                    
+                    <label class="control-label" for="email">Email médecin</label>
+                    <input id="doctor" name="emailDoctor" class="form-control" placeholder="Entrez un email" type="email">
+                    
+                    <label class="control-label" for="email">Email famille</label>
+                    <input id="family" name="emailFamily" class="form-control" placeholder="Entrez un email" type="email">
                 </div>
                 
                 <button type="submit" class="btn btn-default">Submit</button>
@@ -54,12 +65,19 @@
     <?php include 'footer.php' ?>
 
     <script>
-    $('#dbType').on('change',function(){
-        if( $(this).val()==="other"){
-        $("#otherType").show()
+    var ddl = document.getElementById("type");
+    var selectedValue = ddl.options[ddl.selectedIndex].value;
+    if (selectedValue === "child") {
+        $("#adultsInput").show();
+    } else {
+        $("#adultsInput").hide();
+    }
+    $('#type').on('change',function(){
+        if( $(this).val()==="child"){
+        $("#adultsInput").show();
         }
         else{
-        $("#otherType").hide()
+        $("#adultsInput").hide();
         }
     });
     </script>

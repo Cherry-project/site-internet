@@ -11,27 +11,36 @@ class ContentDAO {
     
     // children = array of [email, date]
     public function create ($content, $children) {
-        $this->client->putItem(array(
-            'TableName' => ContentDAO::$TABLE_NAME,
-            'Item' => array(
-                'name'    => array('S' => $content->getName()),
-                'owner'   => array('S' => $content->getEmailOwner()),
-                'url'     => array('S' => $content->getUrl()),
-                'type'    => array('S' => $content->getType())
-                )
-        ));
+        try {
+            $this->client->putItem(array(
+                'TableName' => ContentDAO::$TABLE_NAME,
+                'Item' => array(
+                    'name'    => array('S' => $content->getName()),
+                    'owner'   => array('S' => $content->getEmailOwner()),
+                    'url'     => array('S' => $content->getUrl()),
+                    'type'    => array('S' => $content->getType())
+                    )
+            ));
+        } catch (Exception $e) {
+            print $e->getMessage();
+        }
         $length = count($children);
+        print 'DEBUG : $length vaut '.$length;
         $childDAO = new ChildDAO(DynamoDbClientBuilder::get());
         for ($i = 0; $i < $length; $i++) {
             $email = $children[$i]['email'];
+            print 'DEBUG : $email vaut '.$email;
             $child = $childDAO->get($email);
             if ($child != null) {
+                $date = $children[$i]['date'];
+                print 'DEBUG : $date vaut '.$date;
                 $child->addContent(
                         $content,
-                        $children[$i]['date']); // date
+                        $date);
                 $childDAO->update($child);
             }
         }
+        print 'DEBUG : fin create';
     }
     
     //méthode à tester

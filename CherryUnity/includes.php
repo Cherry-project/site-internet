@@ -1,5 +1,4 @@
 <?php
-    $_root = './';
     $_model = $_root.'model/';
     $_dao = $_model.'DAO/';
     $_s3 = $_model.'S3/';

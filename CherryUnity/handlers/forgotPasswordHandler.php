@@ -3,11 +3,10 @@
     
 <head>
     <meta charset="utf-8">
-    <title>formHandler </title>
+    <title>New password</title>
     <?php
-        require '../vendor/autoload.php';
-        
-        use Aws\DynamoDb\DynamoDbClient;
+        $root = "../";
+        require "../includes.php";
         use Aws\DynamoDb\Exception\DynamoDbException;
         ?>
 </head>
