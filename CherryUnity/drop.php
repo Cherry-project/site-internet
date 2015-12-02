@@ -77,7 +77,7 @@ session_start();
         <?php
         foreach($children as $child){
         echo ' <p> <input type="checkbox" name="child" value="' . $child->getEmail() .  '">'. 
-                $child->getFirstname()  . '</br> Date: <input type="text" class="datepicker"> </p>' ;
+                $child->getFirstname()  . 'Date: <input type="text" class="datepicker"> </p>' ;
         }
         ?>
     </div>

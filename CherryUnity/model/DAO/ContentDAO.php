@@ -37,6 +37,7 @@ class ContentDAO {
                 $child->addContent(
                         $content,
                         $date);
+                print 'DEBUG : $child->getTeachingContent() vaut '.$child->getTeachingContent();
                 $childDAO->update($child);
             }
         }

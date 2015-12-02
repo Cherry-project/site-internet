@@ -67,9 +67,9 @@ class Child extends User {
                         'date' => array ('S' => $date) 
                     ));
         $type = $content->getType();
-        if ($type == "medical") {
+        if ($type == "doctor") {
             $this->addContentIfMissing($this->medicalContent, $elt);
-        } else if ($type == "teaching") {
+        } else if ($type == "teacher") {
             $this->addContentIfMissing($this->teachingContent, $elt);
         } else if ($type == "family") {
             $this->addContentIfMissing($this->familyContent, $elt);
