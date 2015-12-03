@@ -4,7 +4,7 @@ class Content {
     private $name;
     private $emailOwner;
     private $url;
-    private $type;
+    private $type; // $type is in {'teacher', 'doctor', 'family'}
     
     public function __construct() {}
 

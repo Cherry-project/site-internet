@@ -33,4 +33,15 @@ class S3Access {
             echo '<p>Exception reçue : ',  $e->getMessage(), "\n</p>";
         }
     }
+    
+    public function deleteFile($name) {
+        try {
+            $this->client->deleteObject(array(
+                'Bucket'     => S3Access::$BUCKET,
+                'Key'        => $name
+            ));
+        } catch (Exception $e) {
+            echo '<p>Exception reçue : ',  $e->getMessage(), "\n</p>";
+        }
+    }
 }

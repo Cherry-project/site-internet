@@ -30,13 +30,14 @@ session_start();
                     $type = $user->getType();
                     $_SESSION['type']  = $type; 
                     if ($type == "child") {
+                        //header('Location: ../childShowContents.php?type=teacher');
                         header('Location: ../room.php');
                     } else if ($type == "teacher") {
-                        header('Location: ../drop.php');
+                        header('Location: ../adultShowContents.php');
                     } else if ($type == "doctor") {
-                        header('Location: ../drop.php');
+                        header('Location: ../adultShowContents.php');
                     } else if ($type == "family") {
-                        header('Location: ../drop.php');
+                        header('Location: ../adultShowContents.php');
                     }
                 } else {
                     session_destroy();
