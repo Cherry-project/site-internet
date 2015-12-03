@@ -141,9 +141,7 @@ session_start();
 					     processData: false,
 					     contentType: false,
 					     data: uploadFormData,
-					     success: function (data) {
-                                                alert(data);
-					     },
+					     success: filesUpdated,
                                              error: function (exception) {
                                                 alert("Exception : " + JSON.stringify(exception));
                                              }
@@ -157,7 +155,10 @@ session_start();
 
 					     });
 
-
+function filesUpdated(){
+    $("#drag ul").empty();
+     $("#drag ul").after("<p>Les fichiers ont correctement été ajoutés</p>");
+}
 					     
 					     
 					     </script>

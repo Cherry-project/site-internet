@@ -47,7 +47,7 @@ class UserDAO {
     
     
     
-    private function getUserDTO ($email) {
+    protected function getUserDTO ($email) {
         $result = $this->client->getItem(array(
             'ConsistentRead' => true,
             'TableName' => UserDAO::$TABLE_NAME,
