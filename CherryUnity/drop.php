@@ -16,6 +16,8 @@ session_start();
   </head>
   <body>
       
+      <a href="./adultShowContents.php">Liste des fichiers</a>
+      
       <?php
       $email = $_SESSION['email'];
       //$email = 'nicolas@enseirb.fr';
