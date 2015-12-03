@@ -21,12 +21,7 @@ class ChildDAO extends UserDAO {
         return $array;
     } 
     
-    public function getChildrenWithEmail($email){
-        $childDTO =  parrent::getUserDTO ($email);
-        $child = new Child();
-        $this->fillUserAttributes($childDTO,$child);
-        return child;
-    }
+   
     
     public function getChildren($emailAdult){
         try {

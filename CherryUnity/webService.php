@@ -1,6 +1,6 @@
 <?php
 session_start();
-$email = $_SESSION['email'];
+
 
   include 'includes.php'; 
   
@@ -26,14 +26,15 @@ $email = $_SESSION['email'];
 
  function isNewContent($contents){
      foreach($contents as $content ){
-         if(!$content['notified']['B'])
-             return true;
-       return false;      
+         if(!$content['notified']['M']['B'])
+             return true;         
      }
+     return false;
  }
  
 $childDao = new ChildDAO(DynamoDbClientBuilder::get());
-$children = $childDao->getChildrenWithEmail($email);
+$email = $_SESSION['email'];
+$child = $childDao->get($email);
 $contents = getNewContentAvailable($child);
 header('Content-Type: application/json');
 $response = json_encode($contents);
