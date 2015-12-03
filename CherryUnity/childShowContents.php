@@ -4,23 +4,22 @@
     
 <head>
     <?php include 'head.php' ?>
-    <title>Connection </title>
+    <title>Content </title>
 </head>
 
 <body>
     <?php include 'nav.php' ?>
-    <h1>Gestion de contenus pédagogiques</h1>
+    <h1>Gestion de contenus de l'enfant</h1>
     
-    
-    <?php
-
+    <?php    
+    $root = './';
     include "includes.php";
     
     $contentDao = new ContentDAO(DynamoDbClientBuilder::get());
     $childDao = new ChildDAO(DynamoDbClientBuilder::get());
-    $email = $_SESSION('email');
+    $email = $_SESSION['email'];
     $child = $childDao->get($email);
-    
+       
     // Paramètre envoyé dans l'URL
     // parametre type, valeurs possibles : {teacher, family, doctor}
     $type = $_GET['type'];
@@ -32,7 +31,7 @@
     } else if ($type == 'doctor') {
         $contents = $child->getMedicalContent();
     }
-    
+        
     $length = count($contents);
     
     echo '<ul>';
@@ -48,8 +47,6 @@
     }
     echo '</ul>';
     ?>
-    
-    
     
     <?php include 'footer.php' ?>
 

@@ -76,6 +76,23 @@ class Child extends User {
         }
     }
     
+    // no need to pass $owner
+    public function deleteContent($name, $type) {
+        $contents = $this->getContentByType($type);
+        $i = 0;
+        foreach($contents as $content) {
+            if ($content->getName() == $name &&
+                $content->getType() == $type) {
+                // delete content from array
+                unset($contents[$i]);
+                break;
+            }
+            $i++;
+        }
+        // index array correctly after use of unset function
+        $contents = array_values($contents);
+    }
+    
     private function addContentIfMissing (&$array, $elt) {
         echo 'Add content!!!!!</br>';
         $eltIsInArray = false;
@@ -106,9 +123,9 @@ class Child extends User {
     }
     
     function getContentByType($type) {
-        if ($type == "medical") {
+        if ($type == "doctor") {
             return $this->medicalContent;
-        } else if ($type == "teaching") {
+        } else if ($type == "teacher") {
             return $this->teachingContent;
         } else if ($type == "family") {
             return $this->familyContent;
