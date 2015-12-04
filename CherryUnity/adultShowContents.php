@@ -19,11 +19,9 @@
     
     $name_fileToDelete = $_GET['name'];
     $owner_fileToDelete = $_GET['owner'];
-    // DELETE File
-    if ($name_fileToDelete != null &&
-        $name_fileToDelete != "" &&
-        $owner_fileToDelete != null &&
-        $owner_fileToDelete != "") {
+    // DELETE File if needed
+    if (!empty($name_fileToDelete) &&
+        !empty($owner_fileToDelete)) {
         $s3 = new S3Access(S3ClientBuilder::get());
         $s3->deleteFile($name_fileToDelete);
         $contentDao->delete($name_fileToDelete, $owner_fileToDelete);
@@ -36,23 +34,24 @@
     $user = $userDao->get($email);
     
     $contents = $contentDao->getContentsOfUser($email);
-        
+    
     $length = count($contents);
     
     echo '<ul>';
     for ($i = 0; $i < $length; $i++) {
         $content = $contents[$i];
         $name = $content->getName();
-        $owner = $content->getOwner();
+        $owner = $content->getEmailOwner();
         if ($content != null) {
             echo '<li>'
                 . $name
-                . '- <a href=downloadFile.php?name='.$name.'>Download</a>' 
-                . '- <a href=adultShowFile.php?name='.$name.'&owner='.$owner.'>Delete</a>' 
+                . ' - <a href=downloadFile.php?name='.$name.'>Download</a>' 
+                . ' - <a href=adultShowContents.php?name='.$name.'&owner='.$owner.'>Delete</a>' 
                 . '</li>';
         }
     }
     echo '</ul>';
+        
     ?>
     
     <?php include 'footer.php' ?>

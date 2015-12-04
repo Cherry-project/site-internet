@@ -49,24 +49,30 @@ class ContentDAO {
                 'owner' => array('S' => $owner)
             )
         ));
-        $content = toModel($result['Item']);
+        $content = $this->toModel($result['Item']);
         return $content;
     }
     
+    // GET all the contents posted by an adult
     public function getContentsOfUser($email) {
         try {
             $result = $this->client->scan([
                 'TableName' => ContentDAO::$TABLE_NAME,
+                'ExpressionAttributeNames' => [
+                    // 'owner' is a keyword for DynamoDB
+                    // we need to define an expression attribute name
+                    '#owner' => 'owner'
+                ], 
                 'ExpressionAttributeValues' => [
                     ':val1' => ['S' => $email]
                 ],    
-                'FilterExpression' => '(:val1=owner)',
+                'FilterExpression' => '(:val1=#owner)',
             ]);
             $contentsDTO = $result['Items'];
-            if ($contentsDTO == null) {return null;}
+            if (empty($contentsDTO)) {return null;}
             $array = array();
             foreach ($contentsDTO as $dto) {
-                array_push($array, toModel($dto));
+                array_push($array, $this->toModel($dto));
             }
             return $array;
         } catch (Exception $e) {
@@ -79,7 +85,7 @@ class ContentDAO {
             // DELETE the file from DynamoDB, table 'Contents'
             $this->client->deleteItem(array(
                 'TableName' => ContentDAO::$TABLE_NAME,
-                'Item' => array(
+                'Key' => array(
                     'name'    => array('S' => $name),
                     'owner'   => array('S' => $owner)
                     )
@@ -99,6 +105,7 @@ class ContentDAO {
             for ($i = 0; $i < $length; $i++) {
                 $child = $children[$i];
                 $child->deleteContent($name, $type);
+                $childDao->update($child);
             }
         } catch (Exception $e) {
             echo '<p>Exception reçue : ',  $e->getMessage(), "\n</p>";
@@ -108,10 +115,10 @@ class ContentDAO {
     private function toModel($dto) {
         // Convert DTO into model object
         $content = new Content();
-        $content->setName($dto['Item']['name']['S']);
-        $content->setType($dto['Item']['type']['S']);
-        $content->setEmailOwner($dto['Item']['owner']['S']);
-        $content->setUrl($dto['Item']['url']['S']);
+        $content->setName($dto['name']['S']);
+        $content->setType($dto['type']['S']);
+        $content->setEmailOwner($dto['owner']['S']);
+        $content->setUrl($dto['url']['S']);
         return $content;
     }
 }

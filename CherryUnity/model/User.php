@@ -1,6 +1,6 @@
 <?php
 
-// $type vaut "doctor", "teacher", "child", "parent"
+// $type is in { "doctor", "teacher", "child", "family" }
 
 class User {
     protected $type;
