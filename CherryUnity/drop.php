@@ -10,18 +10,19 @@ session_start();
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     
-    <?php 
+    <?php
+    $root = './';
     include 'includes.php'; 
     ?>
   </head>
   <body>
       
-      <!-- <a href="./adultShowContents.php">Liste des fichiers</a> -->
+      <a href="./adultShowContents.php">Liste des fichiers</a>
       
       <?php
       $email = $_SESSION['email'];
       $childDao = new ChildDAO(DynamoDbClientBuilder::get());
-      $children = $childDao->getChildren($email);
+      //$children = $childDao->getChildren($email);
       ?>
       
 

@@ -20,8 +20,8 @@
     $email = $_SESSION['email'];
     $child = $childDao->get($email);
        
-    // Paramètre envoyé dans l'URL
-    // parametre type, valeurs possibles : {teacher, family, doctor}
+    // URL parameter
+    // parameter 'type', possible values : {teacher, family, doctor}
     $type = $_GET['type'];
     
     if($type == 'teacher') {

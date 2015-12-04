@@ -19,9 +19,7 @@ class ChildDAO extends UserDAO {
         $array['familyId'] = array('S' => $child->getFamilyId());
         $array['doctorId'] = array('S' => $child->getDoctorId());
         return $array;
-    } 
-    
-   
+    }
     
     public function getChildren($emailAdult){
         echo 'getChildren '.$emailAdult;
@@ -49,7 +47,6 @@ class ChildDAO extends UserDAO {
             echo '<p>Exception reçue : ',  $e->getMessage(), "\n</p>";
         }
     }
-    
     
     protected function getUser () {
         return new Child();
