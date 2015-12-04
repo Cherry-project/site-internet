@@ -22,7 +22,6 @@ class ChildDAO extends UserDAO {
     }
     
     public function getChildren($emailAdult){
-        echo 'getChildren '.$emailAdult;
         try {
             $result = $this->client->scan([
                 'TableName' => UserDAO::$TABLE_NAME,
@@ -31,11 +30,9 @@ class ChildDAO extends UserDAO {
                 ],    
                 'FilterExpression' => '(:val1=familyId) or (:val1=doctorId) or (:val1=teacherId) ',
             ]);
-            echo 'getChildren ';
             $childrenDTO = $result['Items'];
             $children = array();
             foreach($childrenDTO as $childDTO) {
-                echo 'getChildren* ';
                 $child = new Child();
                 $child->setEmail($childDTO['email']['S']);
                 $child->setFirstname($childDTO['firstname']['S']);

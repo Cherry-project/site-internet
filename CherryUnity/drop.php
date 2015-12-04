@@ -17,12 +17,10 @@ session_start();
   </head>
   <body>
       
-      <a href="./adultShowContents.php">Liste des fichiers</a>
-      
       <?php
       $email = $_SESSION['email'];
       $childDao = new ChildDAO(DynamoDbClientBuilder::get());
-      //$children = $childDao->getChildren($email);
+      $children = $childDao->getChildren($email);
       ?>
       
 
@@ -54,6 +52,8 @@ session_start();
       </div><!--/.container-fluid -->
     </nav>
 
+      
+      <a href="./adultShowContents.php">Liste des fichiers</a>
 
     <div class="container">
       <div class="row">
@@ -79,7 +79,7 @@ session_start();
         <?php
         foreach($children as $child){
         echo ' <p> <input type="checkbox" name="child" value="' . $child->getEmail() .  '">'. 
-                $child->getFirstname()  . 'Date: <input type="text" class="datepicker"> </p>' ;
+                $child->getFirstname()  . ' Date: <input type="text" class="datepicker"> </p>' ;
         }
         ?>
     </div>

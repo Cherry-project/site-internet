@@ -2,7 +2,7 @@
 
 
 class UserDAO {
-    private static $TABLE_NAME = 'Users';
+    protected static $TABLE_NAME = 'Users';
     protected $client;
         
     public function __construct ($client) {
