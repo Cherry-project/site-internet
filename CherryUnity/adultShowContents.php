@@ -20,10 +20,8 @@
     $name_fileToDelete = $_GET['name'];
     $owner_fileToDelete = $_GET['owner'];
     // DELETE File if needed
-    if ($name_fileToDelete != null &&
-        $name_fileToDelete != "" &&
-        $owner_fileToDelete != null &&
-        $owner_fileToDelete != "") {
+    if (!empty($name_fileToDelete) &&
+        !empty($owner_fileToDelete)) {
         $s3 = new S3Access(S3ClientBuilder::get());
         $s3->deleteFile($name_fileToDelete);
         $contentDao->delete($name_fileToDelete, $owner_fileToDelete);
@@ -47,8 +45,8 @@
         if ($content != null) {
             echo '<li>'
                 . $name
-                . '- <a href=downloadFile.php?name='.$name.'>Download</a>' 
-                . '- <a href=adultShowContents.php?name='.$name.'&owner='.$owner.'>Delete</a>' 
+                . ' - <a href=downloadFile.php?name='.$name.'>Download</a>' 
+                . ' - <a href=adultShowContents.php?name='.$name.'&owner='.$owner.'>Delete</a>' 
                 . '</li>';
         }
     }

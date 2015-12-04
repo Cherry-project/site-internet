@@ -16,11 +16,10 @@ session_start();
   </head>
   <body>
       
-      <a href="./adultShowContents.php">Liste des fichiers</a>
+      <!-- <a href="./adultShowContents.php">Liste des fichiers</a> -->
       
       <?php
       $email = $_SESSION['email'];
-      //$email = 'nicolas@enseirb.fr';
       $childDao = new ChildDAO(DynamoDbClientBuilder::get());
       $children = $childDao->getChildren($email);
       ?>

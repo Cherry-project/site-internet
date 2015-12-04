@@ -85,7 +85,7 @@ class ContentDAO {
             // DELETE the file from DynamoDB, table 'Contents'
             $this->client->deleteItem(array(
                 'TableName' => ContentDAO::$TABLE_NAME,
-                'Item' => array(
+                'Key' => array(
                     'name'    => array('S' => $name),
                     'owner'   => array('S' => $owner)
                     )
@@ -105,6 +105,7 @@ class ContentDAO {
             for ($i = 0; $i < $length; $i++) {
                 $child = $children[$i];
                 $child->deleteContent($name, $type);
+                $childDao->update($child);
             }
         } catch (Exception $e) {
             echo '<p>Exception reçue : ',  $e->getMessage(), "\n</p>";
