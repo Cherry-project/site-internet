@@ -14,20 +14,24 @@
 <body>
     <?php
         function testUser ($email, $type) {
-            $client = DynamoDbClientBuilder::get();
-            $response = $client->getItem(array(
-                'TableName' => 'Users',
-                    'Key' => array(
-                        'email' => array('S' => $email)
-                    )
-                ));
-            if ($response['Item'] == null) {
-                return false;
-            }
-            if ($response['Item']['type']['S'] == $type) {
-                return true;
-            } else {
-                return false;
+            try {
+                $client = DynamoDbClientBuilder::get();
+                $response = $client->getItem(array(
+                    'TableName' => UserDAO::$TABLE_NAME,
+                        'Key' => array(
+                            'email' => array('S' => $email)
+                        )
+                    ));
+                if (empty($response) || empty($response['Item'])) {
+                    return false;
+                }
+                if ($response['Item']['type']['S'] == $type) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (Exception $e) {
+                echo '<p>Exception reçue : ',  $e->getMessage(), "\n</p>";
             }
         }
     
@@ -38,22 +42,32 @@
             $error = false;
             
             $type = $_POST['type'];
-            $emailFamily = $_POST['emailFamily'];
-            $emailDoctor = $_POST['emailDoctor'];
-            $emailTeacher = $_POST['emailTeacher'];
             
             if ($type == 'child') {
                 $error = true;
-                $testFamily = testUser($emailFamily, "family");
-                $testDoctor = testUser($emailDoctor, "doctor");
-                $testTeacher = testUser($emailTeacher, "teacher");
-
-                if ($testFamily == false) {
-                    echo "Problème avec email famille";
-                } else if ($testDoctor == false) {
-                    echo "Problème avec email médecin";
-                } else if ($testTeacher == false) {
-                    echo "Problème avec email enseignant";
+                
+                if (!empty($_POST['emailFamily'])) {
+                    $testFamily = testUser($_POST['emailFamily'], "family");
+                } else {
+                    echo "Le champ famille ne doit pas être vide.<\br>";
+                }
+                if (!empty($_POST['emailDoctor'])) {
+                    $testDoctor = testUser($_POST['emailDoctor'], "doctor");
+                } else {
+                    echo "Le champ médecin ne doit pas être vide.</br>";
+                }
+                if (!empty($_POST['emailTeacher'])) {
+                    $testTeacher = testUser($_POST['emailTeacher'], "teacher");
+                } else {
+                    echo "Le champ enseignant ne doit pas être vide.</br>";
+                }
+                
+                if (empty($testFamily) || $testFamily == false) {
+                    echo "L'email précisé dans le champ famille n'est pas le bon.</br>";
+                } else if (empty($testDoctor) || $testDoctor == false) {
+                    echo "L'email précisé dans le champ médecin n'est pas le bon.</br>";
+                } else if (empty($testTeacher) || $testTeacher == false) {
+                    echo "L'email précisé dans le champ enseignant n'est pas le bon.</br>";
                 } else {
                     $error = false;
                     $array['familyId'] = array('S' => $emailFamily);
@@ -84,7 +98,7 @@
 
                 if ($password != $confirmPassword) {
                     echo "Les deux mots de passe entrés sont différents.";
-                } else if (($response['Item'] == null)) {
+                } else if ((empty($response) || empty($response['Item']))) {
                     $client->putItem(array(
                         'TableName' => 'Users',
                         'Item' => $array
