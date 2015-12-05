@@ -104,16 +104,9 @@ class ContentDAO {
             $length = count($children);
             for ($i = 0; $i < $length; $i++) {
                 $child = $children[$i];
-                echo 'TABLEAU AVANT</br>';
-                print_r($childDao->userToArray($child));
-                echo '</br>';
                 $child->deleteContent($name, $owner, $type);
-                echo 'TABLEAU APRES</br>';
-                print_r($childDao->userToArray($child));
-                echo '</br>';
                 $childDao->update($child);
             }
-            echo 'DELETE TERMINE</br>';
         } catch (Exception $e) {
             echo '<p>Exception reçue : ',  $e->getMessage(), "\n</p>";
         }

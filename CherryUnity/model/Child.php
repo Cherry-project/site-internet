@@ -79,35 +79,18 @@ class Child extends User {
     public function deleteContent($name, $owner, $type) {
         $contents = $this->getContentByType($type);
         $i = 0;
-        echo 'CONTENTS AVANT</br>';
-        print_r($contents);
-        echo '</br>';
         foreach($contents as $content) {
-            echo '1</br>';
             if ($content['M']['name']['S'] == $name &&
                 $content['M']['owner']['S'] == $owner) {
                 // delete content from array
-                echo '1.1</br>';
                 unset($contents[$i]);
-                echo '1.2</br>';
                 break;
             }
-            echo '2</br>';
             $i++;
         }
-        echo 'CONTENTS APRES DELETE</br>';
-        print_r($contents);
-        echo '</br>';
         // index array correctly after use of unset function
         $contents = array_values($contents);
-        echo 'CONTENTS APRES INDEXAGE</br>';
-        print_r($contents);
-        echo '</br>';
-        $this->setContentByType($contents, $type);
-        echo 'TEACHING APRES INDEXAGE</br>';
-        print_r($this->teachingContent);
-        echo '</br>';
-        
+        $this->setContentByType($contents, $type);        
     }
     
     private function addContentIfMissing (&$array, $elt) {
