@@ -8,7 +8,7 @@ class Content {
     
     public function __construct() {}
 
-    function getName() {
+    public function getName() {
         return $this->name;
     }
 
@@ -32,7 +32,7 @@ class Content {
         $this->emailOwner = $emailOwner;
     }
 
-    function getType() {
+    public function getType() {
         return $this->type;
     }
 

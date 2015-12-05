@@ -7,8 +7,8 @@ class ChildDAO extends UserDAO {
         parent::__construct($client);
     }
     
-    protected function getArrayWithUserData ($child) {
-        $array = parent::getArrayWithUserData($child);
+    public function userToArray ($child) {
+        $array = parent::userToArray($child);
         $arrayTeaching = $child->getTeachingContent();
         $arrayMedical = $child->getMedicalContent();
         $arrayFamily = $child->getfamilyContent();
@@ -34,9 +34,7 @@ class ChildDAO extends UserDAO {
             $children = array();
             foreach($childrenDTO as $childDTO) {
                 $child = new Child();
-                $child->setEmail($childDTO['email']['S']);
-                $child->setFirstname($childDTO['firstname']['S']);
-                $child->setLastname($childDTO['lastname']['S']);
+                $this->fillUserAttributes($childDTO, $child);
                 array_push($children, $child);
             }
             return $children;
@@ -51,12 +49,12 @@ class ChildDAO extends UserDAO {
     
     protected function fillUserAttributes ($childDTO, $child) {
         parent::fillUserAttributes($childDTO, $child);
-        $child->setTeachingContent($childDTO['Item']['teachingContent']['L']);
-        $child->setMedicalContent($childDTO['Item']['medicalContent']['L']);
-        $child->setFamilyContent($childDTO['Item']['familyContent']['L']);
-        $child->setTeacherId($childDTO['Item']['teacherId']['S']);
-        $child->setFamilyId($childDTO['Item']['familyId']['S']);
-        $child->setDoctorId($childDTO['Item']['doctorId']['S']);
+        $child->setTeachingContent($childDTO['teachingContent']['L']);
+        $child->setMedicalContent($childDTO['medicalContent']['L']);
+        $child->setFamilyContent($childDTO['familyContent']['L']);
+        $child->setTeacherId($childDTO['teacherId']['S']);
+        $child->setFamilyId($childDTO['familyId']['S']);
+        $child->setDoctorId($childDTO['doctorId']['S']);
     }
 }
 

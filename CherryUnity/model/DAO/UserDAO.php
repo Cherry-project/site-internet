@@ -21,7 +21,7 @@ class UserDAO {
     }
     
     public function create ($user) {
-        $arrayOfUser = $this->getArrayWithUserData($user);
+        $arrayOfUser = $this->userToArray($user);
         try {
         $this->client->putItem(array(
             'TableName' => UserDAO::$TABLE_NAME,
@@ -44,9 +44,7 @@ class UserDAO {
             )
         ));
     }
-    
-    
-    
+        
     protected function getUserDTO ($email) {
         $result = $this->client->getItem(array(
             'ConsistentRead' => true,
@@ -55,7 +53,7 @@ class UserDAO {
                 'email' => array('S' => $email)
             )
         ));
-        return $result;
+        return $result['Item'];
     }
     
     protected function getUser () {
@@ -63,14 +61,14 @@ class UserDAO {
     }
     
     protected function fillUserAttributes ($userDTO, $user) {
-        $user->setEmail($userDTO['Item']['email']['S']);
-        $user->setPassword($userDTO['Item']['password']['S']);
-        $user->setLastname($userDTO['Item']['lastname']['S']);
-        $user->setFirstname($userDTO['Item']['firstname']['S']);
-        $user->setType($userDTO['Item']['type']['S']);
+        $user->setEmail($userDTO['email']['S']);
+        $user->setPassword($userDTO['password']['S']);
+        $user->setLastname($userDTO['lastname']['S']);
+        $user->setFirstname($userDTO['firstname']['S']);
+        $user->setType($userDTO['type']['S']);
     }
     
-    protected function getArrayWithUserData ($user) {
+    public function userToArray ($user) {
         $array = array(
             'email'     => array('S' => $user->getEmail()),
             'password'  => array('S' => $user->getPassword()),

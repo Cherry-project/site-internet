@@ -76,21 +76,38 @@ class Child extends User {
         }
     }
     
-    // no need to pass $owner
-    public function deleteContent($name, $type) {
+    public function deleteContent($name, $owner, $type) {
         $contents = $this->getContentByType($type);
         $i = 0;
+        echo 'CONTENTS AVANT</br>';
+        print_r($contents);
+        echo '</br>';
         foreach($contents as $content) {
-            if ($content->getName() == $name &&
-                $content->getType() == $type) {
+            echo '1</br>';
+            if ($content['M']['name']['S'] == $name &&
+                $content['M']['owner']['S'] == $owner) {
                 // delete content from array
+                echo '1.1</br>';
                 unset($contents[$i]);
+                echo '1.2</br>';
                 break;
             }
+            echo '2</br>';
             $i++;
         }
+        echo 'CONTENTS APRES DELETE</br>';
+        print_r($contents);
+        echo '</br>';
         // index array correctly after use of unset function
         $contents = array_values($contents);
+        echo 'CONTENTS APRES INDEXAGE</br>';
+        print_r($contents);
+        echo '</br>';
+        $this->setContentByType($contents, $type);
+        echo 'TEACHING APRES INDEXAGE</br>';
+        print_r($this->teachingContent);
+        echo '</br>';
+        
     }
     
     private function addContentIfMissing (&$array, $elt) {
@@ -129,6 +146,16 @@ class Child extends User {
             return $this->teachingContent;
         } else if ($type == "family") {
             return $this->familyContent;
+        }
+    }
+    
+    function setContentByType($list_contents, $type) {
+        if ($type == "doctor") {
+            $this->medicalContent = $list_contents;
+        } else if ($type == "teacher") {
+            $this->teachingContent = $list_contents;
+        } else if ($type == "family") {
+            $this->familyContent = $list_contents;
         }
     }
 }
