@@ -47,17 +47,20 @@
                 $error = true;
                 
                 if (!empty($_POST['emailFamily'])) {
-                    $testFamily = testUser($_POST['emailFamily'], "family");
+                    $emailFamily = $_POST['emailFamily'];
+                    $testFamily = testUser($emailFamily, "family");
                 } else {
                     echo "Le champ famille ne doit pas être vide.<\br>";
                 }
                 if (!empty($_POST['emailDoctor'])) {
-                    $testDoctor = testUser($_POST['emailDoctor'], "doctor");
+                    $emailDoctor = $_POST['emailDoctor'];
+                    $testDoctor = testUser($emailDoctor, "doctor");
                 } else {
                     echo "Le champ médecin ne doit pas être vide.</br>";
                 }
                 if (!empty($_POST['emailTeacher'])) {
-                    $testTeacher = testUser($_POST['emailTeacher'], "teacher");
+                    $emailTeacher = $_POST['emailTeacher'];
+                    $testTeacher = testUser($emailTeacher, "teacher");
                 } else {
                     echo "Le champ enseignant ne doit pas être vide.</br>";
                 }
