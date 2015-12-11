@@ -33,7 +33,8 @@ function isNewContent($contents){
 }
  
 $childDao = new ChildDAO(DynamoDbClientBuilder::get());
-$email = $_SESSION['email'];
+if(!empty($_GET['email']))
+$email = $_GET['email'];
 $child = $childDao->get($email);
 $contents = getNewContentAvailable($child);
 header('Content-Type: application/json');

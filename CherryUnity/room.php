@@ -7,19 +7,6 @@
     <?php include 'head.php' ?>
     <title>Maison </title>
     
-    <script type="text/javascript" src="http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject.js"></script>
-    <script type="text/javascript">
-        function GetUnity() {
-            if (typeof unityObject != "undefined") {
-                return unityObject.getObjectById("unityPlayer");
-            }
-            return null;
-        }
-        if (typeof unityObject != "undefined") {
-            unityObject.embedUnity("unityPlayer", "Build.unity3d", 700, 600);
-        }
-    </script>
-    
     <style type="text/css">
         body {
             font-family: Helvetica, Verdana, Arial, sans-serif;
@@ -90,16 +77,79 @@
             <?php
                 $firstname = _POST['firstname'];
                 echo " " . $firstname;
+                echo '<span id="unity" email='.$_SESSION['email'] . '> </span>'
                 ?>
             </p>
         </div>
     </div>
+    
+    
 
     <?php include 'footer.php' ?>
     
-</body>
-</html>
+    <script type="text/javascript" src="http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject.js"></script>
+    <script type="text/javascript">
+        function GetUnity() {
+            if (typeof unityObject != "undefined") {                
+                return unityObject.getObjectById("unityPlayer");
+            }
+            return null;
+        }
+    
+        if (typeof unityObject != "undefined") {
+            unityObject.embedUnity("unityPlayer", "Build.unity3d", 700, 600);            
+        }   
+       
+      function gameReady(message){                    
+          GetUnity().SendMessage("Camera/MyCanvas", "GetSessionId", $('#unity').attr("email"));
+      }
+      
+   
+   /* var u = new UnityObject2();
+    u.observeProgress(function (progress) {
+            var $missingScreen = jQuery(progress.targetEl).find(".missing");
+            switch(progress.pluginStatus) {
+                case "unsupported":
+                    showUnsupported();
+                break;
+                case "broken":
+                    alert("You will need to restart your browser after installation.");
+                break;
+                case "missing":
+                    $missingScreen.find("a").click(function (e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        u.installPlugin();
+                        return false;
+                    });
+                    $missingScreen.show();
+                break;
+                case "installed":
+                    $missingScreen.remove();
+                break;
+                case "first":
+                break;
+            }
+        });
+        jQuery(function(){
+            u.initPlugin(jQuery("#unityPlayer")[0], "Build.unity3d");
+            setTimeout(function(){
+                alert('coucou');
+                console.log(Object.getOwnPropertyNames(u.getUnity()));
+            },30000
+            );
+            alert(u);
+            
+        });*/
 
+        
+    
+     //.SendMessage("Camera/MyCanvas", "GetSessionId", "sessionID"));
+    </script>
+    
+
+    </body>
+</html>
 
 
 
