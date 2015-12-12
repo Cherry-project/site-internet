@@ -1,6 +1,12 @@
+<?php
+if (empty($root)) {
+    $root = './';
+}
+?>
+
 <footer class="footer">
     <div class="container-fluid">
-        <img  height="60px" src="img/logo.jpg"/> 
+        <img  height="60px" src=<?php echo $root."img/logo.jpg" ?> /> 
     </div>
 </footer>
 
