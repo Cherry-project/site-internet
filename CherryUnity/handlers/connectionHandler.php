@@ -17,42 +17,51 @@ session_start();
 <body>
     <!-- <a href="../temp.php">temp.php</a> -->
     <?php
-        try {
-            $client = DynamoDbClientBuilder::get();
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-            
-            $dao = new UserDAO($client);
-            $user = $dao->get($email);
-            if ($user != null) {
-                if ($user->getPassword() == $password) {
-                    $_SESSION['email'] = $email;
-                    $type = $user->getType();
-                    $_SESSION['type']  = $type; 
-                    if ($type == "child") {
-                        //header('Location: ../childShowContents.php?type=teacher');
-                        header('Location: ../room.php');
-                    } else if ($type == "teacher") {
-                        header('Location: ../adultShowContents.php');
-                    } else if ($type == "doctor") {
-                        header('Location: ../adultShowContents.php');
-                    } else if ($type == "family") {
-                        header('Location: ../adultShowContents.php');
-                    }
-                } else {
-                    session_destroy();
-                    echo "Mot de passe incorrect.";
+     
+    header('Location: ../calendar/calendar.php');
+    
+    // Zone commentée pour tester le calendrier
+    /*
+    try {
+        $client = DynamoDbClientBuilder::get();
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        $dao = new UserDAO($client);
+        $user = $dao->get($email);
+        if ($user != null) {
+            if ($user->getPassword() == $password) {
+                $_SESSION['email'] = $email;
+                $type = $user->getType();
+                $_SESSION['type']  = $type; 
+                if ($type == "child") {
+                    //header('Location: ../childShowContents.php?type=teacher');
+                    header('Location: ../room.php');
+                } else if ($type == "teacher") {
+                    header('Location: ../adultShowContents.php');
+                } else if ($type == "doctor") {
+                    header('Location: ../adultShowContents.php');
+                } else if ($type == "family") {
+                    header('Location: ../adultShowContents.php');
                 }
             } else {
                 session_destroy();
-                echo "L'utilisateur n'existe pas.";
+                echo "Mot de passe incorrect.";
             }
-        } catch (DynamoDbException $e) {
-            echo '<p>Exception dynamoDB reçue : ',  $e->getMessage(), "\n</p>";
-        } catch (Exception $e) {
-            echo '<p>Exception reçue : ',  $e->getMessage(), "\n</p>";
+        } else {
+            session_destroy();
+            echo "L'utilisateur n'existe pas.";
         }
-        ?>
+    } catch (DynamoDbException $e) {
+        echo '<p>Exception dynamoDB reçue : ',  $e->getMessage(), "\n</p>";
+    } catch (Exception $e) {
+        echo '<p>Exception reçue : ',  $e->getMessage(), "\n</p>";
+    }
+     
+    //*/
+    ?>
+      
+     
 </body>
 </html>
 
