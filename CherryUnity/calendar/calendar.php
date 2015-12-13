@@ -14,7 +14,7 @@ session_start();
         require_once('date.php');
         ?>
         
-        <link href= "<?php echo $root."css/calendar.css" ?>" rel="stylesheet">
+        <link href= "<?php echo $root."css/style_calendar.css" ?>" rel="stylesheet" type="text/css">
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
         <script type='text/javascript'>
