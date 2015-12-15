@@ -33,6 +33,9 @@ body {
     margin: -1px;
     padding: 0px 15px 0px 0px;
     color: #888888;
+    font-size: 150%;
+    text-transform: uppercase;
+    text-decoration: none;
     
 }
 
@@ -84,14 +87,33 @@ table td .events {
     width: 79px;
     height: 0px;
     margin: -39px 0px 0px;
+    visibility: hidden;
     
 }
 
 table td .events li {
+    /*
     width: 10px;
     height: 10px;
     float: left;
-    background: #000;
+    */
+}
+
+table td .events_bullets {
+    position: relative;
+    width: 79px;
+    height: 0px;
+    margin: -39px 0px 0px;
+}
+
+table td .events_bullets li {
+    width: 10px;
+    height: 10px;
+    float: left;
+}
+
+table td:hover .events_bullets {
+    
 }
 
 table td:hover .events {
@@ -100,18 +122,19 @@ table td:hover .events {
     top: 66px;
     width: 442px;
     list-style: none;
+    visibility: visible;
     
 }
 
 table td:hover .events li {
-    height: 40px;
+    width: auto;
     line-height: 40px;
     font-weight: bold;
     
 }
 
 table td:hover .events li:first-child {
-    border-top: 1px solid #D6D6D6;
+    border-top: 1px solid #AAAAAA;
 }
 
 table td .daytitle {
@@ -129,3 +152,4 @@ table td:hover .daytitle {
 .clear {
     clear: both;
 }
+

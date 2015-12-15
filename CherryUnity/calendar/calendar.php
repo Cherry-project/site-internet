@@ -28,7 +28,7 @@ session_start();
                     if (month !== current) {
                         $('#month'+current).slideUp();
                         $('#month'+month).slideDown();
-                        $('months a').removeClass('active');
+                        $('.months a').removeClass('active');
                         $('.months a#linkMonth'+month).addClass('active');
                         current = month;
                     }
@@ -88,10 +88,17 @@ session_start();
                                             </div>
                                         </div>
                                         <ul class="events">
+                                            <li>Bonjour comment ça va aujourd'hui?</li>
+                                            <li>Au revoir</li>
+                                            <li>A bientôt</li>
+                                        </ul>
+                                        <ul class="events_bullets">
+                                            <li></li>
+                                            <li></li>
                                             <li></li>
                                         </ul>
                                     </td>
-                                    
+                                        
                                     <?php if ($w == 7): ?>
                                         </tr><tr>
                                     <?php endif; ?>

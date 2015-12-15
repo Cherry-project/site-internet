@@ -10,6 +10,8 @@
 <body>
     <?php include 'nav.php' ?>
     
+    <h3>Site en construction : pas de vérification login/password</h3>
+    
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-md-offset-3">
