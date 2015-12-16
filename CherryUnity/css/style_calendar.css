@@ -79,14 +79,14 @@ table td .day {
     bottom: -40px;
     right: 5px;
     font-weight: bold;
-
+    font-size: 150%;
 }
 
 table td .events {
     position: relative;
     width: 79px;
     height: 0px;
-    margin: -39px 0px 0px;
+    //margin: -39px 0px 0px;
     visibility: hidden;
     
 }
@@ -103,17 +103,19 @@ table td .events_bullets {
     position: relative;
     width: 79px;
     height: 0px;
-    margin: -39px 0px 0px;
+    margin: -45px -5px 0px;
+    font-size: 200%;
 }
 
 table td .events_bullets li {
     width: 10px;
     height: 10px;
     float: left;
+    margin-right: 2px;
 }
 
 table td:hover .events_bullets {
-    
+    //margin: -39px 0px 0px;
 }
 
 table td:hover .events {
@@ -130,7 +132,7 @@ table td:hover .events li {
     width: auto;
     line-height: 40px;
     font-weight: bold;
-    
+    border-bottom: 1px solid #AAAAAA;
 }
 
 table td:hover .events li:first-child {
@@ -142,11 +144,14 @@ table td .daytitle {
 }
 
 table td:hover .daytitle {
+    display: inherit;
     position: absolute;
-    left: 582px;
     top: 21px;
+    left: 582px;
     width: 442px;
     list-style: none;
+    font-size: 200%;
+    color: #D90000;
 }
 
 .clear {
