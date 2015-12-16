@@ -64,7 +64,8 @@ class Child extends User {
         $elt = array ('M' => array (
                         'name' => array ('S' => $content->getName()),
                         'owner' => array ('S' => $content->getEmailOwner()),
-                        'date' => array ('S' => $date) 
+                        'date' => array ('S' => $date) // ,
+                        // 'notified' => array ('N' => 0)
                     ));
         $type = $content->getType();
         if ($type == "doctor") {
@@ -110,6 +111,7 @@ class Child extends User {
                 if ($e['M']['date']['S'] != $elt['M']['date']['S']) {
                     // l'element est deja dans le tableau il faut juste changer la date
                     $array[$i]['M']['date']['S'] = $elt['M']['date']['S'];
+                    // $array[$i]['M']['notified']['N'] = 0;
                 }
                 echo 'elt deja present</br>';
                 $eltIsInArray = true;

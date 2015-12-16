@@ -44,6 +44,15 @@
         if ($content != null) {
             echo '<li>'. '<a href=downloadFile.php?name='.$name.'>'.$name.'</a>' .'</li>';
         }
+        /*
+         * 
+         * Considérer que l'enfant a lu les fichiers listés ici
+         * passer notified à 1
+         * 
+         * 
+         * Aussi, vérifier que la date a bien été dépassé avant
+         * de proposer le contenu
+         */
     }
     echo '</ul>';
     ?>
