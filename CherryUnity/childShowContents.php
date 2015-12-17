@@ -24,6 +24,7 @@
     // parameter 'type', possible values : {teacher, family, doctor}
     $type = $_GET['type'];
     
+    // use method getContentyType ??
     if($type == 'teacher') {
         $contents = $child->getTeachingContent();
     } else if ($type == 'family') {
@@ -37,20 +38,22 @@
     echo '<ul>';
     for ($i = 0; $i < $length; $i++) {
         $contentInfo = $contents[$i];
+        
         $name = $contentInfo['M']['name']['S'];
         $owner = $contentInfo['M']['owner']['S'];
         $date = $contentInfo['M']['date']['S'];
         $content = $contentDao->get($name, $owner);
+        
+        $notified = $child->isNotified($name, $type);
+        
+        if ($notified) {$class = 'class="read"';} 
+        else {$class = 'class="unread"';}
+        
         if ($content != null) {
-            echo '<li>'. '<a href=downloadFile.php?name='.$name.'>'.$name.'</a>' .'</li>';
+            echo '<li>'. '<a '.$class.' href=downloadFile.php?name='.$name.'&type='.$type.'>'.$name.'</a>' .'</li>';
         }
-        /*
-         * 
-         * Considérer que l'enfant a lu les fichiers listés ici
-         * passer notified à 1
-         * 
-         * 
-         * Aussi, vérifier que la date a bien été dépassé avant
+        /*  
+         * vérifier que la date a bien été dépassé avant
          * de proposer le contenu
          */
     }

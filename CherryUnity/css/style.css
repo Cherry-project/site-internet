@@ -45,5 +45,19 @@ body {
 }
 
 form{
-margin-top:50px;
+    margin-top:50px;
+}
+
+.unread {
+    color: #00FF00;
+}
+
+a .read:visited {
+    color: #0000EE;
+    text-decoration: none;
+}
+
+a .unread:visited {
+    color: #0000EE;
+    text-decoration: none;
 }

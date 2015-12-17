@@ -23,10 +23,10 @@ class UserDAO {
     public function create ($user) {
         $arrayOfUser = $this->userToArray($user);
         try {
-        $this->client->putItem(array(
-            'TableName' => UserDAO::$TABLE_NAME,
-            'Item' => $arrayOfUser
-        ));
+            $this->client->putItem(array(
+                'TableName' => UserDAO::$TABLE_NAME,
+                'Item' => $arrayOfUser
+            ));
         } catch (Exception $e) {
             echo '<p>Exception reçue : ',  $e->getMessage(), "\n</p>";
         }

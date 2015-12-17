@@ -18,10 +18,10 @@ session_start();
     <!-- <a href="../temp.php">temp.php</a> -->
     <?php
      
-    header('Location: ../calendar/calendar.php');
-    
-    // Zone commentée pour tester le calendrier
-    /*
+    // ligne pour tester le calendrier
+    // header('Location: ../calendar/calendar.php');
+
+    //*
     try {
         $client = DynamoDbClientBuilder::get();
         $email = $_POST['email'];
@@ -35,8 +35,9 @@ session_start();
                 $type = $user->getType();
                 $_SESSION['type']  = $type; 
                 if ($type == "child") {
-                    //header('Location: ../childShowContents.php?type=teacher');
-                    header('Location: ../room.php');
+                    header('Location: ../childShowContents.php?type=doctor');
+                    // ligne commentée pour tester l'affichage des fichiers d'un enfant
+                    // header('Location: ../room.php');
                 } else if ($type == "teacher") {
                     header('Location: ../adultShowContents.php');
                 } else if ($type == "doctor") {

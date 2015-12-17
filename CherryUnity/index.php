@@ -10,7 +10,7 @@
 <body>
     <?php include 'nav.php' ?>
     
-    <h3>Site en construction : pas de vérification login/password</h3>
+    <h3>Site en construction : redirection sur les contenus pour user de type enfant</h3>
     
     <div class="container">
         <div class="row">
