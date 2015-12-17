@@ -21,6 +21,7 @@
     require_once ($_dao.'ChildDAO.php');
     require_once ($_dao.'DoctorDAO.php');
     require_once ($_dao.'FamilyDAO.php');
+    require_once ($_dao.'AchievementsDAO.php');
     
 /*
     

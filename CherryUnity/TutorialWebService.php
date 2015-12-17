@@ -8,13 +8,17 @@ if(!empty($_GET['email'])){
 $email = $_GET['email'];
 if(empty($_GET['tuto'])){
 $tuto = $Adao->getTutorial($email);
+
 header('Content-Type: application/json');
-$response = json_encode([$tuto]);
+
+$response = json_encode(array($tuto));
 echo $response;
 }
 else{
     $tuto = $_GET['tuto'];
-    $Adao->updateTutorial($email, $value);
+    echo $tuto;
+    $Adao->updateTutorial($email, $tuto);
+    echo 'a';
 }
 }
 ?>
