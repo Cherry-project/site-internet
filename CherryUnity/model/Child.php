@@ -64,8 +64,8 @@ class Child extends User {
         $elt = array ('M' => array (
                         'name' => array ('S' => $content->getName()),
                         'owner' => array ('S' => $content->getEmailOwner()),
-                        'date' => array ('S' => $date) // ,
-                        // 'notified' => array ('N' => 0)
+                        'date' => array ('S' => $date),
+                        'notified' => array ('N' => 0)
                     ));
         $type = $content->getType();
         if ($type == "doctor") {
@@ -111,7 +111,7 @@ class Child extends User {
                 if ($e['M']['date']['S'] != $elt['M']['date']['S']) {
                     // l'element est deja dans le tableau il faut juste changer la date
                     $array[$i]['M']['date']['S'] = $elt['M']['date']['S'];
-                    // $array[$i]['M']['notified']['N'] = 0;
+                    $array[$i]['M']['notified']['N'] = 0;
                 }
                 echo 'elt deja present</br>';
                 $eltIsInArray = true;
@@ -124,7 +124,34 @@ class Child extends User {
         }
     }
     
-    function getContentByType($type) {
+    function readContent($name, $type) {
+        $array = &$this->getContentByType($type);
+        $length = count($array);
+        for ($i = 0; $i < $length; $i++) {
+            $e = $array[$i];
+            if ($e['M']['name']['S'] == $name) {
+                $array[$i]['M']['notified']['N'] = 1;
+                echo 'DEBUG : lu</br>';
+                echo '<pre>'; print_r($array); echo '</pre></br>';
+                break;
+            }
+        }
+    }
+    
+    function isNotified($name, $type) {
+        $array = $this->getContentByType($type);
+        $length = count($array);
+        for ($i = 0; $i < $length; $i++) {
+            $e = $array[$i];
+            if ($e['M']['name']['S'] == $name &&
+                $e['M']['notified']['N'] == 1) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public function &getContentByType($type) {
         if ($type == "doctor") {
             return $this->medicalContent;
         } else if ($type == "teacher") {
