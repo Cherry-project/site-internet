@@ -15,14 +15,35 @@ class AchievementsDAO {
         return $dto['isTutoFinished']['N'];
     }
     public function getAvatar($email){
-        $dto = getAchievementDTO($email);
-        print_r($dto);
+        $dto = $this->getAchievementDTO($email);
+        //print_r($dto);
         return $dto['isAvatarMale']['N'];
     }
     
+    private function update($email,$value,$field){
+         $result = $this->client->updateItem([
+    'TableName' => 'Achievements',
+    'Key' => array(
+                'email' => array('S' => $email)
+            ),
+    'ExpressionAttributeValues' =>  [
+        ':val1' => [ 'N' => $value]  
+       
+    ] ,
+    'UpdateExpression' => 'set '.$field.' = :val1 '
+]);
+        print_r($result);
+        
+    }
+    
+     public function updateAvatar($email,$value){
+        $this->update($email, $value, 'isAvatarMale');
+     }
+    
     public function updateTutorial($email,$value){
-        echo 'value' .$value;
-        $result = $this->client->updateItem([
+        $this->update($email, $value, 'isTutoFinished');
+        //echo 'value' .$value;
+      /*  $result = $this->client->updateItem([
     'TableName' => 'Achievements',
     'Key' => array(
                 'email' => array('S' => $email)
@@ -33,7 +54,7 @@ class AchievementsDAO {
     ] ,
     'UpdateExpression' => 'set isTutoFinished = :val1 '
 ]);
-        print_r($result);
+        print_r($result);*/
     }
     
     public function getAchievementDTO($email){
