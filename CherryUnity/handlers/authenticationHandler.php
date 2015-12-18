@@ -106,10 +106,14 @@
                         'TableName' => 'Users',
                         'Item' => $array
                     ));
-                    echo "Vous existez!";
+                    session_destroy();
+                    echo "<div class=\"container\">".
+                            "Utilisateur créé. Redirection vers la <a href=\"index.php\"> page d'accueil </a> ...".
+                        "</div>";
+                    header('Refresh:1; url=../index.php');
                 } else {
                     echo "L'email saisie est déjà utilisée par un autre utilisateur.";
-                } 
+                }
             }
         } catch (DynamoDbException $e) {
             echo '<p>Exception dynamoDB reçue : ',  $e->getMessage(), "\n</p>";
