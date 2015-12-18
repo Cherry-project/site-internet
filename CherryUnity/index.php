@@ -10,8 +10,6 @@
 <body>
     <?php include 'nav.php' ?>
     
-    <h3>Site en construction : redirection sur les contenus pour user de type enfant</h3>
-    
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-md-offset-3">

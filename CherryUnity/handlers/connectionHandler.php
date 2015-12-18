@@ -35,9 +35,8 @@ session_start();
                 $type = $user->getType();
                 $_SESSION['type']  = $type; 
                 if ($type == "child") {
-                    header('Location: ../childShowContents.php?type=doctor');
-                    // ligne commentée pour tester l'affichage des fichiers d'un enfant
-                    // header('Location: ../room.php');
+                    //header('Location: ../childShowContents.php?type=doctor');
+                    header('Location: ../room.php');
                 } else if ($type == "teacher") {
                     header('Location: ../adultShowContents.php');
                 } else if ($type == "doctor") {

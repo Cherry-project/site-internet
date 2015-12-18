@@ -26,7 +26,7 @@ function getNewContentAvailable($child){
 
 function isNewContent($contents){
     foreach($contents as $content ){
-        if(!$content['notified']['M']['B'])
+        if($content['M']['notified']['N'] == 0)
             return true;         
     }
     return false;
