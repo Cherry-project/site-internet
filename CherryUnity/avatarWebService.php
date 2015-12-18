@@ -7,7 +7,7 @@ $Adao = new AchievementsDAO(DynamoDbClientBuilder::get());
 if(!empty($_GET['email'])){
     $email = $_GET['email'];
     if(empty($_GET['avatar'])){
-        $avatar = $Adao->getTutorial($email);
+        $avatar = $Adao->getAvatar($email);
 
         header('Content-Type: application/json');
 
