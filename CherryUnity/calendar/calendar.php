@@ -11,7 +11,6 @@ session_start();
         $root = '../';
         include $root.'head.php';
         include $root.'includes.php';
-        require_once('date.php');
         ?>
         
         <link href= "<?php echo $root."css/style_calendar.css" ?>" rel="stylesheet" type="text/css">
@@ -44,10 +43,10 @@ session_start();
         
         <?php
         
-        $date = new Date();
+        $doy = new DaysOfYear();
         $year = date('Y');
         
-        $dates = $date->getAll($year);
+        $dates = $doy->getAll($year);
         
         ?>
     
@@ -56,7 +55,7 @@ session_start();
             <div class ='months'>
                 <ul>
                     <!-- print all months, three letters per month -->
-                    <?php foreach ($date->months as $id=>$m): ?>
+                    <?php foreach ($doy->months as $id=>$m): ?>
                     <li> <a href='#' id='linkMonth<?php echo $id+1; ?>'><?php echo utf8_encode(substr(utf8_decode($m), 0, 3)); ?></a> </li>
                     <?php endforeach; ?>
                 </ul>
@@ -70,7 +69,7 @@ session_start();
                         <thead>
                             <tr>
                                 <!-- print all days of a week (monday, tuesday..) -->
-                                <?php foreach ($date->days as $day): ?>
+                                <?php foreach ($doy->days as $day): ?>
                                     <th>
                                         <?php echo substr($day, 0, 3); ?>
                                     </th>
@@ -92,7 +91,7 @@ session_start();
                                             </div>
                                         </div>
                                         <div class="daytitle">
-                                            <?php echo $date->days[$w-1].' '.$d.' '.$date->months[$m-1]; ?>
+                                            <?php echo $doy->days[$w-1].' '.$d.' '.$doy->months[$m-1]; ?>
                                         </div>
                                         <?php if ($d == 18): ?>
                                         <ul class="events_bullets">

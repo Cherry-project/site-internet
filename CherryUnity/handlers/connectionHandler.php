@@ -40,7 +40,8 @@ session_start();
                 } else if ($type == "teacher") {
                     header('Location: ../adultShowContents.php');
                 } else if ($type == "doctor") {
-                    header('Location: ../adultShowContents.php');
+                    header('Location: ../calendar/Date.php');
+                    // header('Location: ../adultShowContents.php');
                 } else if ($type == "family") {
                     header('Location: ../adultShowContents.php');
                 }

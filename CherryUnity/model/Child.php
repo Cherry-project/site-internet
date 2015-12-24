@@ -7,7 +7,11 @@ class Child extends User {
     private $familyContent;
     private $medicalContent;
     private $teachingContent;
-    
+    private $dateOfArrival;
+    private $dateOfDeparture;
+    private $treatments;
+
+
     public function __construct() {
         $this->type = "child";
     }
@@ -60,11 +64,14 @@ class Child extends User {
         $this->teachingContent = $teachingContent;
     }
     
-    public function addContent($content, $date) {
+    public function addContent($content, $dateStart, $dateEnd) {
+        print 'date!Start == '.$dateStart;
+        print 'date!End == '.$dateEnd;
         $elt = array ('M' => array (
                         'name' => array ('S' => $content->getName()),
                         'owner' => array ('S' => $content->getEmailOwner()),
-                        'date' => array ('S' => $date),
+                        'dateStart' => array ('S' => $dateStart),
+                        'dateEnd' => array ('S' => $dateEnd),
                         'notified' => array ('N' => 0)
                     ));
         $type = $content->getType();
@@ -95,11 +102,9 @@ class Child extends User {
     }
     
     private function addContentIfMissing (&$array, $elt) {
-        echo 'Add content!!!!!</br>';
         $eltIsInArray = false;
         $length = count($array);
         if ($length == 0) {
-            echo 'length == 0</br>';
             $array = array($elt);
             return;
         }
@@ -108,18 +113,18 @@ class Child extends User {
             if ($e['M']['name']['S'] == $elt['M']['name']['S'] &&
                 $e['M']['owner']['S'] == $elt['M']['owner']['S']) {
                 
-                if ($e['M']['date']['S'] != $elt['M']['date']['S']) {
+                if ($e['M']['dateStart']['S'] != $elt['M']['dateStart']['S'] ||
+                    $e['M']['dateEnd']['S'] != $elt['M']['dateEnd']['S']) {
                     // l'element est deja dans le tableau il faut juste changer la date
-                    $array[$i]['M']['date']['S'] = $elt['M']['date']['S'];
+                    $array[$i]['M']['dateStart']['S'] = $elt['M']['dateStart']['S'];
+                    $array[$i]['M']['dateEnd']['S'] = $elt['M']['dateEnd']['S'];
                     $array[$i]['M']['notified']['N'] = 0;
                 }
-                echo 'elt deja present</br>';
                 $eltIsInArray = true;
                 break;
             }
         }
         if (!$eltIsInArray) {
-            echo 'AJOUT ELEMENT</br>';
             array_push($array, $elt);
         }
     }
@@ -131,8 +136,6 @@ class Child extends User {
             $e = $array[$i];
             if ($e['M']['name']['S'] == $name) {
                 $array[$i]['M']['notified']['N'] = 1;
-                echo 'DEBUG : lu</br>';
-                echo '<pre>'; print_r($array); echo '</pre></br>';
                 break;
             }
         }

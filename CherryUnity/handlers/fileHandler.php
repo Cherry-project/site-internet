@@ -21,9 +21,12 @@
         print 'DEBUG>> : $string vaut '.$string;
         $email = split(",", $string)[0];
         print 'DEBUG>> : $email vaut '.$email;
-        $date = split(",", $string)[1];
-        print 'DEBUG>> : $date vaut '.$date;
-        $children[] = array('email' => $email, 'date' => $date);
+        $date_en = split(",", $string)[1];
+        $date = new Date($date_en, "en");
+        $date_in = $date->toString("in");
+        print 'DEBUG>> : $date vaut '.$date_in."MM";
+        $children[] = array('email' => $email, 'dateStart' => $date_in, 'dateEnd' => $date_in);
+        print 'DEBUG>> : $children[0] vaut '.$children[0]['dateStart']."MM";
         //$children[] = array('email' => "enfant@gmail.com", 'date' => "01/01/1901");
     }
 

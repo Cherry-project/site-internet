@@ -27,10 +27,12 @@ class ContentDAO {
                 $email = $children[$i]['email'];
                 $child = $childDAO->get($email);
                 if ($child != null) {
-                    $date = $children[$i]['date'];
+                    $dateStart = $children[$i]['dateStart'];
+                    $dateEnd = $children[$i]['dateEnd']; 
                     $child->addContent(
                             $content,
-                            $date);
+                            $dateStart,
+                            $dateEnd);
                     $childDAO->update($child);
                 }
             }

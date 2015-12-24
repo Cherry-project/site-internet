@@ -8,6 +8,9 @@
     require_once ($_root.'S3ClientBuilder.php');
     require_once ($_root.'DynamoDbClientBuilder.php');
     
+    require_once ($root.'calendar/Date.php');
+    require_once ($root.'calendar/DaysOfYear.php');
+    
     require_once ($_s3.'S3Access.php');
     
     require_once ($_model.'Content.php');
@@ -22,7 +25,6 @@
     require_once ($_dao.'DoctorDAO.php');
     require_once ($_dao.'FamilyDAO.php');
     require_once ($_dao.'AchievementsDAO.php');
-    
 /*
     
     if (!class_exists('DynamoDbClientBuilder')){require_once('../DynamoDbClientBuilder.php');}
