@@ -99,6 +99,14 @@ table td .events li {
     */
 }
 
+table td .events .item_family{color: red;}
+table td .events .item_medical{color: green;}
+table td .events .item_teaching{color: blue;}
+
+table td .events_bullets .item_family{color: red;}
+table td .events_bullets .item_medical{color: green;}
+table td .events_bullets .item_teaching{color: blue;}
+
 table td .events_bullets {
     position: relative;
     width: 79px;

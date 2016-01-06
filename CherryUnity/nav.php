@@ -22,9 +22,9 @@ session_start();
                 <?php
                
                 if(!isset($_SESSION['email']))
-                    echo '<li class="active"><a href="index.php">Log in <span class="glyphicon glyphicon-log-in"></span></a></li>';
+                    echo '<li class="active"><a href="http://52.31.95.72/index.php">Log in <span class="glyphicon glyphicon-log-in"></span></a></li>';
                 else
-                    echo '<li class="active"><a href="logout.php">Log out <span class="glyphicon glyphicon-log-out"></span></a></li>';
+                    echo '<li class="active"><a href="http://52.31.95.72/logout.php">Log out <span class="glyphicon glyphicon-log-out"></span></a></li>';
                 ?>
               
                 <li ><a href="authentication.php">Sign up <span class="glyphicon glyphicon-user"></a></li>
