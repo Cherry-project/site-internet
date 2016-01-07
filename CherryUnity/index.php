@@ -10,7 +10,6 @@
 <body>
     <?php include 'nav.php' ?>
     
-    <h3>Redirection des médecins sur le calendrier</h3>
     
     <div class="container">
         <div class="row">

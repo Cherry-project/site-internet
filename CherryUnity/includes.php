@@ -1,18 +1,21 @@
 <?php
-    $_model = $_root.'model/';
+    $_model = $root.'model/';
     $_dao = $_model.'DAO/';
     $_s3 = $_model.'S3/';
+    $_calendar = $root.'calendar/';
     
-    require_once ($_root.'vendor/autoload.php');
+    require_once ($root.'vendor/autoload.php');
     
-    require_once ($_root.'S3ClientBuilder.php');
-    require_once ($_root.'DynamoDbClientBuilder.php');
+    require_once ($root.'S3ClientBuilder.php');
+    require_once ($root.'DynamoDbClientBuilder.php');
     
-    require_once ($root.'calendar/Date.php');
-    require_once ($root.'calendar/DaysOfYear.php');
+    require_once($root.'Rights.php');
+    
+    require_once ($_calendar.'Date.php');
+    require_once ($_calendar.'DaysOfYear.php');
     
     require_once ($_s3.'S3Access.php');
-    
+        
     require_once ($_model.'Content.php');
     require_once ($_model.'User.php');
     require_once ($_model.'Child.php');

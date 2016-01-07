@@ -64,6 +64,12 @@ class Child extends User {
         $this->teachingContent = $teachingContent;
     }
     
+    public function isFather($adultId) {
+        return  ($this->doctorId == $adultId) ||
+                ($this->familyId == $adultId) ||
+                ($this->teacherId == $adultId);
+    }
+    
     public function addContent($content, $dateStart, $dateEnd) {
         print 'date!Start == '.$dateStart;
         print 'date!End == '.$dateEnd;
@@ -172,5 +178,21 @@ class Child extends User {
         } else if ($type == "family") {
             $this->familyContent = $list_contents;
         }
+    }
+    
+    private function findContentsByStartingDate($date, $array) {
+        $result = array();
+        $length = count($array);
+        for ($i = 0; $i < $length; $i++) {
+            if ($array[$i]['M']['dateStart']['S'] == $date) {
+                array_push($result, $array[$i]);
+            }
+        }
+        return $result;
+    }
+    
+    public function getContentsByStartingDate($date, $type) {
+        $content = $this->getContentByType($type);
+        return $this->findContentsByStartingDate($date, $content);
     }
 }
