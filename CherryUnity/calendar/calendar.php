@@ -64,11 +64,12 @@ session_start();
             if ($child->isFather($user->getEmail())) {
                 $access_rights = Rights::$FULL_ACCESS;  // pour l'instant en dur, plus tard dans la base
             }
+             echo '<span class="email" email="'.$child_email. '"></span>';
+         echo '<span class="adultEmail" email="'.$adult_email. '"   type="'.$user->getType().'"></span>';        
         }
 
         
-        echo '<span class="email" email="'.$child_email. '"></span>';
-
+       
         ?>
     
         
