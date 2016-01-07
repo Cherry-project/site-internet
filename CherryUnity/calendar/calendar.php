@@ -65,11 +65,8 @@ session_start();
                 $access_rights = Rights::$FULL_ACCESS;  // pour l'instant en dur, plus tard dans la base
             }
         }
-<<<<<<< HEAD
         
         echo '<span class="email" email="'.$child_email. '"></span>';
-=======
->>>>>>> origin/master
         ?>
     
         
@@ -227,12 +224,8 @@ session_start();
                 </div>
             <?php endforeach; ?>
         </div>
-<<<<<<< HEAD
             
          
-=======
-        
->>>>>>> origin/master
         <!--
         <pre><?php print_r($dates) ?></pre>
         -->
