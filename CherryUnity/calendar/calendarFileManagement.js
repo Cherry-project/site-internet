@@ -1,14 +1,16 @@
+
+
 $(document).ready(function() {
-   
+   var dateStart;
 
 $("#addFilesButton").click(function(){
     $("input:checked").each(function(){
         var fileName = $(this).val();
         var childEmail = $('.email').attr('email');
         var dateEnd = $(this).closest('.newFileRow').find('.datepicker').val();
-        var dateStart;
-          alert(fileName+ childEmail+dateEnd);
-         /*$.ajax({
+        
+          //alert(fileName+ childEmail+dateEnd+dateStart);
+         $.ajax({
        method: "POST",
        url: "../ajaxHandler/updateFilesHandler.php",
        data: { file: $(this).parent().attr('file'), 
@@ -19,9 +21,9 @@ $("#addFilesButton").click(function(){
            dateStart: dateStart
         }
 })
-  .done(function(){
-       alert(fileName+ childEmail+dateEnd);
-  }); */
+  .done(function(msg){
+       alert(msg);
+  }); 
     });
     
     
@@ -55,16 +57,11 @@ $( 'body' ).on( "click",'button.btn-danger', function(){
     
     }); 
 
-
-            }); 
-
-
-
-
 $("td").click(function(){
   var $files = $(this).find("ul.events")
           .children("li");
-  
+  dateStart = $(this).find('.hiddenDate').html();
+  //alert($(this).find('.hiddenDate').html());
   var contentHtml = "";
   $files.each(function(){
       var file = $(this).html().trim();
@@ -80,4 +77,13 @@ $("td").click(function(){
     $(".filesToAdd").fadeIn(2000);  
     
 });
+
+
+
+            }); 
+
+
+
+
+
 

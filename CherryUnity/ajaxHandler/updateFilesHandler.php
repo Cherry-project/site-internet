@@ -16,6 +16,7 @@ $type = $_POST['type'];
 if(!empty($_POST['dateEnd'])){
     $dateEnd = $_POST['dateEnd'];
     $dateStart = $_POST['dateStart'];
+    echo $dateEnd . '  ' .$dateStart;
     addFile($fileName, $child, $dateStart, $dateEnd, $type, $adultEmail);
 }
 
