@@ -7,4 +7,9 @@
 
 .glyphicon-remove{
     float:right;
+    text-align: right;
+}
+
+.fileRow{
+    margin-bottom: 20px;
 }
