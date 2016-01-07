@@ -14,10 +14,15 @@ session_start();
         ?>
         
         <link href= "<?php echo $root."css/style_calendar.css" ?>" rel="stylesheet" type="text/css">
+        <link href= "<?php echo $root."css/files_container_style.css" ?>" rel="stylesheet" type="text/css">
+        
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <script type='text/javascript'>
             jQuery(function($) {
+                $(".datepicker" ).datepicker();
                 $('.month').hide();
                 $('.month:first').show();
                 $('.months a:first').addClass('active');
@@ -60,8 +65,17 @@ session_start();
                 $access_rights = Rights::$FULL_ACCESS;  // pour l'instant en dur, plus tard dans la base
             }
         }
+
+        
+        echo '<span class="email" email="'.$child_email. '"></span>';
+
         ?>
     
+        
+           
+        
+        
+        
         <div class ='periods'>
             <div class='year'><?php echo $year; ?></div>
             <div class ='months'>
@@ -77,6 +91,9 @@ session_start();
             <!-- Do that for each month -->
             <?php foreach ($dates as $m=>$days): ?>
                 <div class='month relative' id='month<?php echo $m; ?>'>
+                    <div class="row">
+            <div class="col-md-6">
+        
                     <table>
                         <thead>
                             <tr>
@@ -174,10 +191,40 @@ session_start();
                             </tr>
                         </tbody>
                     </table>
+                    </div>
+               
+                <div class="col-md-offset-2  col-md-4">
+                    <div class="containerFiles">
+                          
+                       <!-- mouton.txt <button class="btn btn-danger"> <span class="glyphicon glyphicon-remove"></span> </button> -->
+                    </div>
+               
+                    <div class="filesToAdd none">
+                        <?php 
+                        $files =['f1.txt','f2.txt','f3.txt']; //fichiers en dur pour l'instant
+                        foreach ($files as $file) {
+                            echo '<div class="newFileRow row"><div class="col-md-8" > <div class="input-group">  <input type="text" class="datepicker form-control" placeholder="Choisir une date" aria-describedby="basic-addon2"><span class="input-group-addon" id="basic-addon2">Date de fin</span></div> </div>'
+                                    . '<div class="col-md-4" > <input type="checkbox" name="file" value="' . $file.  '">'. 
+                       $file  .'</div></div> <br/>' ;
+                        }
+                        
+                        //<input type="checkbox" name="file" value="' . $file.  '">'. 
+                       //$file  .
+                        ?>
+                       <br/>
+                        
+                        <button id="addFilesButton" class="btn btn-default">Ajouter les fichiers à l'enfant</button>
+                        <span class="ajout"></span>
+                    </div>
+                    
+                </div>
+              
+               
+           </div>
                 </div>
             <?php endforeach; ?>
         </div>
-        
+
         <!--
         <pre><?php print_r($dates) ?></pre>
         -->
@@ -185,5 +232,6 @@ session_start();
     </body>
         
     <?php include $root.'footer.php' ?>
+    <script src=calendarFileManagement.js></script>
     
 </html>
