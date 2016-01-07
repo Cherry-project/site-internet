@@ -27,6 +27,7 @@
         $contentDao->delete($name_fileToDelete, $owner_fileToDelete);
     }
     
+    echo "<a href=\"./listOfChildren.php\">Calendriers des enfants</a></br>";
     echo "<a href=\"./drop.php\">Ajouter un fichier</a>";
     
     $userDao = new UserDAO(DynamoDbClientBuilder::get());

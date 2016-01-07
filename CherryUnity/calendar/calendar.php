@@ -119,7 +119,6 @@ session_start();
                                         }
                                         ?>
                                         
-                                        
                                         <?php if ($access_rights == Rights::$LIMITED_ACCESS): ?>
                                         <ul class="events_bullets">
                                             <?php foreach ($my_contents as $content): ?>
@@ -161,8 +160,6 @@ session_start();
                                             <?php endforeach; ?>
                                         </ul>
                                         <?php endif; ?>
-                                        
-                                        
                                         
                                     </td>
                                         
