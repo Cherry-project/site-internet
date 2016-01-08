@@ -15,7 +15,7 @@ session_start();
         
         <link href= "<?php echo $root."css/style_calendar.css" ?>" rel="stylesheet" type="text/css">
         <link href= "<?php echo $root."css/files_container_style.css" ?>" rel="stylesheet" type="text/css">
-        
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
         <script src="../js/bootstrap.min.js"></script>
@@ -94,7 +94,7 @@ session_start();
                     <div class="row">
             <div class="col-md-6">
         
-                    <table>
+                    <table class="calendar_style">
                         <thead>
                             <tr>
                                 <!-- print all days of a week (monday, tuesday..) -->
@@ -127,6 +127,7 @@ session_start();
                                         <?php
                                         $date_obj = new Date($year, $m, $d);
                                         $in = $date_obj->toString("in");
+                                        echo "<div class=\"hiddenDate\">". $in ."</div>";
                                         if ($access_rights == Rights::$LIMITED_ACCESS) {
                                             $my_contents = $child->getContentsByStartingDate($in, $user->getType());
                                         } else if ($access_rights == Rights::$FULL_ACCESS) {
