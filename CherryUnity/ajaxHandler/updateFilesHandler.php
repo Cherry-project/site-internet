@@ -17,6 +17,7 @@ if(!empty($_POST['dateEnd'])){
     $dateEnd = $_POST['dateEnd'];
     $dateStart = $_POST['dateStart'];
     echo $dateEnd . '  ' .$dateStart;
+    echo 'FILENAME = '.$fileName;
     addFile($fileName, $child, $dateStart, $dateEnd, $type, $adultEmail);
 }
 
@@ -27,18 +28,21 @@ echo $type. $adultEmail . $fileName ;
 
 
 function addFile($fileName,$child,$dateStart, $dateEnd,$type,$adultEmail){
-    $content = new $Content();
-    $content.setName($fileName);
-    $content.setEmailOwner($adultEmail);
-    $content.setType($type);
+    $content = new Content();
+    $content->setName($fileName);
+    $content->setEmailOwner($adultEmail);
+    $content->setType($type);
     $child->addContent($content, $dateStart, $dateEnd);
+    $childDao = new ChildDAO(DynamoDbClientBuilder::get());
+    $childDao->update($child);
 }
 
 
 
 function deleteFile($child,$type,$adultEmail,$fileName){
     $child->deleteContent($fileName, $adultEmail, $type);
-    
+    $childDao = new ChildDAO(DynamoDbClientBuilder::get());
+    $childDao->update($child);
 }
 
 

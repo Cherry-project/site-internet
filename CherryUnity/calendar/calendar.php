@@ -15,7 +15,7 @@ session_start();
         
         <link href= "<?php echo $root."css/style_calendar.css" ?>" rel="stylesheet" type="text/css">
         <link href= "<?php echo $root."css/files_container_style.css" ?>" rel="stylesheet" type="text/css">
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
         <script src="../js/bootstrap.min.js"></script>
@@ -203,7 +203,7 @@ session_start();
                
                     <div class="filesToAdd none">
                         <?php 
-                        $files =['f1.txt','f2.txt','f3.txt']; //fichiers en dur pour l'instant
+                        $files =['insecte.txt','f2.txt','f3.txt']; //fichiers en dur pour l'instant
                         foreach ($files as $file) {
                             echo '<div class="newFileRow row"><div class="col-md-8" > <div class="input-group">  <input type="text" class="datepicker form-control" placeholder="Choisir une date" aria-describedby="basic-addon2"><span class="input-group-addon" id="basic-addon2">Date de fin</span></div> </div>'
                                     . '<div class="col-md-4" > <input type="checkbox" name="file" value="' . $file.  '">'. 

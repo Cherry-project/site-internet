@@ -8,12 +8,12 @@ $("#addFilesButton").click(function(){
         var fileName = $(this).val();
         var childEmail = $('.email').attr('email');
         var dateEnd = $(this).closest('.newFileRow').find('.datepicker').val();
-        
+        alert ($(this).val());
           //alert(fileName+ childEmail+dateEnd+dateStart);
          $.ajax({
        method: "POST",
        url: "../ajaxHandler/updateFilesHandler.php",
-       data: { file: $(this).parent().attr('file'), 
+       data: { file: $(this).val(), 
            childEmail: childEmail, 
            adultEmail:$('.adultEmail').attr('email'),
            type:$('.adultEmail').attr('type'),
