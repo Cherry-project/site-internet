@@ -9,6 +9,17 @@ class AchievementsDAO {
         $this->client = $client;
     }
     
+    public function getNinja($email){
+        $dto = $this->getAchievementDTO($email);        
+        return $dto['isNinja']['N'];
+    }
+    
+    public function getCurious($email){
+        $dto = $this->getAchievementDTO($email);        
+        return $dto['isCurious']['N'];
+    }
+    
+    
     public function getTutorial($email){
         $dto = $this->getAchievementDTO($email);
         //print_r($dto);
@@ -35,6 +46,14 @@ class AchievementsDAO {
         print_r($result);
         
     }
+    
+     public function updateNinja($email,$value){
+        $this->update($email, $value, 'isNinja');
+     }
+     
+    public function updateCurious($email,$value){
+        $this->update($email, $value, 'isCurious');
+     }
     
      public function updateAvatar($email,$value){
         $this->update($email, $value, 'isAvatarMale');

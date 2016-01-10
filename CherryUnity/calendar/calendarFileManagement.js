@@ -2,12 +2,15 @@
 
 $(document).ready(function() {
    var dateStart;
+   var $currentCell;
 
 $("#addFilesButton").click(function(){
     $("input:checked").each(function(){
         var fileName = $(this).val();
+        var type = $('.adultEmail').attr('type');
         var childEmail = $('.email').attr('email');
         var dateEnd = $(this).closest('.newFileRow').find('.datepicker').val();
+        var adultEmail = $('.adultEmail').attr('email');
         alert ($(this).val());
           //alert(fileName+ childEmail+dateEnd+dateStart);
          $.ajax({
@@ -23,6 +26,9 @@ $("#addFilesButton").click(function(){
 })
   .done(function(msg){
        alert(msg);
+       //var li = ' <li class="'+type+'" owner="'+adultEmail+'" > +'+fileName+' </li>';
+         var li = ' <li class="item_teaching" </li>';
+       $currentCell.find('ul.events_bullets').append(li);
   }); 
     });
     
@@ -35,12 +41,23 @@ $("#addFilesButton").click(function(){
 });
 
 
-$( 'body' ).on( "click",'button.btn-danger', function(){
-    console.log($(this).parent().attr('file')+' '+$('.email').attr('email')+$('.adultEmail').attr('email')+$('.adultEmail').attr('type'));
+$( 'body' ).on( "click",'button.btn-danger', function(){   
+    var file = $(this).parent().attr('file');
+    var ownerEmail=$currentCell.find("ul.events li:contains('"+file+"')").attr('owner');
+    var type = $currentCell.find("ul.events li:contains('"+file+"')").attr('type');
+
+    console.log(file+' '+$('.email').attr('email')+' '+type);
+    /*$(this).closest('.fileRow').detach();
+    $currentCell.find("li:contains('"+file+"')").detach();
+    $currentCell.find("ul.events_bullets li").detach();*/
+//console.log($currentCell.find("ul.events li:contains('"+file+"')").attr('owner'));
+    //ul.events li:contains('mouton.txt')
        $button = $(this);
          function handler(msg){
               alert(msg);
     $button.closest('.fileRow').detach();
+    $currentCell.find("li:contains('"+file+"')").detach();
+     $currentCell.find("ul.events_bullets li:first").detach();
          }
     
     $.ajax({
@@ -48,8 +65,8 @@ $( 'body' ).on( "click",'button.btn-danger', function(){
        url: "../ajaxHandler/updateFilesHandler.php",
        data: { file: $(this).parent().attr('file'), 
            childEmail: $('.email').attr('email'), 
-           adultEmail:$('.adultEmail').attr('email'),
-           type:$('.adultEmail').attr('type') }
+           adultEmail:ownerEmail,
+           type:type }
 })
 
   .done(handler);
@@ -61,6 +78,7 @@ $("td").click(function(){
   var $files = $(this).find("ul.events")
           .children("li");
   dateStart = $(this).find('.hiddenDate').html();
+  $currentCell = $(this);
   //alert($(this).find('.hiddenDate').html());
   var contentHtml = "";
   $files.each(function(){
