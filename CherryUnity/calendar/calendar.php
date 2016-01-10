@@ -167,15 +167,15 @@ session_start();
                                         </ul>
                                         <ul class="events">
                                             <?php foreach ($medical as $content): ?>
-                                            <li class="item_medical"> <?php echo $content['M']['name']['S'] ?> </li>
+                                            <li class="item_medical" <?php echo "owner=\"".$content['M']['owner']['S']."\""; ?> > <?php echo $content['M']['name']['S'] ?> </li>
                                             <?php endforeach; ?>
                                             
                                             <?php foreach ($family as $content): ?>
-                                            <li class="item_family"> <?php echo $content['M']['name']['S'] ?> </li>
+                                            <li class="item_family" <?php echo "owner=\"".$content['M']['owner']['S']."\""; ?> > <?php echo $content['M']['name']['S'] ?> </li>
                                             <?php endforeach; ?>
                                             
                                             <?php foreach ($teaching as $content): ?>
-                                            <li class="item_teaching"> <?php echo $content['M']['name']['S'] ?> </li>
+                                            <li class="item_teaching" <?php echo "owner=\"".$content['M']['owner']['S']."\""; ?> > <?php echo $content['M']['name']['S'] ?> </li>
                                             <?php endforeach; ?>
                                         </ul>
                                         <?php endif; ?>
