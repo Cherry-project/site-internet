@@ -97,7 +97,7 @@
         }
     
         if (typeof unityObject != "undefined") {
-            unityObject.embedUnity("unityPlayer", "Build.unity3d", 700, 600);            
+            unityObject.embedUnity("unityPlayer", "Build.unity3d", 830, 480);            
         }   
        
       function gameReady(message){                    
