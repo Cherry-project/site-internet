@@ -203,11 +203,17 @@ session_start();
                
                     <div class="filesToAdd none">
                         <?php 
-                        $files =['insecte.txt','f2.txt','f3.txt']; //fichiers en dur pour l'instant
+                        $contentDao = new ContentDAO(DynamoDbClientBuilder::get());
+                        $contents = $contentDao->getContentsOfUser($_SESSION['email']);
+                        $files = array();
+                        foreach ($contents as $content) {
+                            array_push($files, $content->getName());
+                        }
+                        //$files =['insecte.txt','f2.txt','f3.txt']; //fichiers en dur pour l'instant
                         foreach ($files as $file) {
                             echo '<div class="newFileRow row"><div class="col-md-8" > <div class="input-group">  <input type="text" class="datepicker form-control" placeholder="Choisir une date" aria-describedby="basic-addon2"><span class="input-group-addon" id="basic-addon2">Date de fin</span></div> </div>'
                                     . '<div class="col-md-4" > <input type="checkbox" name="file" value="' . $file.  '">'. 
-                       $file  .'</div></div> <br/>' ;
+                        $file  .'</div></div> <br/>' ;
                         }
                         
                         //<input type="checkbox" name="file" value="' . $file.  '">'. 
