@@ -14,6 +14,10 @@
             color: black;
             text-align: center;
         }
+        
+        a{
+            text-align: center;
+        }
         a:link, a:visited {
             color: #000;
         }
@@ -31,8 +35,9 @@
         }
         div.content {
             margin: auto;
-            width: 480px;
+            //width: 480px;
         }
+       
         div.missing {
             margin: auto;
             position: relative;
@@ -48,6 +53,7 @@
             border-width: 0px;
         }
         div#unityPlayer {
+            margin: auto;
             cursor: default;
             height: 320px;
             width: 480px;
