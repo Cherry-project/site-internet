@@ -1,4 +1,7 @@
-<?php session_start() ?>
+<?php
+// Désactiver le rapport d'erreurs
+error_reporting(0);
+session_start() ?>
 <!doctype html>
 <html>
     
@@ -15,7 +18,7 @@
     $root = './';
     include "includes.php";
     
-    $contentDao = new ContentDAO(DynamoDbClientBuilder::get());
+    $contentDao = new ContentDAO(LocalDBClientBuilder::get());//DynamoDbClientBuilder::get());
     
     $name_fileToDelete = $_GET['name'];
     $owner_fileToDelete = $_GET['owner'];
@@ -30,7 +33,7 @@
     echo "<a href=\"./listOfChildren.php\">Calendriers des enfants</a></br>";
     echo "<a href=\"./drop.php\">Ajouter un fichier</a>";
     
-    $userDao = new UserDAO(DynamoDbClientBuilder::get());
+    $userDao = new UserDAO(LocalDBClientBuilder::get());//DynamoDbClientBuilder::get());
     $email = $_SESSION['email'];
     $user = $userDao->get($email);
     
