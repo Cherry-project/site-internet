@@ -1,6 +1,4 @@
 <?php 
-// Désactiver le rapport d'erreurs
-error_reporting(0);
 session_start();
 ?>
 <!doctype html>
@@ -59,9 +57,9 @@ session_start();
         $child_email = $_GET['email'];
         $adult_email = $_SESSION['email'];
         if (!empty($child_email) && !empty($adult_email)) {
-            $childDao = new ChildDAO(LocalDBClientBuilder::get());//DynamoDbClientBuilder::get());
+            $childDao = new ChildDAO(DynamoDbClientBuilder::get());
             $child = $childDao->get($child_email);
-            $usrDao = new UserDAO(LocalDBClientBuilder::get());//DynamoDbClientBuilder::get());
+            $usrDao = new UserDAO(DynamoDbClientBuilder::get());
             $user = $usrDao->get($adult_email);
             if ($child->isFather($user->getEmail())) {
                 $access_rights = Rights::$FULL_ACCESS;  // pour l'instant en dur, plus tard dans la base
@@ -205,7 +203,7 @@ session_start();
                
                     <div class="filesToAdd none">
                         <?php 
-                        $contentDao = new ContentDAO(LocalDBClientBuilder::get());//DynamoDbClientBuilder::get());
+                        $contentDao = new ContentDAO(DynamoDbClientBuilder::get());
                         $contents = $contentDao->getContentsOfUser($_SESSION['email']);
                         $files = array();
                         foreach ($contents as $content) {

@@ -15,8 +15,7 @@
     <?php
         function testUser ($email, $type) {
             try {
-                //$client = DynamoDbClientBuilder::get();
-                $client = LocalDBClientBuilder::get();
+                $client = DynamoDbClientBuilder::get();
                 $response = $client->getItem(array(
                     'TableName' => UserDAO::$TABLE_NAME,
                         'Key' => array(
@@ -35,8 +34,9 @@
                 echo '<p>Exception reçue : ',  $e->getMessage(), "\n</p>";
             }
         }
+    
         try {
-            $client = LocalDBClientBuilder::get();//DynamoDbClientBuilder::get();
+            $client = DynamoDbClientBuilder::get();
             
             $array = array();
             $error = false;
