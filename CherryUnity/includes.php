@@ -7,8 +7,7 @@
     require_once ($root.'vendor/autoload.php');
     
     require_once ($root.'S3ClientBuilder.php');
-    //require_once ($root.'DynamoDbClientBuilder.php');
-    require_once ($root.'LocalDBClientBuilder.php');
+    require_once ($root.'DynamoDbClientBuilder.php');
     
     require_once($root.'Rights.php');
     

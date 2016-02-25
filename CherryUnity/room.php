@@ -1,8 +1,4 @@
-<?php 
- // Désactiver le rapport d'erreurs
-error_reporting(0);
-session_start()
-?>
+<?php session_start() ?>
 
 <!doctype html>
 <html>
@@ -39,6 +35,7 @@ session_start()
         }
         div.content {
             margin: auto;
+            //width: 480px;
         }
        
         div.missing {
@@ -65,9 +62,9 @@ session_start()
 </head>
 
 <body>
-    <?php //include 'nav.php' ?>
+    <?php include 'nav.php' ?>
     
-    <!--<p class="header"><span>Unity Web Player | </span>WebPlayer</p>-->
+    <p class="header"><span>Unity Web Player | </span>WebPlayer</p>
     <div class="content">
         <div id="unityPlayer">
             <div class="missing">
@@ -76,31 +73,22 @@ session_start()
                 </a>
             </div>
         </div>
-        <div id="jeu_multiplication">
-            <?php
-                //if(l'enfant a demander au robot de jouer)
-                //alors affiche le jeu
-                //code du jeu :
-                echo '<table style="margin:0 0 10px 0; width:244px; background:#fff; border:1px solid #F3F3F3;" cellspacing="0" cellpadding="0"><tr><td style="font-family:verdana; font-size:11px; color:#000; padding:5px 5px 5px 266px;"><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" width="808" height="561"><param name="movie" value="http://www.jeuxclic.com/jeux/542729ad0f1e6.swf"><param name="quality" value="high"></param><param name="menu" value="false"></param><embed src="http://www.jeuxclic.com/jeux/542729ad0f1e6.swf" width="808" height="561" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" menu="false"></embed></object></td></tr></table>'
-            ?>
-        </div>
     </div>
  
     <p class="footer">« created with <a mimetype="application/octet-stream" href="http://unity3d.com/unity/" title="Go to unity3d.com">Unity</a> »</p>
     
-    <!--<div class="container">
+    <div class="container">
         <div class="row">
             <p>Bienvenue chez toi.
             <?php
-               /* $firstname = _POST['firstname'];
+                $firstname = _POST['firstname'];
                 echo " " . $firstname;
-                echo '<span id="unity" email='.$_SESSION['email'] . '> </span>'*/
-            echo "*".$_SESSION['email']."*";
+                echo '<span id="unity" email='.$_SESSION['email'] . '> </span>'
                 ?>
             </p>
         </div>
     </div>
-    -->
+    
     
 
     <?php include 'footer.php' ?>
@@ -115,13 +103,12 @@ session_start()
         }
     
         if (typeof unityObject != "undefined") {
-            unityObject.embedUnity("unityPlayer", "Unity_build.unity3d", /*1130*/1330,653);//830, 480);            
+            unityObject.embedUnity("unityPlayer", "Build.unity3d", 830, 480);            
         }   
        
       function gameReady(message){                    
           GetUnity().SendMessage("Camera/MyCanvas", "GetSessionId", $('#unity').attr("email"));
       }
-      
       
    
    /* var u = new UnityObject2();
@@ -165,6 +152,8 @@ session_start()
     
      //.SendMessage("Camera/MyCanvas", "GetSessionId", "sessionID"));
     </script>
+    
+
     </body>
 </html>
 

@@ -86,7 +86,7 @@ table.calendar_style td .events {
     position: relative;
     width: 79px;
     height: 0px;
-    /*margin: -39px 0px 0px;*/
+    //margin: -39px 0px 0px;
     visibility: hidden;
     
 }
@@ -123,7 +123,7 @@ table.calendar_style td .events_bullets li {
 }
 
 table.calendar_style td:hover .events_bullets {
-    /*margin: -39px 0px 0px;*/
+    //margin: -39px 0px 0px;
 }
 
 table.calendar_style td:hover .events {
