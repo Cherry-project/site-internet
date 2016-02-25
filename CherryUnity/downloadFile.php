@@ -8,7 +8,7 @@
     
     if (!empty($type)) {
         $email = $_SESSION['email'];
-        $childDAO = new ChildDAO(DynamoDbClientBuilder::get());
+        $childDAO = new ChildDAO(LocalDBClientBuilder::get());//DynamoDbClientBuilder::get());
         $child = $childDAO->get($email);
         $child->readContent($name, $type);
         $childDAO->update($child);

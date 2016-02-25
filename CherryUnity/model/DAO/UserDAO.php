@@ -10,6 +10,7 @@ class UserDAO {
     }
     
     public function get ($email) {
+        
         $user = $this->getUser();
         $userDTO = $this->getUserDTO($email);
         if ($userDTO != null) {
@@ -47,6 +48,7 @@ class UserDAO {
     }
         
     protected function getUserDTO ($email) {
+        
         $result = $this->client->getItem(array(
             'ConsistentRead' => true,
             'TableName' => UserDAO::$TABLE_NAME,
@@ -54,6 +56,7 @@ class UserDAO {
                 'email' => array('S' => $email)
             )
         ));
+        
         return $result['Item'];
     }
     
