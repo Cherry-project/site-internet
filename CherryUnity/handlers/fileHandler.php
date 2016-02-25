@@ -34,25 +34,44 @@
     
     for($i = 1; $i < $size; $i++){//Iterate over the files(start 1)
         // UPLOAD SUR EC2
-        $path = "/var/www/html/";
+        
+        //pour Tomcat
+        $ds = DIRECTORY_SEPARATOR;
+        $storeFolder = 'uploads';
         $name = $_FILES['files']['name'][$i];
-        $path = $path.$name;
-        echo move_uploaded_file($_FILES['files']['tmp_name'][$i], $path);
+        
+        if (!empty($_FILES)) {
+
+            $tempFile = $_FILES['files']['tmp_name'][$i];
+            $targetPath = dirname( __FILE__ ) . $ds. $storeFolder . $ds;            
+            $targetFile =  $targetPath.$name;
+        }
+        //fin pour tomcat
+        /*$path = "/var/www/";//"/var/www/html/";
+        $name = $_FILES['files']['name'][$i];
+        $path = $path.$name;*/
+        
+        //echo "   deplacer : ".$_FILES['files']['tmp_name'][$i]."    vers : ".$targetFile." - ";
+        echo move_uploaded_file($_FILES['files']['tmp_name'][$i], $targetFile);// $path);
+        
 
         // UPLOAD SUR S3
-        $s3 = new S3Access(S3ClientBuilder::get());
-        $url = $s3->createFile($name, $path);
+        $s3 = new S3Access(LocalDBClientBuilder::get());//S3ClientBuilder::get());
+        //$url = $s3->createFile($name, $targetFile);//$path);
+        $url = "http:/localhost/PhpProject_test/downloadFile.php?name=".$name."&type=".$_SESSION['type'];
+        //echo '       !!! test !!!  -'.$url.'_        ';
         
         // INSERT SUR DYNAMO
         $emailOwner = $_SESSION['email'];
         $type = $_SESSION['type'];
-        $contentDao = new ContentDAO(DynamoDbClientBuilder::get());
+        $contentDao = new ContentDAO($client = LocalDBClientBuilder::get());//DynamoDbClientBuilder::get());
         $content = new Content();
         $content->setUrl($url);
         $content->setEmailOwner($emailOwner);
         $content->setName($name);
         $content->setType($type);
         $contentDao->create($content, $children);
+         
     }
     
     ?>
