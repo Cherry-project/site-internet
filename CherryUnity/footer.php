@@ -4,9 +4,9 @@ if (empty($root)) {
 }
 ?>
 
-<footer class="footer">
+<footer class="footer" height= 37px;>
     <div class="container-fluid">
-        <img  height="60px" src=<?php echo $root."img/logo.jpg" ?> /> 
+        <img  height="33px" src=<?php echo $root."img/logo.jpg" ?> /> 
     </div>
 </footer>
 
