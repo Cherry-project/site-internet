@@ -2,7 +2,7 @@
 $root = "./";
 include 'includes.php'; 
 
-$Adao = new AchievementsDAO(DynamoDbClientBuilder::get());
+$Adao = new AchievementsDAO(LocalDBClientBuilder::get());//DynamoDbClientBuilder::get());
 
 if(!empty($_GET['email'])){
     $email = $_GET['email'];

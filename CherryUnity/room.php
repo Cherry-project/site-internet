@@ -1,4 +1,11 @@
-<?php session_start() ?>
+<?php 
+    session_start();
+    $root = "./";
+    include 'includes.php'; 
+    
+    //pour le check presentation
+    $_SESSION['switch']=0;
+?>
 
 <!doctype html>
 <html>
@@ -35,7 +42,7 @@
         }
         div.content {
             margin: auto;
-            //width: 480px;
+            /*width: 480px;*/
         }
        
         div.missing {
@@ -62,9 +69,47 @@
 </head>
 
 <body>
-    <?php include 'nav.php' ?>
+    <?php //include 'nav.php'
     
-    <p class="header"><span>Unity Web Player | </span>WebPlayer</p>
+      /*  //print_r($_SESSION);
+        $childDao = new ChildDAO(DynamoDbClientBuilder::get());
+        $email = $_SESSION['email'];
+        $child = $childDao->get($email);
+        //print_r($child);
+        $contentsFamilial = $child->getContentByType("family");
+        $contentsPedagogique = $child->getContentByType("teacher");
+        $contentsMedical = $child->getContentByType("doctor");
+        
+        echo '["';
+        if(count($contentsMedical)>0)
+        {
+            echo 'medical_';
+            foreach ($contentsMedical as $contentM)
+            {
+                //print_r($contentM);
+                echo $contentM['M']['name']['S'].'&';
+            }
+        }
+        if(count($contentsFamilial)>0)
+        {
+            echo 'family_';
+            foreach ($contentsFamilial as $contentF)
+            {
+                echo $contentF['M']['name']['S'].'&';
+            }
+        }
+        if(count($contentsPedagogique)>0)
+        {
+            echo 'teaching_';
+            foreach ($contentsPedagogique as $contentP)
+            {
+                echo $contentP['M']['name']['S'].'&';
+            }
+        }
+        echo '"]';*/
+    ?>
+    
+   <!-- <p class="header"><span>Unity Web Player | </span>WebPlayer</p>-->
     <div class="content">
         <div id="unityPlayer">
             <div class="missing">
@@ -73,29 +118,39 @@
                 </a>
             </div>
         </div>
+        <div id="jeu_multiplication">
+            <?php
+                //if(l'enfant a demander au robot de jouer)
+                //alors affiche le jeu
+                //code du jeu :
+                echo '<table style="margin:0 0 10px 0; width:244px; background:#fff; border:1px solid #F3F3F3;" cellspacing="0" cellpadding="0"><tr><td style="font-family:verdana; font-size:11px; color:#000; padding:40px 5px 5px 250px;"><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" width="808" height="561"><param name="movie" value="http://www.jeuxclic.com/jeux/542729ad0f1e6.swf"><param name="quality" value="high"></param><param name="menu" value="false"></param><embed src="http://www.jeuxclic.com/jeux/542729ad0f1e6.swf" width="808" height="561" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" menu="false"></embed></object></td></tr></table>'
+            ?>
+        </div>
     </div>
  
     <p class="footer">« created with <a mimetype="application/octet-stream" href="http://unity3d.com/unity/" title="Go to unity3d.com">Unity</a> »</p>
     
-    <div class="container">
+   <!-- <div class="container">
         <div class="row">
             <p>Bienvenue chez toi.
             <?php
-                $firstname = _POST['firstname'];
+                /*$firstname = $_SESSION['name'];
                 echo " " . $firstname;
-                echo '<span id="unity" email='.$_SESSION['email'] . '> </span>'
+                echo '<span id="unity" email='.$_SESSION['email'] . '> </span>'*/             
+            echo "*".$_SESSION['email']."*";
                 ?>
             </p>
         </div>
-    </div>
+    </div>-->
     
     
 
     <?php include 'footer.php' ?>
     
     <script type="text/javascript" src="http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject.js"></script>
+       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript">
-        function GetUnity() {
+       function GetUnity() {
             if (typeof unityObject != "undefined") {                
                 return unityObject.getObjectById("unityPlayer");
             }
@@ -103,11 +158,48 @@
         }
     
         if (typeof unityObject != "undefined") {
-            unityObject.embedUnity("unityPlayer", "Build.unity3d", 830, 480);            
+            unityObject.embedUnity("unityPlayer", "Unity build LOCALE.unity3d", screen.width, screen.height);// 1350, 850);///*1130*/1288,650);//830, 480);                
         }   
        
       function gameReady(message){                    
-          GetUnity().SendMessage("Camera/MyCanvas", "GetSessionId", $('#unity').attr("email"));
+          GetUnity().SendMessage("Camera/MyCanvas", "GetSessionId", $('#unity').attr("email"));     
+
+      }
+      function Check() {
+          unityObject.getObjectById("unityPlayer").SendMessage("FPSController", "CheckPresentation", "Hello from a web page!");
+          console.log("CheckPresentation");
+      }
+      
+      function Ecoute() {
+          unityObject.getObjectById("unityPlayer").SendMessage("FPSController", "Ecoute", "Hello from a web page!");
+          console.log("Ecoute");
+      }
+      
+       function StopPres() {
+          unityObject.getObjectById("unityPlayer").SendMessage("FPSController", "StopPres", "Hello from a web page!");
+          console.log("StopPres");
+      }
+      
+       function checkTest(){
+           
+		setTimeout(function(){$.post("ajax/check.php", function(data){
+                        console.log(data);
+			if(data!=0){
+                            Check();
+                            Ecoute();
+                            StopPres();
+                            <?php $_SESSION['switch']=1; ?>
+                            checkTest();
+                        }
+			else checkTest();
+		});}, 3000);
+	    }
+       $(document).ready(function(e){ checkTest(); });
+      /*function LaunchPresentation(message){                    
+          //var u = new UnityObject2(config);
+         //u.getUnity().SendMessage("MyObject", "MyFunctionWeb", "hello !!!");
+          GetUnity().SendMessage("MyObject", "MyFunctionWeb", "hello !!!");      
+
       }
       
    

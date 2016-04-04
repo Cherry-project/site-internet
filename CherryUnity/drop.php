@@ -1,4 +1,6 @@
 <?php 
+// Désactiver le rapport d'erreurs
+error_reporting(0);
 session_start();
 ?>
 <!doctype html>
@@ -19,7 +21,7 @@ session_start();
         
       <?php
       $email = $_SESSION['email'];
-      $childDao = new ChildDAO(DynamoDbClientBuilder::get());
+      $childDao = new ChildDAO(LocalDBClientBuilder::get());//DynamoDbClientBuilder::get());
       $children = $childDao->getChildren($email);
       ?>
         
@@ -114,7 +116,8 @@ session_start();
                         contentType: false,
                         data: uploadFormData,
                         success: function (exception) {
-                            alert("Success : " + JSON.stringify(exception));
+                            //alert("Success : " + JSON.stringify(exception));
+                            location.href ="adultShowContents.php";
                         },
                         error: function (exception) {
                             alert("Exception : " + JSON.stringify(exception));
