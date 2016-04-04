@@ -14,7 +14,10 @@ class S3Access {
             $result = $this->client->putObject(array(
                 'Bucket'     => S3Access::$BUCKET,
                 'Key'        => $name,
-                'SourceFile' => $path
+                'SourceFile' => $path,
+                'ACL'        => 'public-read'
+            
+            
             ));
             return $result['ObjectURL'];
         } catch (Exception $e) {

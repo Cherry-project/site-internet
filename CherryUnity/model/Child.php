@@ -71,8 +71,7 @@ class Child extends User {
     }
     
     public function addContent($content, $dateStart, $dateEnd) {
-        print 'date!Start == '.$dateStart;
-        print 'date!End == '.$dateEnd;
+        
         $elt = array ('M' => array (
                         'name' => array ('S' => $content->getName()),
                         'owner' => array ('S' => $content->getEmailOwner()),
