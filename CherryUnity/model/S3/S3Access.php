@@ -2,7 +2,7 @@
 
 
 class S3Access {
-    private static $BUCKET = 'cherry-shared-content';
+    private static $BUCKET = 'cherry-shared-content2';
     private $client;
     
     public function __construct($s3Client) {
@@ -16,12 +16,21 @@ class S3Access {
                 'Key'        => $name,
                 'SourceFile' => $path,
                 'ACL'        => 'public-read'
-            
-            
             ));
-            return $result['ObjectURL'];
+            $urlExplode= explode("/", $result['ObjectURL']);
+            $urlE_lenght = count($urlExplode);
+            $url = $urlExplode[0]."//s3-eu-west-1.amazonaws.com/cherry-shared-content2/".$urlExplode[$urlE_lenght - 1];
+          //  echo '<p>-------------result-------------'.$url;
+            /*echo*/ $result['Expiration']/* . "\n"*/;
+           /* echo*/ $result['ServerSideEncryption']/* . "\n"*/;
+            /*echo*/ $result['ETag'] /*. "\n"*/;
+            /*echo*/ $result['VersionId']/* . "\n"*/;
+            /*echo*/ $result['RequestId'] /*. "\n"*/;
+            //return $result['ObjectURL'];
+            return $url;
         } catch (Exception $e) {
-            echo '<p>Exception reçue : ',  $e->getMessage(), "\n</p>";
+            echo '<p>Exception reçue S3 : ',  $e->getMessage(), "\n</p>";
+            echo " path :".$path;
         }
     }
     

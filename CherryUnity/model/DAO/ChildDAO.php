@@ -56,6 +56,7 @@ class ChildDAO extends UserDAO {
         $child->setFamilyId($childDTO['familyId']['S']);
         $child->setDoctorId($childDTO['doctorId']['S']);
     }
+    
     //-----------------------------Ajouter...------------------------
     
     public function getALLChildren(){

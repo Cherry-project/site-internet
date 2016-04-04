@@ -10,7 +10,6 @@ class UserDAO {
     }
     
     public function get ($email) {
-        
         $user = $this->getUser();
         $userDTO = $this->getUserDTO($email);
         if ($userDTO != null) {
@@ -23,7 +22,7 @@ class UserDAO {
     
     public function create ($user) {
         $arrayOfUser = $this->userToArray($user);
-        print_r($arrayOfUser);
+        //print_r($arrayOfUser);
         try {
             $this->client->putItem(array(
                 'TableName' => UserDAO::$TABLE_NAME,
@@ -48,7 +47,6 @@ class UserDAO {
     }
         
     protected function getUserDTO ($email) {
-        
         $result = $this->client->getItem(array(
             'ConsistentRead' => true,
             'TableName' => UserDAO::$TABLE_NAME,
@@ -56,7 +54,6 @@ class UserDAO {
                 'email' => array('S' => $email)
             )
         ));
-        
         return $result['Item'];
     }
     

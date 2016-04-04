@@ -20,7 +20,7 @@ class ContentDAO {
                     'url'     => array('S' => $content->getUrl()),
                     'type'    => array('S' => $content->getType())
                     )
-            ));                       
+            ));
             $length = count($children);
             $childDAO = new ChildDAO($this->client);
             for ($i = 0; $i < $length; $i++) {

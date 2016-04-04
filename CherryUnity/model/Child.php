@@ -194,4 +194,9 @@ class Child extends User {
         $content = $this->getContentByType($type);
         return $this->findContentsByStartingDate($date, $content);
     }
+    
+    public function getStartingDateContent($content)
+    {
+        return $content['M']['dateStart']['S'];
+    }
 }
