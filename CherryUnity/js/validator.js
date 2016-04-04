@@ -1,4 +1,4 @@
-$(document).ready(function(){
+/*$(document).ready(function(){
     $("#userForm").validate({
 	errorClass:"help-block",
 	rules:{
@@ -51,3 +51,4 @@ $(element).closest('.form-group').removeClass("has-error")
 
     });
 });
+*/

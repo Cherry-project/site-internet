@@ -22,7 +22,7 @@ class UserDAO {
     
     public function create ($user) {
         $arrayOfUser = $this->userToArray($user);
-        print_r($arrayOfUser);
+        //print_r($arrayOfUser);
         try {
             $this->client->putItem(array(
                 'TableName' => UserDAO::$TABLE_NAME,

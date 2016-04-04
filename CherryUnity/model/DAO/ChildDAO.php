@@ -56,5 +56,28 @@ class ChildDAO extends UserDAO {
         $child->setFamilyId($childDTO['familyId']['S']);
         $child->setDoctorId($childDTO['doctorId']['S']);
     }
+    
+    //-----------------------------Ajouter...------------------------
+    
+    public function getALLChildren(){
+        try {
+            $result = $this->client->scan([
+                'TableName' => UserDAO::$TABLE_NAME,
+            ]);
+            $childrenDTO = $result['Items'];
+            $children = array();
+            foreach($childrenDTO as $childDTO) {
+                $child = new Child();
+                $this->fillUserAttributes($childDTO, $child);
+                array_push($children, $child);
+            }
+            return $children;
+        } catch (Exception $e) {
+            echo '<p>Exception reçue : ',  $e->getMessage(), "\n</p>";
+        }
+    }
+    
+    
+  
 }
 

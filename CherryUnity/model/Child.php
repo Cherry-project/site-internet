@@ -71,8 +71,7 @@ class Child extends User {
     }
     
     public function addContent($content, $dateStart, $dateEnd) {
-        print 'date!Start == '.$dateStart;
-        print 'date!End == '.$dateEnd;
+        
         $elt = array ('M' => array (
                         'name' => array ('S' => $content->getName()),
                         'owner' => array ('S' => $content->getEmailOwner()),
@@ -194,5 +193,10 @@ class Child extends User {
     public function getContentsByStartingDate($date, $type) {
         $content = $this->getContentByType($type);
         return $this->findContentsByStartingDate($date, $content);
+    }
+    
+    public function getStartingDateContent($content)
+    {
+        return $content['M']['dateStart']['S'];
     }
 }

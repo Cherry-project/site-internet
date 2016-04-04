@@ -26,7 +26,9 @@ session_start();
       <?php include 'nav.php' ?>
         
         <a href="./adultShowContents.php">Liste des fichiers</a>
-        
+        <!-- Bouton choisir un fichier
+        <input type="file"   name="file" /> <br />
+        -->
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
@@ -114,7 +116,8 @@ session_start();
                         contentType: false,
                         data: uploadFormData,
                         success: function (exception) {
-                            alert("Success : " + JSON.stringify(exception));
+                            //alert("Success : " + JSON.stringify(exception));
+                            location.href ="adultShowContents.php";
                         },
                         error: function (exception) {
                             alert("Exception : " + JSON.stringify(exception));
