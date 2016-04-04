@@ -116,7 +116,8 @@ session_start();
                         contentType: false,
                         data: uploadFormData,
                         success: function (exception) {
-                            alert("Success : " + JSON.stringify(exception));
+                            //alert("Success : " + JSON.stringify(exception));
+                            location.href ="adultShowContents.php";
                         },
                         error: function (exception) {
                             alert("Exception : " + JSON.stringify(exception));

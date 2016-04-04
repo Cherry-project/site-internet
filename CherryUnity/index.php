@@ -1,11 +1,8 @@
-<?php 
- // Désactiver le rapport d'erreurs
-error_reporting(0);
-session_start(); 
-?>
+<?php error_reporting(0);
+    session_start();?>
 <!doctype html>
 <html>
-
+    
 <head>
     <?php include 'head.php' ?>
     <title>Connection </title>
@@ -13,8 +10,8 @@ session_start();
 
 <body>
     <?php include 'nav.php' ?>
-
-
+    
+    
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-md-offset-3">
@@ -28,15 +25,13 @@ session_start();
                         <input id="password" name="password" class="form-control" placeholder="Entrez un mot de passe" type="password">
                     </div>
                     <button type="submit" class="btn btn-default">Se connecter</button>
-					
                 </form>
             </div>
         </div>
         <div class="row">
             <div class="col-md-3 col-md-offset-3">
-                <a href="authentication.php"><button  class="btn btn-primary">S'inscrire</button></a>
                 <a href="forgotPassword.php">Mot de passe oublié? </a>
-		
+                <a href="authentication.php"><button  class="btn btn-primary">S'inscrire</button></a>
             </div>
         </div>
     </div>
