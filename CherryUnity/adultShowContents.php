@@ -33,7 +33,7 @@
     $root = './';
     include "includes.php";
     
-    $contentDao = new ContentDAO(LocalDBClientBuilder::get());
+    $contentDao = new ContentDAO(DynamoDbClientBuilder::get());
     
     $name_fileToDelete = $_GET['name'];
     $owner_fileToDelete = $_GET['owner'];
@@ -56,7 +56,7 @@
     echo '<form class="formB" action="Excel.php"><button type="submit" class="btn btn-default" name="Valider" onclick >Ajouter un Excel de description d\'un scénario</button></form>';
     echo '</div>';
     
-    $userDao = new UserDAO(LocalDBClientBuilder::get());
+    $userDao = new UserDAO(DynamoDbClientBuilder::get());
     $email = $_SESSION['email'];
     $user = $userDao->get($email);
     
@@ -69,7 +69,7 @@
         echo '<div style="text-decoration: underline;margin-bottom: 10px; margin-top: 35px;">Voici les documents que vous mettez à disposition :</div>';
     
     
-    $childDao = new ChildDAO(LocalDBClientBuilder::get());
+    $childDao = new ChildDAO(DynamoDbClientBuilder::get());
     $children = $childDao->getChildren($email);
     $list_children = array();
     $get="";
@@ -121,7 +121,7 @@
                     $valeurs[] = $_SESSION['email'];
                     $valeurs[] = $url;
                     $valeurs[] = $_SESSION['type'];
-                    $childDao = new ChildDAO(LocalDBClientBuilder::get());
+                    $childDao = new ChildDAO(DynamoDbClientBuilder::get());
                     $children = $childDao->getChildren($email);
                     $index=0;
                     //print_r($children);
@@ -190,7 +190,7 @@
                     //si l'url est un excel
                     $scenario="";;
                     if(($url[0]=='A'&&$url[1]=='r'&&$url[2]=='r'&&$url[3]=='a'&&$url[4]=='y')|| ($url[1]=='A'&&$url[2]=='r'&&$url[3]=='r'&&$url[4]=='a'&&$url[5]=='y') || ($url[2]=='A'&&$url[3]=='r'&&$url[4]=='r'&&$url[5]=='a'&&$url[6]=='y'))
-                 {                        
+                    {                        
                         //decoupe par info
                         $translate = explode("[",$url );
                         $translArray = array();
@@ -244,7 +244,7 @@
                                 . '<input name="url" value="'.$url.'" hidden>'
                                 . '</form>';
                     }
-                    else if(($url[0]== 'h'  &&  $url[1]== 't'  &&  $url[2]== 't'  &&  $url[3]== 'p'  &&  $url[4]== ':'  &&  $url[5]== '/'  ))
+                    else if(($url[0]== 'h'  &&  $url[1]== 't'  &&  $url[2]== 't'  &&  $url[3]== 'p'  &&  $url[4]== 's'  &&  $url[5]== ':'  &&  $url[6]== '/'  &&  $url[7]== '/'))
                     {
                         $url = "<a href='".$url."'>".$url."</a>";
                     }
@@ -286,7 +286,7 @@
         echo '</ul>';
         
     //POUR 1 ENFANT
-     $childDao = new ChildDAO(LocalDBClientBuilder::get());
+     $childDao = new ChildDAO(DynamoDbClientBuilder::get());
      $children = $childDao->getChildren($email);
      $index=0;
      $compteur = 0;
@@ -321,7 +321,7 @@
                  
                  $scenario="";;
                  if(($url[0]=='A'&&$url[1]=='r'&&$url[2]=='r'&&$url[3]=='a'&&$url[4]=='y')|| ($url[1]=='A'&&$url[2]=='r'&&$url[3]=='r'&&$url[4]=='a'&&$url[5]=='y') || ($url[2]=='A'&&$url[3]=='r'&&$url[4]=='r'&&$url[5]=='a'&&$url[6]=='y'))
-                 {                       
+                 {                        
                     //decoupe par info
                     $translate = explode("[",$url );
                     $translArray = array();
@@ -470,8 +470,4 @@
 
     </script>
 </body>
-</html><?php 
- // Désactiver le rapport d'erreurs
-    error_reporting(0);
-    session_start();
-    ?>
+</html>

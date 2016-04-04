@@ -39,7 +39,7 @@
     echo '<br/>';
     $_type = $_SESSION['type'];
     
-    $contentDao = new ContentDAO(LocalDBClientBuilder::get());
+    $contentDao = new ContentDAO(DynamoDbClientBuilder::get());
     $content = new Content();
     $content->setName($nameFinal);
     $content->setEmailOwner($email_owner);

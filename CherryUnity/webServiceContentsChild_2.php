@@ -1,5 +1,4 @@
 <?php
-error_reporting(0);
 session_start();
 
 $root = "./";
@@ -7,7 +6,7 @@ include 'includes.php';
 
 
 //print_r($_SESSION);
-$childDao = new ChildDAO(LocalDBClientBuilder::get());
+$childDao = new ChildDAO(DynamoDbClientBuilder::get());
 $email = $_SESSION['email'];
 $child = $childDao->get($email);
 //print_r($child);
@@ -32,7 +31,7 @@ function getContentsChild($child)
             //print_r($contentM);
             $owner = $contentM['M']['owner']['S'];
             $name = $contentM['M']['name']['S'];
-            $contentDao = new ContentDAO(LocalDBClientBuilder::get());
+            $contentDao = new ContentDAO(DynamoDbClientBuilder::get());
             $contents = $contentDao->getContentsOfUser($owner);
             foreach ($contents as $c)
             {
@@ -56,7 +55,7 @@ function getContentsChild($child)
         {
             $owner = $contentF['M']['owner']['S'];
             $name = $contentF['M']['name']['S'];
-            $contentDao = new ContentDAO(LocalDBClientBuilder::get());
+            $contentDao = new ContentDAO(DynamoDbClientBuilder::get());
             $contents = $contentDao->getContentsOfUser($owner);
             foreach ($contents as $c)
             {
@@ -79,7 +78,7 @@ function getContentsChild($child)
        {
             $owner = $contentP['M']['owner']['S'];
             $name = $contentP['M']['name']['S'];
-            $contentDao = new ContentDAO(LocalDBClientBuilder::get());
+            $contentDao = new ContentDAO(DynamoDbClientBuilder::get());
             $contents = $contentDao->getContentsOfUser($owner);
             foreach ($contents as $c)
             {

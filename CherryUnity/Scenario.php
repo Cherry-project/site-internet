@@ -8,27 +8,6 @@
     else
         $_SESSION['post']= $_POST;
     //print_r($_SESSION);
-    
-    function make_curl_request($method, $url, $params)
-    {        
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER,
-                array(
-            'Content-Type: application/x-www-form-urlencoded',
-            'Access-Control-Allow-Methods: GET, POST',
-            'Access-Control-Allow-Origin: *'
-                    )
-        );
-        
-        if($method == "POST")
-        {
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
-        }
-        
-        return json_decode(curl_exec($ch));
-    }
     ?>
 <html>
 <head>
@@ -65,104 +44,23 @@
         $etape[] = $all[$i];
     }
     
-   /* echo "->".$etape[0][14];
-    echo $etape[0][15];
-    echo $etape[0][16];
-    echo $etape[0][17];   
-    echo $etape[0][18]."<-";*/
-    
     $br = $etape[0][14].$etape[0][15].$etape[0][16].$etape[0][17].$etape[0][18];
     
     $all2 = explode($br,$_POST['url'] );
-    
-   /* echo "<br/> [0]";
-    echo $all2[0];
-    echo "<br/> [1]";
-    echo $all2[1];
-    echo "<br/>";
-    echo $all2[2];
-    echo "<br/>";
-    echo $all2[3];
-    echo "<br/>";
-    echo $all2[4];*/
-    
-    //print_r($all2);echo "<br/><br/>";
 
     for($i=0; $i<count($all2); $i += 4)
     {
         $all2[$i] = str_replace("--- ", "", $all2[$i]);
         $all2[$i+1] = str_replace("Behave : ", "", $all2[$i+1]);
-        $all2[$i+2] = str_replace("Text : ", "", $all2[$i+2]);
-        $all2[$i+3] = str_replace("Slide        : ", "", $all2[$i+3]);
-        
-     /*TEST TEXT
-      *    echo $all2[$i+2][0]."__";
-        echo $all2[$i+2][1]."__";
-        echo $all2[$i+2][2]."__";
-        echo $all2[$i+2][3]."__";
-        echo $all2[$i+2][4]."__";
-        echo $all2[$i+2][5]."__";
-        echo $all2[$i+2][6]."__";
-        echo $all2[$i+2][7]."__";
-        echo $all2[$i+2][8]."__";
-        echo $all2[$i+2][9]."__";
-        echo $all2[$i+2][10]."__";
-        echo $all2[$i+2][11]."__";
-        echo $all2[$i+2][12]."__";
-        echo $all2[$i+2][13]."__";
-        echo $all2[$i+2][14]."__";
-        echo $all2[$i+2][15]."__";
-        echo $all2[$i+2][16]."__";
-        echo $all2[$i+2][17]."__";
-        echo $all2[$i+2][18]."__";
-        echo $all2[$i+2][19]."__";
-        echo $all2[$i+2][20]."__";
-        echo $all2[$i+2][21]."__";
-        echo $all2[$i+2][22]."__";
-        
-        */
-        
-        /*TEST SLIDE
-      *    echo $all2[$i+3][0]."__";
-        echo $all2[$i+3][1]."__";
-        echo $all2[$i+3][2]."__";
-        echo $all2[$i+3][3]."__";
-        echo $all2[$i+3][4]."__";
-        echo $all2[$i+3][5]."__";
-        echo $all2[$i+3][6]."__";
-        echo $all2[$i+3][7]."__";
-        echo $all2[$i+3][8]."__";
-        echo $all2[$i+3][9]."__";
-        echo $all2[$i+3][10]."__";
-        echo $all2[$i+3][11]."__";
-        echo $all2[$i+3][12]."__";
-        echo $all2[$i+3][13]."__";
-        echo $all2[$i+3][14]."__";
-        echo $all2[$i+3][15]."__";
-        echo $all2[$i+3][16]."__";
-        echo $all2[$i+3][17]."__";
-        echo $all2[$i+3][18]."__";
-        echo $all2[$i+3][19]."__";
-        echo $all2[$i+3][20]."__";
-        echo $all2[$i+3][21]."__";
-        echo $all2[$i+3][22]."__";
-        
-        */
-        
-        
-        
-        
-        
-        
-        
+        $all2[$i+2] = str_replace("Text   : ", "", $all2[$i+2]);
+        $all2[$i+3] = str_replace("Slide          : ", "", $all2[$i+3]);
     }
     
-   // print_r($all2);echo "<br/><br/>";
+    //print_r($all2);echo "<br/><br/>";
     
     $datas = array();
     $sous_data = array();
     
-    $e=0;
     for($i=0; $i<count($all2); $i += 4)
     {
         if($all2[$i]!="")
@@ -171,13 +69,12 @@
             $sous_data["Behave"] = $all2[$i+1];
             $sous_data["Text"] = $all2[$i+2];
             $sous_data["Slide"] = $all2[$i+3];
-
-            $datas["_".$e] = $sous_data;
             
-            $e++;
+            //echo json_encode($sous_data);
+
+            $datas[] = $sous_data;
         }
-    }  
-    //print_r($datas);
+    }    
     $transfere = json_encode($datas);
     
    
@@ -195,10 +92,10 @@
     //echo "<br/>DATA<br/>";
     //print_r($data);
    
-    //print_r($gtran);    
+        
     if(isset($_GET['json']))
     {
-        make_curl_request("POST", "192.168.1.104:8080/jsonreader", $gtran );
+        make_curl_request("POST", "192.168.1.102:8080/jsonreader", $gtran );
     }
     ?>
         <div style="padding: 20px; margin: 10px 0 20px 120px;"><div style="background-color: limegreen; width: 180px; height: 40px; padding: 10px 0 0 0;"><a href='Scenario.php?json=true' style="color:white; margin: 0px 0px 0px 20px;"><span class="glyphicon glyphicon-play" style="margin-right: 6px;"></span>Jouer ce scénario </a></div></div>
@@ -280,7 +177,7 @@
              });*/
         console.log(elemnt);
         $.ajax({
-                 url: "http://192.168.1.102:8080/test/behave?name="+elemnt
+                 url: "http://127.0.0.1:8080/test/behave?name="+elemnt
                  
             });
              console.log("ok");

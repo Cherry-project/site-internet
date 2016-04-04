@@ -49,7 +49,7 @@
     <?php include 'nav.php' ;
     include 'includes.php'; 
     
-    $childDao = new ChildDAO(LocalDBClientBuilder::get());
+    $childDao = new ChildDAO(DynamoDbClientBuilder::get());
     $children = $childDao->getChildren($_SESSION['email']);
         
     $nbre_enfant = 0;

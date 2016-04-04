@@ -1,5 +1,4 @@
 <?php
-error_reporting(0);
 session_start();
 
 $root = "./";
@@ -7,7 +6,7 @@ include 'includes.php';
 
 
 //print_r($_SESSION);
-$childDao = new ChildDAO(LocalDBClientBuilder::get());
+$childDao = new ChildDAO(DynamoDbClientBuilder::get());
 $email = $_SESSION['email'];
 $child = $childDao->get($email);
 //print_r($child);

@@ -1,6 +1,4 @@
 <?php 
-// Désactiver le rapport d'erreurs
-error_reporting(0);
 session_start();
 ?>
 <!doctype html>
@@ -21,14 +19,16 @@ session_start();
         
       <?php
       $email = $_SESSION['email'];
-      $childDao = new ChildDAO(LocalDBClientBuilder::get());//DynamoDbClientBuilder::get());
+      $childDao = new ChildDAO(DynamoDbClientBuilder::get());
       $children = $childDao->getChildren($email);
       ?>
         
       <?php include 'nav.php' ?>
         
         <a href="./adultShowContents.php">Liste des fichiers</a>
-        
+        <!-- Bouton choisir un fichier
+        <input type="file"   name="file" /> <br />
+        -->
         <div class="container">
             <div class="row">
                 <div class="col-md-3">

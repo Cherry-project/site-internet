@@ -158,7 +158,7 @@
         }
     
         if (typeof unityObject != "undefined") {
-            unityObject.embedUnity("unityPlayer", "Unity build LOCALE.unity3d", screen.width, screen.height);// 1350, 850);///*1130*/1288,650);//830, 480);                
+            unityObject.embedUnity("unityPlayer", "Unity_build.unity3d", screen.width, screen.height);// 1350, 850);///*1130*/1288,650);//830, 480);                
         }   
        
       function gameReady(message){                    
@@ -175,11 +175,6 @@
           console.log("Ecoute");
       }
       
-       function StopPres() {
-          unityObject.getObjectById("unityPlayer").SendMessage("FPSController", "StopPres", "Hello from a web page!");
-          console.log("StopPres");
-      }
-      
        function checkTest(){
            
 		setTimeout(function(){$.post("ajax/check.php", function(data){
@@ -187,7 +182,6 @@
 			if(data!=0){
                             Check();
                             Ecoute();
-                            StopPres();
                             <?php $_SESSION['switch']=1; ?>
                             checkTest();
                         }

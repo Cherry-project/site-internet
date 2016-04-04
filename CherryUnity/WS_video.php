@@ -21,7 +21,7 @@ if(!$ajouter)
         //echo $name."<br/>MARCHE<br/>";
 
         //recherche un contenue ayant comme titre $name et owner "admin_off"
-        $contentDao = new ContentDAO(LocalDBClientBuilder::get());
+        $contentDao = new ContentDAO(DynamoDbClientBuilder::get());
         $contentDAOExist = $contentDao->get($name, "admin_off");
         $contentExist = new Content();
         //recupere les valeurs
@@ -32,14 +32,13 @@ if(!$ajouter)
 
         //si le contenue est trouve (qu'il y a bien une url)
         if($urlExist) {
-            
             //le owner est "admin_off" ==> le change en "admin_on" (pour lancer la video)
             $contentExist->setEmailOwner("admin_on");
             $ownerExist = $contentExist->getEmailOwner();
             $children =  array();
             //$children[] = array('email' => $_POST['child'], 'dateStart' => $_POST['date_debut'], 'dateEnd' => $_POST['date_fin']);
             $contentDao->UpDate($contentExist, $children);
-             echo $urlExist; 
+             echo $urlExist;
             $contentDao0->delete($name, "admin_off");
             //print_r ($contentExist);
 
@@ -54,7 +53,7 @@ if(!$ajouter)
     else if($owner && $name)
     {
         $_SESSION['switch']= htmlspecialchars($_GET['name']);
-        $contentDao0 = new ContentDAO(LocalDBClientBuilder::get());
+        $contentDao0 = new ContentDAO(DynamoDbClientBuilder::get());
         $contentDAOExist0 = $contentDao0->get($name, $owner);
         $contentExist0 = new Content();
         //recupere les valeurs
@@ -79,7 +78,7 @@ if(!$ajouter)
 
          echo "<br/><br/>";
 
-        $contentDao02 = new ContentDAO(LocalDBClientBuilder::get());
+        $contentDao02 = new ContentDAO(DynamoDbClientBuilder::get());
         $contents02 = $contentDao02->getContentsOfUser("admin_off");
         print_r($contents02);*/
 
@@ -95,7 +94,7 @@ if(!$ajouter)
 
        //Affiche tous les contenue ayant en owner = admin_on
         $email = "admin_on";
-        $contentDao = new ContentDAO(LocalDBClientBuilder::get());
+        $contentDao = new ContentDAO(DynamoDbClientBuilder::get());
         $contents = $contentDao->getContentsOfUser($email);
         //print_r($contents);
         $length = count($contents);
@@ -241,11 +240,8 @@ else
         $s3 = new S3Access(S3ClientBuilder::get());
         $url = $s3->createFile($name, $_FILES['avatar']['tmp_name']);//$path);
         
-        move_uploaded_file($_FILES['avatar']['tmp_name'], "C:\\xampp\\htdocs\\PhpProject_test\\uploads\\".$_FILES['avatar']['name'] );
-        $url = "http://localhost/PhpProject_test/uploads/".$_FILES['avatar']['name'];
-        
         // INSERT SUR DYNAMO
-        $contentDao = new ContentDAO(LocalDBClientBuilder::get());
+        $contentDao = new ContentDAO(DynamoDbClientBuilder::get());
         $content = new Content();
         $content->setUrl($url);
         $content->setEmailOwner($email_owner);

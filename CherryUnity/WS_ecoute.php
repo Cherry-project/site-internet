@@ -6,11 +6,16 @@
 $root = "./";
 require "includes.php";
 
+
+
+
 $ecoute = htmlspecialchars($_GET['ecoute']);
 
 
+
+
     //recherche un contenue ayant comme titre $name et owner "admin_off"
-            $contentDao = new ContentDAO(LocalDBClientBuilder::get());
+            $contentDao = new ContentDAO(DynamoDbClientBuilder::get());
             $contentDAOExist = $contentDao->get("ecoute", "admin_ecoute");
             $contentExist = new Content();
             //recupere les valeurs

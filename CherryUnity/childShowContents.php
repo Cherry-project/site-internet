@@ -15,8 +15,8 @@
     $root = './';
     include "includes.php";
     
-    $contentDao = new ContentDAO(LocalDBClientBuilder::get());//DynamoDbClientBuilder::get());
-    $childDao = new ChildDAO(LocalDBClientBuilder::get());//DynamoDbClientBuilder::get());
+    $contentDao = new ContentDAO(DynamoDbClientBuilder::get());
+    $childDao = new ChildDAO(DynamoDbClientBuilder::get());
     $email = $_SESSION['email'];
     $child = $childDao->get($email);
        

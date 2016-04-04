@@ -2,7 +2,6 @@
  // Désactiver le rapport d'erreurs
     error_reporting(0);
     session_start() ?>
-<!doctype html>
 <html>
     
 <head>
@@ -28,7 +27,7 @@
     <?php
         include 'includes.php'; 
         $email = $_SESSION['email'];
-        $childDao = new ChildDAO(LocalDBClientBuilder::get());
+        $childDao = new ChildDAO(DynamoDbClientBuilder::get());
         $children = $childDao->getChildren($email);
         
         $nbre_enfant = 0;
@@ -99,8 +98,7 @@
                              $translArray[4] = substr($translArray[4], 0, -7);                             
                              $translArray[count($translArray)-1] = substr($translArray[count($translArray)-1], 0, -2);
                              
-                             $etape = 1; 
-                             
+                             $etape = 1;
                              for($ligne = 2; $ligne < count($translArray) -4; $line+=4)
                              {
                                  echo "<input name='contenueTexte0' value='".$translArray[2]."' hidden>"
@@ -162,10 +160,10 @@
                * 
                * 
                */
-                                 $userDao = new UserDAO(LocalDBClientBuilder::get());
+                                 $userDao = new UserDAO(DynamoDbClientBuilder::get());
                                  $email = "admin_off";
                                  $user = $userDao->get($email);
-                                 $contentDaoD = new ContentDAO(LocalDBClientBuilder::get());
+                                 $contentDaoD = new ContentDAO(DynamoDbClientBuilder::get());
                                  $contents = $contentDaoD->getContentsOfUser($email);
                                  //print_r($contents);
                                  
@@ -305,23 +303,21 @@
            }
         }
         
-       $(document).ready(function() {
+    /*   $(".dropdown-menu li a").click(function(){
+            $(".dropdown-toggle:first-child").html($(this).text()+' <span class="caret"></span>');
+        });
+        */
+        $(document).ready(function() {
             $("ul li a").click(function() {
+                
+                var monImage = $(this).parents(".dropdown").find('.img_associee');
+                 if(monImage){console.log( monImage.attr('src'));}
+                
                 text = $(this).parent('.dropdown-toggle').html($(this).text()+' <span class="caret"></span>').text();
                 
                 text2 = $(this).parents('.dropdown').find('.dropdown-toggle').html($(this).text()+' <span class="caret"></span>').text();
                 $(this).parents(".dropdown").find('.Behave').val(text2);
                 
-                if(text2.indexOf('.PNG')>-1)
-                {
-                    console.log("c'est un diapo !");console.log(text2.indexOf('.PNG'));
-                    $(this).parents(".dropdown").find('.Slide').val(text2);
-                }
-                else
-                {
-                    console.log("ce n'est pas un diapo :D");
-                    //changer l'image ici !!!
-                }
                 if($(this).parents(".dropdown").find('.img_associee')){console.log( $(this).parents(".dropdown").find('.img_associee'));}
                 $(this).parents(".dropdown").find('.img_associee').attr('src', 'img/raconte.png');
                 //if($(this).parents(".dropdown").find('.img_associee').is(Image)){console.log(true);}else{console.log(false);}

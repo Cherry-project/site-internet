@@ -42,7 +42,7 @@
         else
         {
             $les_enfants = array();
-            $childDao0 = new ChildDAO(LocalDBClientBuilder::get());
+            $childDao0 = new ChildDAO(DynamoDbClientBuilder::get());
             $children0 = $childDao0->getChildren($_SESSION['email']);
             foreach($children0 as $child)
             {
@@ -66,7 +66,7 @@
             else if($_POST['enfantExistant'] != "")
             {
                 //recupere l'enfant en question
-                $childDao = new ChildDAO(LocalDBClientBuilder::get());
+                $childDao = new ChildDAO(DynamoDbClientBuilder::get());
                 $children = $childDao->getALLChildren();
                             
                 foreach($children as $child)
@@ -88,7 +88,7 @@
                                             //change l'id du proprio
                                             $child->setDoctorId($_SESSION['email']);
                                             
-                                            $client = LocalDBClientBuilder::get();
+                                            $client = DynamoDbClientBuilder::get();
                                             $response = $client->updateItem(array(
                                                 'TableName' => 'Users',
                                                 'Key' => array(
@@ -116,7 +116,7 @@
                                             //change l'id du proprio
                                             $child->setTeacherId($_SESSION['email']);
                                             
-                                            $client = LocalDBClientBuilder::get();
+                                            $client = DynamoDbClientBuilder::get();
                                             $response = $client->updateItem(array(
                                                 'TableName' => 'Users',
                                                 'Key' => array(
@@ -144,7 +144,7 @@
                                             //change l'id du proprio
                                             $child->setFamilyId($_SESSION['email']);
                                             
-                                            $client = LocalDBClientBuilder::get();
+                                            $client = DynamoDbClientBuilder::get();
                                             $response = $client->updateItem(array(
                                                 'TableName' => 'Users',
                                                 'Key' => array(
@@ -201,7 +201,7 @@
                     $array['doctorId'] = array('S' => $doctor);
                 }
                 
-                $client = LocalDBClientBuilder::get();
+                $client = DynamoDbClientBuilder::get();
 
                 $response = $client->getItem(array(
                 'TableName' => 'Users',
@@ -241,7 +241,7 @@
                             $array['familyId'] = array('S' => $family);
                         }
                         
-                        $client = LocalDBClientBuilder::get();
+                        $client = DynamoDbClientBuilder::get();
                         $client->putItem(array(
                         'TableName' => 'Users',
                         'Item' => $array
@@ -254,7 +254,7 @@
                         //et supprime l'ancien de la liste
                         //...mail_modif
                         //recupere l'enfant en question
-                        $childDao = new ChildDAO(LocalDBClientBuilder::get());
+                        $childDao = new ChildDAO(DynamoDbClientBuilder::get());
                         $children = $childDao->getALLChildren();
 
                         foreach($children as $child)
@@ -274,7 +274,7 @@
                                                 //change l'id du proprio
                                                 $child->setDoctorId("sans_mail");
 
-                                                $client = LocalDBClientBuilder::get();
+                                                $client = DynamoDbClientBuilder::get();
                                                 $response = $client->updateItem(array(
                                                     'TableName' => 'Users',
                                                     'Key' => array(
@@ -309,7 +309,7 @@
                                                 //change l'id du proprio
                                                 $child->setTeacherId("sans_mail");
 
-                                                $client = LocalDBClientBuilder::get();
+                                                $client = DynamoDbClientBuilder::get();
                                                 $response = $client->updateItem(array(
                                                     'TableName' => 'Users',
                                                     'Key' => array(
@@ -344,7 +344,7 @@
                                                 //change l'id du proprio
                                                 $child->setFamilyId("sans_mail");
 
-                                                $client = LocalDBClientBuilder::get();
+                                                $client = DynamoDbClientBuilder::get();
                                                 $response = $client->updateItem(array(
                                                     'TableName' => 'Users',
                                                     'Key' => array(
@@ -384,7 +384,7 @@
                     {
                         //MODIFICATION D'UN ENFANT (sans modification de l'e-mail):     
                         //MAJ prenom
-                        $client = LocalDBClientBuilder::get();
+                        $client = DynamoDbClientBuilder::get();
                         $response = $client->updateItem(array(
                             'TableName' => 'Users',
                             'Key' => array(
@@ -399,7 +399,7 @@
                             'UpdateExpression' => 'set #NA = :val1 '
                         ));
                         //MAJ nom
-                        $client = LocalDBClientBuilder::get();
+                        $client = DynamoDbClientBuilder::get();
                         $response1 = $client->updateItem(array(
                             'TableName' => 'Users',
                             'Key' => array(
@@ -414,7 +414,7 @@
                             'UpdateExpression' => 'set #NA = :val1 '
                         ));
                         //MAJ mot de passe
-                        $client = LocalDBClientBuilder::get();
+                        $client = DynamoDbClientBuilder::get();
                         $response2 = $client->updateItem(array(
                             'TableName' => 'Users',
                             'Key' => array(
@@ -433,7 +433,7 @@
                     }
                     else if($_POST['Supp'])
                     {
-                        $childDao = new ChildDAO(LocalDBClientBuilder::get());
+                        $childDao = new ChildDAO(DynamoDbClientBuilder::get());
                         $children = $childDao->getALLChildren();
 
                         foreach($children as $child)
@@ -453,7 +453,7 @@
                                                 //change l'id du proprio
                                                 $child->setDoctorId("sans_mail");
 
-                                                $client = LocalDBClientBuilder::get();
+                                                $client = DynamoDbClientBuilder::get();
                                                 $response = $client->updateItem(array(
                                                     'TableName' => 'Users',
                                                     'Key' => array(
@@ -487,7 +487,7 @@
                                                 //change l'id du proprio
                                                 $child->setTeacherId("sans_mail");
 
-                                                $client = LocalDBClientBuilder::get();
+                                                $client = DynamoDbClientBuilder::get();
                                                 $response = $client->updateItem(array(
                                                     'TableName' => 'Users',
                                                     'Key' => array(
@@ -521,7 +521,7 @@
                                                 //change l'id du proprio
                                                 $child->setFamilyId("sans_mail");
 
-                                                $client = LocalDBClientBuilder::get();
+                                                $client = DynamoDbClientBuilder::get();
                                                 $response = $client->updateItem(array(
                                                     'TableName' => 'Users',
                                                     'Key' => array(
@@ -558,103 +558,119 @@
             }
             
         ?>
-        <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#demo">
-            <span class="glyphicon glyphicon-plus-sign" style="margin-right: 10px;"></span>Ajouter un enfant</button>
-        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">
-            <span class="glyphicon glyphicon-list-alt" style="margin-right: 10px;"></span>Créer un groupe d'enfant</button>
-        <div id="demo" class="collapse">
-          <div class="row" style="background-color: gainsboro; margin-left: 1px;">
-              <div class="col-sm-5">
-                  <!-- Choix d'un enfant existant sur la BDD -->
-                  <form class='formB' action='gestionEnfants.php' method="POST" style="    margin: 10px 0 0 0;">
-                      <input type="hidden" name="enfantExistant">
-                    <div class="dropdown">
-                      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="margin: 10px 0 0 0;">Choix d'un Enfant existant
-                      <span class="caret"></span></button>
-                      <ul class="dropdown-menu">
-                        <li value="ChoixEnfant"><a href="#">Choix d'un Enfant existant&nbsp;</a></li>
-                        <li class="divider"></li>
-                        <?php
-                            $childDao = new ChildDAO(LocalDBClientBuilder::get());
-                            $children = $childDao->getALLChildren();
-                            
-                            foreach($children as $child)
-                            {
-                                //print_r($child);
-                                //echo $child->getFirstname()."<br/>";
-                                $type = $child->getType();
-                                if(strpos($child->getType(), "child")!==FALSE)
-                                {
-                                    $find = false;
-                                    foreach($les_enfants as $un_enfant)
+        <div class="row" style="margin-bottom: 50px;">
+            <div class="row" >
+                <div class="col-sm-3">
+                    <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#demo" style="    margin-top: 12px;">
+                    <span class="glyphicon glyphicon-plus-sign" style="margin-right: 10px;"></span>Ajouter un enfant</button>
+                </div>
+                <div class="col-sm-3">
+                    <form class='formB' action='gestionGrEnfant.php' method="POST" >
+                          <?php
+                                  foreach ($les_enfants as $c)
+                                      echo '<input type="hidden" name="enfant[]" value="'.$c.'">';
+                          ?>
+                          <button type="submit" class="btn btn-info" >
+                            <span class="glyphicon glyphicon-th-list" style="margin-right: 10px;"></span>Créer un groupe d'enfant</button>
+                    </form>
+                </div>
+            </div>
+            <div class="row" >
+                <div id="demo" class="collapse">
+                  <div class="row" style="background-color: gainsboro; margin-left: 1px;">
+                      <div class="col-sm-5">
+                          <!-- Choix d'un enfant existant sur la BDD -->
+                          <form class='formB' action='gestionEnfants.php' method="POST" style="    margin: 10px 0 0 0;">
+                              <input type="hidden" name="enfantExistant">
+                            <div class="dropdown">
+                              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="margin: 10px 0 0 0;">Choix d'un Enfant existant
+                              <span class="caret"></span></button>
+                              <ul class="dropdown-menu">
+                                <li value="ChoixEnfant"><a href="#">Choix d'un Enfant existant&nbsp;</a></li>
+                                <li class="divider"></li>
+                                <?php
+                                    $childDao = new ChildDAO(DynamoDbClientBuilder::get());
+                                    $children = $childDao->getALLChildren();
+
+                                    foreach($children as $child)
                                     {
-                                        if(strpos($un_enfant, $child->getFirstname()) !==false)
+                                        //print_r($child);
+                                        //echo $child->getFirstname()."<br/>";
+                                        $type = $child->getType();
+                                        if(strpos($child->getType(), "child")!==FALSE)
                                         {
-                                            if(strpos($un_enfant, $child->getLastname()) !==false)
-                                                    $find = true;
+                                            $find = false;
+                                            foreach($les_enfants as $un_enfant)
+                                            {
+                                                if(strpos($un_enfant, $child->getFirstname()) !==false)
+                                                {
+                                                    if(strpos($un_enfant, $child->getLastname()) !==false)
+                                                            $find = true;
+                                                }
+                                            }
+                                            if($find == false)
+                                                $list_children[] = $child->getFirstname().'&nbsp;'.$child->getLastname();
                                         }
                                     }
-                                    if($find == false)
-                                        $list_children[] = $child->getFirstname().'&nbsp;'.$child->getLastname();
-                                }
-                            }
-                            
-                            //print_r($list_children);
-                            if(count($list_children)== 0)
-                                echo '<li value="pas_d_enfant"><a href="#">Vous gérez l\'ensemble des enfants existant !</a></li>';
-                            for($e=0; $e<count($list_children); $e++)
-                            {
-                                echo '<li value="'.$list_children[$e].'"><a href="#">'.$list_children[$e].'</a></li>';
-                            }
-                        ?>
-                      </ul>
-                    </div>
-                        <button type='submit' class='btn btn-success' name="Enregistrer" onclick style="margin: 10px 10px 10px 0; "><span class='glyphicon glyphicon-floppy-saved' style='margin-right: 7px;'></span>Enregistrer</button>
-                  </form>
-              </div>
-              <div class="col-sm-1"><h4 style="margin-top: 20px;">OU</h4></div>
-              <div class="col-sm-6">
-                  <!-- Creation d'un nouvel enfant -->
-                  <form class='formB' action='gestionEnfants.php' method="POST" style="    margin: 10px 0 0 0;" onsubmit="return verif_champs();">
-                        <label for="nom">Nom de l'enfant :</label>
-                        <input name="nom" class="form-control" id="nom">
-                        <label for="prenom">Prénom de l'enfant :</label>
-                        <input name="prenom" class="form-control" id="prenom">
-                        <label for="mail">E-mail de l'enfant :</label>
-                        <input name="mail" class="form-control" id="mail">
-                        <label for="password">Mot de passe de l'enfant :</label>
-                        <input name="password" type='password' class="form-control" id="password">
-                        <label for="repassword">Confirmer le mot de passe de l'enfant :</label>
-                        <input name="repassword" type='password' class="form-control" id="repassword">
-                        <?php
-                        //ajoute les champ en fonction du type
-                        if($_SESSION['type']=="doctor")
-                        {
-                            echo '<label for="teacher">E-mail de l\'enseignant lié à l\'enfant :</label>'
-                            . '<input name="teacher" class="form-control" id="teacher">'
-                            . '<label for="family">E-mail de la famille liée à l\'enfant :</label>'
-                            . '<input name="family" class="form-control" id="family">';
-                        }
-                        else if($_SESSION['type'] == 'teacher')
-                        {
-                            echo '<label for="doctor">E-mail du médecin lié à l\'enfant :</label>'
-                            . '<input name="doctor" class="form-control" id="doctor">'
-                            . '<label for="family">E-mail de la famille liée à l\'enfant :</label>'
-                            . '<input name="family" class="form-control" id="family">';
-                        }
-                        else if($_SESSION['type'] == 'family')
-                        {
-                            echo '<label for="doctor">E-mail du médecin lié à l\'enfant :</label>'
-                            . '<input type="doctor" class="form-control" id="doctor">'
-                            . '<label for="teacher">E-mail de l\'enseignant lié à l\'enfant :</label>'
-                            . '<input type="teacher" class="form-control" id="teacher">';
-                        }
-                        ?>
 
-                        <button type='submit' class='btn btn-success' name='Enregistrer' onclick style="margin: 10px 10px 10px 15px; float: right;"><span class='glyphicon glyphicon-floppy-saved' style='margin-right: 7px;'></span>Enregistrer</button>
-                    </form>
-              </div>
-          </div>
+                                    //print_r($list_children);
+                                    if(count($list_children)== 0)
+                                        echo '<li value="pas_d_enfant"><a href="#">Vous gérez l\'ensemble des enfants existant !</a></li>';
+                                    for($e=0; $e<count($list_children); $e++)
+                                    {
+                                        echo '<li value="'.$list_children[$e].'"><a href="#">'.$list_children[$e].'</a></li>';
+                                    }
+                                ?>
+                              </ul>
+                            </div>
+                                <button type='submit' class='btn btn-success' name="Enregistrer" onclick style="margin: 10px 10px 10px 0; "><span class='glyphicon glyphicon-floppy-saved' style='margin-right: 7px;'></span>Enregistrer</button>
+                          </form>
+                      </div>
+                      <div class="col-sm-1"><h4 style="margin-top: 20px;">OU</h4></div>
+                      <div class="col-sm-6">
+                          <!-- Creation d'un nouvel enfant -->
+                          <form class='formB' action='gestionEnfants.php' method="POST" style="    margin: 10px 0 0 0;" onsubmit="return verif_champs();">
+                                <label for="nom">Nom de l'enfant :</label>
+                                <input name="nom" class="form-control" id="nom">
+                                <label for="prenom">Prénom de l'enfant :</label>
+                                <input name="prenom" class="form-control" id="prenom">
+                                <label for="mail">E-mail de l'enfant :</label>
+                                <input name="mail" class="form-control" id="mail">
+                                <label for="password">Mot de passe de l'enfant :</label>
+                                <input name="password" type='password' class="form-control" id="password">
+                                <label for="repassword">Confirmer le mot de passe de l'enfant :</label>
+                                <input name="repassword" type='password' class="form-control" id="repassword">
+                                <?php
+                                //ajoute les champ en fonction du type
+                                if($_SESSION['type']=="doctor")
+                                {
+                                    echo '<label for="teacher">E-mail de l\'enseignant lié à l\'enfant :</label>'
+                                    . '<input name="teacher" class="form-control" id="teacher">'
+                                    . '<label for="family">E-mail de la famille liée à l\'enfant :</label>'
+                                    . '<input name="family" class="form-control" id="family">';
+                                }
+                                else if($_SESSION['type'] == 'teacher')
+                                {
+                                    echo '<label for="doctor">E-mail du médecin lié à l\'enfant :</label>'
+                                    . '<input name="doctor" class="form-control" id="doctor">'
+                                    . '<label for="family">E-mail de la famille liée à l\'enfant :</label>'
+                                    . '<input name="family" class="form-control" id="family">';
+                                }
+                                else if($_SESSION['type'] == 'family')
+                                {
+                                    echo '<label for="doctor">E-mail du médecin lié à l\'enfant :</label>'
+                                    . '<input type="doctor" class="form-control" id="doctor">'
+                                    . '<label for="teacher">E-mail de l\'enseignant lié à l\'enfant :</label>'
+                                    . '<input type="teacher" class="form-control" id="teacher">';
+                                }
+                                ?>
+
+                                <button type='submit' class='btn btn-success' name='Enregistrer' onclick style="margin: 10px 10px 10px 15px; float: right;"><span class='glyphicon glyphicon-floppy-saved' style='margin-right: 7px;'></span>Enregistrer</button>
+                            </form>
+                      </div>
+                  </div>
+                </div>
+            </div>
         </div>
         
         <h1>Liste des Enfants</h1>  
@@ -680,7 +696,7 @@
                     $tab_nom_pre = explode('___', $nom_pre);
                     
                     //recherche les infos de l'enfant
-                    $childDao = new ChildDAO(LocalDBClientBuilder::get());
+                    $childDao = new ChildDAO(DynamoDbClientBuilder::get());
                     $children = $childDao->getALLChildren();                           
                     foreach($children as $child)
                     {

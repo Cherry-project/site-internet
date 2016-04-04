@@ -19,13 +19,13 @@
     <?php
 
 
- //print_r($_POST);
+ print_r($_POST);
 //echo '<br/>email : '.$_SESSION['email'].' et type : '.$_SESSION['type'].'<br/>';
 
 // INSERT SUR DYNAMO
         $emailOwner = $_SESSION['email'];
         $type = $_SESSION['type'];
-        $contentDao = new ContentDAO(LocalDBClientBuilder::get());
+        $contentDao = new ContentDAO(DynamoDbClientBuilder::get());
         $content = new Content();
         //url reprensente le contenu texte
         if($_POST['contenueTexte'] != "")
@@ -65,16 +65,12 @@
                 
                 $tab[] = $ligne;
             }
-            
-           /* echo "<br/><br/>LA :<br/><br/>";
-            print_r($tab);*/
-            
-            
-            echo "<div hidden>";     
+            echo "<div hidden>";
             $url = print_r($tab, true);
             $url_excel = print_r($tab);
             echo "</div>";
         }
+        
         $content->setUrl($url);
         $content->setEmailOwner($emailOwner);
         $name = $_POST['titreTexte'];
@@ -87,7 +83,7 @@
         echo $content->getName();
         echo $content->getType();*/
         
-       $children =  array();
+        $children =  array();
         $children[] = array('email' => $_POST['child'], 'dateStart' => $_POST['date_debut'], 'dateEnd' => $_POST['date_fin']);
         //print_r($children);
         //$length = count($_POST['children']);
@@ -113,7 +109,7 @@
             echo $url[$o];
         }*/
                 
-      if($urlExist != "")
+        if($urlExist != "")
         {
             if($type = $typeExist && $url == $urlExist && $dateExistDebut ==$_POST['date_debut'] && $dateExistFin == $_POST['date_fin'] )
             {
@@ -137,7 +133,7 @@
             $contentDao->create($content, $children);
             echo '<p>Votre texte a bien été enregistré.</p><br/>';
         }
-
+        
         
         ?>
     

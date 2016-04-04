@@ -1,5 +1,4 @@
-<?php error_reporting(0);
-    session_start();?>
+<?php session_start() ?>
 <!doctype html>
 <html>
     
