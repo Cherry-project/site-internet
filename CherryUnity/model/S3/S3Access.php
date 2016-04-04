@@ -11,17 +11,13 @@ class S3Access {
     
     public function createFile($name, $path) {
         try {
-            $result = $this->client->/*putObject*/putItem(array(
-                'TableName' => S3Access::$BUCKET,
-                    'Item' => array(
-                        'name'        => $name,
-                        'path' => $path
-                        
-                        )
-                /*
+            $result = $this->client->putObject(array(
                 'Bucket'     => S3Access::$BUCKET,
                 'Key'        => $name,
-                'SourceFile' => $path*/
+                'SourceFile' => $path,
+                'ACL'        => 'public-read'
+            
+            
             ));
             return $result['ObjectURL'];
         } catch (Exception $e) {

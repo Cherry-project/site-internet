@@ -123,4 +123,58 @@ class ContentDAO {
         $content->setUrl($dto['url']['S']);
         return $content;
     }
+    
+    public function UpDate($content, $children)
+    {
+        try {
+            $result = $this->client->updateItem([
+                'TableName' => ContentDAO::$TABLE_NAME,
+                'Key' => array(
+                            'name'    => array('S' => $content->getName()),
+                            'owner'   => array('S' => $content->getEmailOwner())
+                        ),
+                'ExpressionAttributeNames' => [
+                    '#NA' => 'url'
+                ],
+                'ExpressionAttributeValues' =>  [
+                    ':val1' => array('S' => $content->getUrl())
+                ] ,
+                'UpdateExpression' => 'set #NA = :val1 '
+            ]);
+           // print_r($result);
+
+            
+            
+           /* $this->client->UpdateItem(array(
+                'TableName' => ContentDAO::$TABLE_NAME,
+                'Key' => array(
+                    'name'    => array('S' => $content->getName()),
+                    'owner'   => array('S' => $content->getEmailOwner()),
+                    'url'     => array('S' => $content->getUrl()),
+                    'type'    => array('S' => $content->getType())
+                    ),
+                'AttributeUpdates' => array(
+                    'url'     => array('Value' => array('SS' => $content->getUrl()), 'Action'=>'ADD')
+                    )
+            ));*/
+            $length = count($children);
+            $childDAO = new ChildDAO($this->client);
+            for ($i = 0; $i < $length; $i++) {
+                $email = $children[$i]['email'];
+                $child = $childDAO->get($email);
+                if ($child != null) {
+                    $dateStart = $children[$i]['dateStart'];
+                    $dateEnd = $children[$i]['dateEnd']; 
+                    $child->addContent(
+                            $content,
+                            $dateStart,
+                            $dateEnd);
+                    $childDAO->update($child);
+                }
+            }
+        }
+        catch (Exception $e) {
+            print $e->getMessage();
+        }
+    }
 }
