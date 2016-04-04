@@ -5,7 +5,7 @@ $root = '../';
 include $root.'includes.php';
 
 
-$childDao = new ChildDAO(DynamoDbClientBuilder::get());
+$childDao = new ChildDAO(LocalDBClientBuilder::get());//DynamoDbClientBuilder::get());
 
 $email = $_POST['childEmail'];
 $child = $childDao->get($email);
@@ -33,7 +33,7 @@ function addFile($fileName,$child,$dateStart, $dateEnd,$type,$adultEmail){
     $content->setEmailOwner($adultEmail);
     $content->setType($type);
     $child->addContent($content, $dateStart, $dateEnd);
-    $childDao = new ChildDAO(DynamoDbClientBuilder::get());
+    $childDao = new ChildDAO(LocalDBClientBuilder::get());//DynamoDbClientBuilder::get());
     $childDao->update($child);
 }
 
@@ -41,7 +41,7 @@ function addFile($fileName,$child,$dateStart, $dateEnd,$type,$adultEmail){
 
 function deleteFile($child,$type,$adultEmail,$fileName){
     $child->deleteContent($fileName, $adultEmail, $type);
-    $childDao = new ChildDAO(DynamoDbClientBuilder::get());
+    $childDao = new ChildDAO(LocalDBClientBuilder::get());//DynamoDbClientBuilder::get());
     $childDao->update($child);
 }
 
