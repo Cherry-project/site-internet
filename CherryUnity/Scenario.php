@@ -16,7 +16,7 @@
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER,
                 array(
-            'Content-Type: application/x-www-form-urlencoded',
+            'Content-Type: application/json',
             'Access-Control-Allow-Methods: GET, POST',
             'Access-Control-Allow-Origin: *'
                     )
@@ -198,7 +198,8 @@
     //print_r($gtran);    
     if(isset($_GET['json']))
     {
-        make_curl_request("POST", "192.168.1.104:8080/jsonreader", $gtran );
+        
+        make_curl_request("POST", $ip+":8080/jsonreader", $gtran );
     }
     ?>
         <div style="padding: 20px; margin: 10px 0 20px 120px;"><div style="background-color: limegreen; width: 180px; height: 40px; padding: 10px 0 0 0;"><a href='Scenario.php?json=true' style="color:white; margin: 0px 0px 0px 20px;"><span class="glyphicon glyphicon-play" style="margin-right: 6px;"></span>Jouer ce scénario </a></div></div>
@@ -212,7 +213,7 @@
     echo "<h1 style='margin-left: 25px'>Description du Scénario :</h1>";
     foreach ($tab_url as $une_etape)
     {
-        $mvt_robot = "http://127.0.0.1:8080/test/behave?name=";
+        $mvt_robot = "http://".$ip.":8080/test/behave?name=";
         if(strpos($une_etape, "question_behave")!== false)
         {
             $img = "img/questionne.png";
@@ -280,7 +281,7 @@
              });*/
         console.log(elemnt);
         $.ajax({
-                 url: "http://192.168.1.102:8080/test/behave?name="+elemnt
+                 url: "http://"+<?php echo $ip; ?>+":8080/test/behave?name="+elemnt
                  
             });
              console.log("ok");

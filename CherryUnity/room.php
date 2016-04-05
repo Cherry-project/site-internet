@@ -187,7 +187,7 @@
 			if(data!=0){
                             Check();
                             Ecoute();
-                            StopPres();
+                            //StopPres();
                             <?php $_SESSION['switch']=1; ?>
                             checkTest();
                         }
