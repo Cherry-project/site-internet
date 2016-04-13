@@ -60,7 +60,7 @@
     ?>
      <br/>
      <h1 style="margin-left: 27px; margin-bottom: 30px;">Ajouter un document Excel pour créer une description d'un scénario</h1>
-     <form method="POST" action="ExcelValider.php" enctype="multipart/form-data" style="margin-left: 20px;" <?php echo 'onsubmit="return testcheck('.$nbre_enfant.')"'; ?>>
+     <form class="form1" method="POST" action="ExcelValider.php" enctype="multipart/form-data" style="margin-left: 20px;" <?php echo 'onsubmit="return testcheck('.$nbre_enfant.')"'; ?>>
         <div class="input-group" style="margin-bottom: 20px;">
                 <span class="input-group-btn">
                     <span class="btn btn-primary btn-file">
@@ -145,7 +145,6 @@
                 if ($choix==true)
                 {
                   $test=true;
-                  
                 }
            }
            if ($test==true)

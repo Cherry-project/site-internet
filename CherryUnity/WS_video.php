@@ -17,7 +17,7 @@ if(!$ajouter)
     //si il y a un 'name' de transmis
     if($name && !$owner)
     {
-        $_SESSION['switch']= htmlspecialchars($_GET['name']);
+        $_SESSION['switch']= 1;//htmlspecialchars($_GET['name']);
         //echo $name."<br/>MARCHE<br/>";
 
         //recherche un contenue ayant comme titre $name et owner "admin_off"
@@ -53,7 +53,7 @@ if(!$ajouter)
     //si il y a un 'name' & 'owner' de transmis
     else if($owner && $name)
     {
-        $_SESSION['switch']= htmlspecialchars($_GET['name']);
+        //$_SESSION['switch']= 0;
         $contentDao0 = new ContentDAO(LocalDBClientBuilder::get());
         $contentDAOExist0 = $contentDao0->get($name, $owner);
         $contentExist0 = new Content();
