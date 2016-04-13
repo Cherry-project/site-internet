@@ -1,4 +1,6 @@
 <?php 
+// Désactiver le rapport d'erreurs
+    error_reporting(0);
     session_start();
     $root = "./";
     include 'includes.php'; 
@@ -175,6 +177,11 @@
           console.log("Ecoute");
       }
       
+       function StopPres() {
+          unityObject.getObjectById("unityPlayer").SendMessage("FPSController", "StopPres", "Hello from a web page!");
+          console.log("StopPres");
+      }
+      
        function checkTest(){
            
 		setTimeout(function(){$.post("ajax/check.php", function(data){
@@ -182,6 +189,7 @@
 			if(data!=0){
                             Check();
                             Ecoute();
+                            //StopPres();
                             <?php $_SESSION['switch']=1; ?>
                             checkTest();
                         }
@@ -189,6 +197,19 @@
 		});}, 3000);
 	    }
        $(document).ready(function(e){ checkTest(); });
+       $(document).ready(function()
+            {
+                /*$.ajax({
+                     url: "http://127.0.0.1:8080/test/behave?name=question_behave";
+                 });*/
+                $.ajax({
+                         url: "http://"+"<?php echo $ip; ?>"+":8080/users/define?adress="+"<?php echo $_SESSION['email'];?>"
+
+                });
+                 console.log("ok : "+"http://"+"<?php echo $ip; ?>"+":8080/users/define?adress="+"<?php echo $_SESSION['email'];?>");
+
+           });
+       
       /*function LaunchPresentation(message){                    
           //var u = new UnityObject2(config);
          //u.getUnity().SendMessage("MyObject", "MyFunctionWeb", "hello !!!");

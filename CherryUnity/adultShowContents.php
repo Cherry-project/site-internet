@@ -62,6 +62,7 @@
     
     $contents = $contentDao->getContentsOfUser($email);
     
+    
     $length = count($contents);
     if($length<=1 && $length>0)
         echo '<div style="text-decoration: underline;margin-bottom: 10px; margin-top: 35px;">Voici le document que vous mettez à disposition :</div>';
@@ -220,9 +221,14 @@
                              
                         $etape = 1;
                         $url = "";
+                        $timeline = "";
+                        $diapo_pecedent = "";
                         for($ligne = 2; $ligne < count($translArray) -4; $line+=4)
                         {
                             $url.= "    --- &Eacute;tape n° ".$etape." :<br/>";
+                            $translArray[$ligne+4] = str_replace(' ', '', $translArray[$ligne+4]);
+                            $translArray[$ligne+4] = trim($translArray[$ligne+4]);
+                            $translArray[$ligne+1+4] = trim($translArray[$ligne+1+4]);
                             $url.= $translArray[2]." : ".$translArray[$ligne+4]."<br/>";
                             $url.= $translArray[3]. ": ".$translArray[$ligne+1+4]."<br/>";
                             //enleve la ')' de fin
@@ -230,13 +236,38 @@
                             if($pos!==FALSE)
                             {
                                 $translArray[$ligne+2+4] = str_replace(')', '', $translArray[$ligne+2+4]);
+                                $translArray[$ligne+2+4] = str_replace(' ', '', $translArray[$ligne+2+4]);
                             }
                             
+                            //echo $translArray[$ligne+4]."__";
+                            
                             $url.= $translArray[4]. ": ".$translArray[$ligne+2+4]."<br/>";
+                            $diapo = " {{https://s3-eu-west-1.amazonaws.com/cherry-shared-content2/".$translArray[$ligne+2+4]."}}";
+                            //si les diapos sont identiques
+                            //echo strcmp($diapo, $diapo_pecedent);
+                            if(strcmp($diapo, $diapo_pecedent) == 0)
+                                $timeline.=" [[".$translArray[$ligne+4]."]]".$translArray[$ligne+1+4];
+                            else
+                            {
+                                
+                                /*if($diapo_pecedent!="")
+                                    $timeline.="::";*/
+                                $timeline.=$diapo."[[".$translArray[$ligne+4]."]]".$translArray[$ligne+1+4];
+                            }
+                            
+                            
                             $ligne += 4;
                             $etape++;
+                            $diapo_pecedent = $diapo;
                         }
-                        $scenario = '<form class="formB" action="Scenario.php" method="POST">'
+                        $scenario = '<form class="formB" action="TimeLine.php" method="POST">'
+                                . '<button type="submit" class="btn btn-default" onclick style="width: 180px;">'
+                                . '<span class="glyphicon glyphicon-pencil" style="margin-right: 6px;"></span>'
+                                . 'Editer le scénario&nbsp;&nbsp;</button>'
+                                . '<input name="name" value="'.$name.'" hidden>'
+                                . '<input name="timeline" value="'.$timeline.'" hidden>'
+                                . '</form>'
+                                .'<form class="formB" action="Scenario.php" method="POST">'
                                 . '<button type="submit" class="btn btn-success" name="Valider" onclick style="width: 180px;">'
                                 . '<span class="glyphicon glyphicon-play" style="margin-right: 6px;"></span>'
                                 . 'Jouer ce scénario&nbsp;&nbsp;</button>'

@@ -112,27 +112,27 @@
         $mvt_robot = "http://127.0.0.1:8080/test/behave?name=";
         if(strpos($une_etape, "question_behave")!== false)
         {
-            $img = "img/questionne.png";
+            $img = "img/question_behave.png";
             $mvt = "question_behave";
         }
         else if(strpos($une_etape, "swap_behave")!== false)
         {
-            $img = "img/raconte.png";
+            $img = "img/swap_behave.png";
             $mvt = "swap_behave";
         }
         else if(strpos($une_etape, "point_arm_left_behave ")!== false)
         {
-            $img = "img/designe.png";
+            $img = "img/point_arm_left_behave.png";
             $mvt = "point_arm_left_behave";
         }
         else if(strpos($une_etape, "left_arm_up_behave")!== false)
         {
-            $img = "img/explique.png";
+            $img = "img/left_arm_up_behave.png";
             $mvt = "left_arm_up_behave";
         }
         else if(strpos($une_etape, "rest_open_behave ")!== false)
         {
-            $img = "img/repos.png";
+            $img = "img/rest_open_behave.png";
             $mvt = "rest_open_behave";
         }
         else if(strpos($une_etape, "head_idle_motion ")!== false)
