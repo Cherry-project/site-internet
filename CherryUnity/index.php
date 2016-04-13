@@ -24,7 +24,7 @@
                         <label class="control-label" for="password">Mot de passe</label>
                         <input id="password" name="password" class="form-control" placeholder="Entrez un mot de passe" type="password">
                     </div>
-                    <button type="submit" class="btn btn-default">Se connecter</button>
+                    <button type="submit" class="btn btn-default" >Se connecter</button>
                 </form>
             </div>
         </div>
@@ -37,6 +37,9 @@
     </div>
 
     <?php include 'footer.php' ?>
+    
+    
+    
 
 </body>
 </html>

@@ -1,4 +1,6 @@
 <?php 
+// Désactiver le rapport d'erreurs
+    error_reporting(0);
     session_start();
     $root = "./";
     include 'includes.php'; 
@@ -118,6 +120,8 @@
                 </a>
             </div>
         </div>
+        
+        
         <div id="jeu_multiplication">
             <?php
                 //if(l'enfant a demander au robot de jouer)
@@ -127,6 +131,8 @@
             ?>
         </div>
     </div>
+    
+     
  
     <p class="footer">« created with <a mimetype="application/octet-stream" href="http://unity3d.com/unity/" title="Go to unity3d.com">Unity</a> »</p>
     
@@ -150,7 +156,23 @@
     <script type="text/javascript" src="http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject.js"></script>
        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript">
-       function GetUnity() {
+       var varGlob = "";
+       function recieveData(){
+            var ajaxObject = new XMLHttpRequest();
+            ajaxObject.open("GET", "data.php");
+            ajaxObject.onload = function(){
+               if(ajaxObject.readyState == 4 || ajaxObject.status == 200)
+               {
+                   //document.getElementById("update").innerHTML = ajaxObject.responseText;
+                   varGlob = ajaxObject.responseText;
+                   recieveData();
+               }
+            }
+            ajaxObject.send();
+          }
+          recieveData();
+    
+        function GetUnity() {
             if (typeof unityObject != "undefined") {                
                 return unityObject.getObjectById("unityPlayer");
             }
@@ -180,21 +202,34 @@
           console.log("StopPres");
       }
       
-       function checkTest(){
-           
-		setTimeout(function(){$.post("ajax/check.php", function(data){
-                        console.log(data);
+      function checkTest(){
+          
+           setTimeout(function(){$.post("ajax/check.php", function(data){
+                        console.log(data);                        //console.log("varGlob : "+varGlob );
+
 			if(data!=0){
                             Check();
                             Ecoute();
                             //StopPres();
-                            <?php $_SESSION['switch']=1; ?>
+                            <?php $_SESSION['switch']=0;//1;// ?>
                             checkTest();
                         }
 			else checkTest();
 		});}, 3000);
 	    }
-       $(document).ready(function(e){ checkTest(); });
+       $(document).ready(function(e){ checkTest(); });     
+       $(document).ready(function()
+            {
+                /*$.ajax({
+                     url: "http://127.0.0.1:8080/test/behave?name=question_behave";
+                 });*/
+                $.ajax({
+                         url: "http://"+"<?php echo $ip; ?>"+":8080/users/define?adress="+"<?php echo $_SESSION['email'];?>"
+
+                });
+                 console.log("ok : "+"http://"+"<?php echo $ip; ?>"+":8080/users/define?adress="+"<?php echo $_SESSION['email'];?>");
+
+           });
       /*function LaunchPresentation(message){                    
           //var u = new UnityObject2(config);
          //u.getUnity().SendMessage("MyObject", "MyFunctionWeb", "hello !!!");

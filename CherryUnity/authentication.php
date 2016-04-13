@@ -1,3 +1,7 @@
+<?php 
+ // Désactiver le rapport d'erreurs
+    error_reporting(0);
+    session_start() ?>
 <!doctype html>
 <html>
 <head>

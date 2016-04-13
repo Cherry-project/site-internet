@@ -22,6 +22,7 @@ $ecoute = htmlspecialchars($_GET['ecoute']);
             //si le contenue est trouve (qu'il y a bien une url)
             if($ecoute) {
                 echo $ecoute;
+                $_SESSION['switch']= 1;//$ecoute;
                 //le owner est "admin_off" ==> le change en "admin_on" (pour lancer la video)
                 $contentExist->setUrl($ecoute);
                 $children =  array();
@@ -30,11 +31,10 @@ $ecoute = htmlspecialchars($_GET['ecoute']);
                 // echo $urlExist; 
                 $contentDao0->delete($name, "admin_off");
                 
-                
             }
             else {
                 echo $urlExist;
-                $_SESSION['switch']= 1;
+                //$_SESSION['switch']= 0;
             }
             
             

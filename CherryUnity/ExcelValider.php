@@ -22,6 +22,8 @@
     <?php include 'nav.php';  
     
     include 'simplexlsx.class.php';
+    
+    print_r($_POST);
            
     $xlsx = new SimpleXLSX($_FILES['avatar']['tmp_name']);
     
