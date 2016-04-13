@@ -109,25 +109,25 @@
                                  
                                  $name_img="";
                                  if(strpos($translArray[$ligne+4],"swap_behave")!==false)
-                                     $name_img = "raconte.png";
+                                     $name_img = "swap_behave.png";
                                  else if(strpos($translArray[$ligne+4],"head_idle_motion")!==false)
                                      $name_img = "head_idle_motion.png";
                                  else if(strpos($translArray[$ligne+4],"double_me_behave")!==FALSE)
                                      $name_img = "double_me_behave.png";
                                  else if(strpos($translArray[$ligne+4],"question_behave")!==FALSE)
-                                     $name_img = "questionne.png";
+                                     $name_img = "question_behave.png";
                                  else if(strpos($translArray[$ligne+4],"torso_idle_motion")!==FALSE)
                                      $name_img = "torso_idle_motion.png";
                                  else if(strpos($translArray[$ligne+4],"left_arm_up_behave")!==FALSE)
-                                     $name_img = "explique.png";
+                                     $name_img = "left_arm_up_behave.png";
                                  else if(strpos($translArray[$ligne+4],"rest_open_behave")!==FALSE)
-                                     $name_img = "repos.png";
+                                     $name_img = "rest_open_behave.png";
                                  else if(strpos($translArray[$ligne+4],"hunkers_behave")!==FALSE)
-                                     $name_img = "_.png";
+                                     $name_img = "hunkers_behave.png";
                                  else if(strpos($translArray[$ligne+4],"point_arm_left_behave")!==FALSE)
-                                     $name_img = "designe.png";
+                                     $name_img = "point_arm_left_behave.png";
                                  else if(strpos($translArray[$ligne+4],"upper_body_idle_motion")!==FALSE)
-                                     $name_img = "_.png";
+                                     $name_img = "upper_body_idle_motion.png";
                                  
                                  
                                  echo '<div class="dropdown">
@@ -136,12 +136,12 @@
                                     <button class="btn btn-primary dropdown-toggle " type="button" data-toggle="dropdown" style="margin-left: 19px;">'.$translArray[$ligne+4].'                                    
                                     <span class="caret"></span></button>
                                     <ul class="dropdown-menu">
-                                      <li ><a href="#" name="swap_behave" style="height: 110px; line-height: 100px;">swap_behave&nbsp;<img  src="img/raconte.png" style="height: 100px; float: right;" /></a></li><li ><a href="#" name="head_idle_motion" style="height: 110px; line-height: 100px;">head_idle_motion&nbsp;<img  src="img/head_idle_motion.png" style="height: 100px; float: right;"/></a></li>
-                                      <li ><a href="#" name="double_me_behave" style="height: 110px; line-height: 100px;">double_me_behave&nbsp;<img  src="img/double_me_behave.png" style="height: 100px; float: right;" /></a></li><li ><a href="#" name="question_behave" style="height: 110px; line-height: 100px;">question_behave&nbsp;<img  src="img/questionne.png" style="height: 100px; float: right;" /></a></li>
+                                      <li ><a href="#" name="swap_behave" style="height: 110px; line-height: 100px;">swap_behave&nbsp;<img  src="img/swap_behave.png" style="height: 100px; float: right;" /></a></li><li ><a href="#" name="head_idle_motion" style="height: 110px; line-height: 100px;">head_idle_motion&nbsp;<img  src="img/head_idle_motion.png" style="height: 100px; float: right;"/></a></li>
+                                      <li ><a href="#" name="double_me_behave" style="height: 110px; line-height: 100px;">double_me_behave&nbsp;<img  src="img/double_me_behave.png" style="height: 100px; float: right;" /></a></li><li ><a href="#" name="question_behave" style="height: 110px; line-height: 100px;">question_behave&nbsp;<img  src="img/question_behave.png" style="height: 100px; float: right;" /></a></li>
                                       <li ><a href="#" name="torso_idle_motion" style="height: 110px; line-height: 100px;">torso_idle_motion&nbsp;<img  src="img/torso_idle_motion.png" style="height: 100px; float: right;" /></a></li>
-                                      <li ><a href="#" name="left_arm_up_behave" style="height: 110px; line-height: 100px;">left_arm_up_behave&nbsp;<img  src="img/explique.png" style="height: 100px; float: right;" /></a></li><li ><a href="#" name="rest_open_behave" style="height: 110px; line-height: 100px;">rest_open_behave&nbsp;<img  src="img/repos.png" style="height: 100px; float: right;" /></a></li>
-                                      <li ><a href="#" name="hunkers_behave" style="height: 110px; line-height: 100px;">hunkers_behave&nbsp;<img  src="img/_.png" style="height: 100px; float: right;"/></a></li>
-                                      <li ><a href="#" name="point_arm_left_behave" style="height: 110px; line-height: 100px;">point_arm_left_behave&nbsp;<img  src="img/designe.png" style="height: 100px; float: right;" /></a></li><li ><a href="#" name="upper_body_idle_motion" style="height: 110px; line-height: 100px;">upper_body_idle_motion&nbsp;<img  src="img/_.png" style="height: 100px; float: right;" /></a></li>
+                                      <li ><a href="#" name="left_arm_up_behave" style="height: 110px; line-height: 100px;">left_arm_up_behave&nbsp;<img  src="img/left_arm_up_behave.png" style="height: 100px; float: right;" /></a></li><li ><a href="#" name="rest_open_behave" style="height: 110px; line-height: 100px;">rest_open_behave&nbsp;<img  src="img/rest_open_behave.png" style="height: 100px; float: right;" /></a></li>
+                                      <li ><a href="#" name="hunkers_behave" style="height: 110px; line-height: 100px;">hunkers_behave&nbsp;<img  src="img/hunkers_behave.png" style="height: 100px; float: right;"/></a></li>
+                                      <li ><a href="#" name="point_arm_left_behave" style="height: 110px; line-height: 100px;">point_arm_left_behave&nbsp;<img  src="img/point_arm_left_behave.png" style="height: 100px; float: right;" /></a></li><li ><a href="#" name="upper_body_idle_motion" style="height: 110px; line-height: 100px;">upper_body_idle_motion&nbsp;<img  src="img/upper_body_idle_motion.png" style="height: 100px; float: right;" /></a></li>
                                       
                                     </ul>
                                     <img  class="img_associee" src="img/'.$name_img.'" style="height: 100px; margin-left: 40px;" />

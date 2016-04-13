@@ -3,6 +3,7 @@
     $_dao = $_model.'DAO/';
     $_s3 = $_model.'S3/';
     $_calendar = $root.'calendar/';
+    $ip = '192.168.1.102';
     
     require_once ($root.'vendor/autoload.php');
     
