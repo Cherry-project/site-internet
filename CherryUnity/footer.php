@@ -5,8 +5,8 @@ if (empty($root)) {
 ?>
 
 <footer class="footer" height= 37px;>
-    <div class="container-fluid">
-        <img  height="33px" src=<?php echo $root."img/logo.jpg" ?> /> 
+    <div class="container-fluid" style="text-align: center;">
+        <img  height="50px" src=<?php echo $root."img/logo_cherry.png" ?> /> 
     </div>
 </footer>
 

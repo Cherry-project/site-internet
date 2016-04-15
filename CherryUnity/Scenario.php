@@ -37,8 +37,8 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <script type='text/javascript' src='script.js'></script>
-    <script type="text/javascript" src="js/bootstrap-filestyle.min.js"> </script>
+   <!-- <script type='text/javascript' src='script.js'></script>-->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <?php 
         $root = "./";
         
@@ -54,9 +54,9 @@
     
     
     //print_r($_POST);
-    //print_r($_POST['url_post']);
+    //print_r($_POST['url_post']);echo "<br/><br/>";
     //echo "<br/><br/>";
-    //print_r($_POST['url']);
+    //print_r($_POST['url']);echo "<br/><br/>ALL 2 :<br/>";
     
     $all = explode( "--- ", $_POST['url']);    
     $etape = array();
@@ -93,10 +93,12 @@
         $all2[$i] = str_replace("--- ", "", $all2[$i]);
         $all2[$i+1] = str_replace("Behave : ", "", $all2[$i+1]);
         $all2[$i+2] = str_replace("Text : ", "", $all2[$i+2]);
+        $all2[$i+2] = str_replace("Text  : ", "", $all2[$i+2]);
         $all2[$i+3] = str_replace("Slide        : ", "", $all2[$i+3]);
+        $all2[$i+3] = str_replace("Slide         : ", "", $all2[$i+3]);
         
-     /*TEST TEXT
-      *    echo $all2[$i+2][0]."__";
+     /*//TEST TEXT
+        echo $all2[$i+2][0]."__";
         echo $all2[$i+2][1]."__";
         echo $all2[$i+2][2]."__";
         echo $all2[$i+2][3]."__";
@@ -121,9 +123,9 @@
         echo $all2[$i+2][22]."__";
         
         */
-        
-        /*TEST SLIDE
-      *    echo $all2[$i+3][0]."__";
+        /*
+        //TEST SLIDE
+        echo $all2[$i+3][0]."__";
         echo $all2[$i+3][1]."__";
         echo $all2[$i+3][2]."__";
         echo $all2[$i+3][3]."__";
@@ -157,7 +159,7 @@
         
     }
     
-   // print_r($all2);echo "<br/><br/>";
+    //print_r($all2);echo "<br/><br/>";
     
     $datas = array();
     $sous_data = array();
@@ -195,14 +197,33 @@
     //echo "<br/>DATA<br/>";
     //print_r($data);
    
-    //print_r($gtran);    
+   // print_r($gtran);    
+    $hidden ="";
+    $show = "hidden";
     if(isset($_GET['json']))
     {
         
-        make_curl_request("POST", $ip+":8080/jsonreader", $gtran );
+        make_curl_request("POST", "http://".$ip.":8080/jsonreader", $gtran );
+        $hidden = "hidden";
+        $show = "";
+    }
+    if(isset($_GET['stop']))
+    {
+        
+        $show = "hidden";
+        $hidden = "";
     }
     ?>
-        <div style="padding: 20px; margin: 10px 0 20px 120px;"><div style="background-color: limegreen; width: 180px; height: 40px; padding: 10px 0 0 0;"><a href='Scenario.php?json=true' style="color:white; margin: 0px 0px 0px 20px;"><span class="glyphicon glyphicon-play" style="margin-right: 6px;"></span>Jouer ce scénario </a></div></div>
+        <div style="padding: 20px; margin: 10px 0 50px 120px;">
+            <div class="col-sm-3">
+            <div style="background-color: limegreen; width: 180px; height: 40px; padding: 10px 0 0 0;" <?php echo $hidden; ?>>
+                <a href='Scenario.php?json=true' style="color:white; margin: 0px 0px 0px 20px;"><span class="glyphicon glyphicon-play" style="margin-right: 6px;"></span>Jouer ce scénario </a>
+            </div></div>
+            <div class="col-sm-3">
+            <div style="background-color: firebrick; width: 215px; height: 40px; padding: 10px 0 0 0;" <?php echo $show; ?>>
+                <a href='Scenario.php?stop=true' style="color:white; margin: 0px 0px 0px 20px;" onclick="StopRobot()"><span class="glyphicon glyphicon-stop" style="margin-right: 6px;"></span>Stopper la présentation </a>
+            </div></div>
+        </div>
         
     <?php    
    
@@ -257,7 +278,7 @@
         $mvt_robot.=$mvt;
         
         if($une_etape!=$tab_url[0])
-            echo "<div class='col-sm-8'><p style='margin-left: 12px;margin-top: 15px;'>".$une_etape."</div><div class='col-sm-4'><a href='Scenario.php?demo=".$mvt."' onclick='LanceRobot(\"".$mvt."\")'><img  src='".$img."' style='height: 100px; margin-bottom: 15px;' /></a></div><br/><HR size=1 width ='80%' align=center><br/>";
+            echo "<div class='col-sm-8'><p style='margin-left: 12px;margin-top: 15px;'>".$une_etape."</div><div class='col-sm-4'><a href='Scenario.php' onclick='LanceRobot(\"".$mvt."\")'><img  src='".$img."' style='height: 100px; margin-bottom: 15px;' /></a></div><br/><HR size=1 width ='80%' align=center><br/>";
     }
     
     //print_r($_POST['url']);
@@ -281,12 +302,26 @@
              });*/
         console.log(elemnt);
         $.ajax({
-                 url: "http://"+<?php echo $ip; ?>+":8080/test/behave?name="+elemnt
-                 
+                 url: "http://"+<?php echo '"'.$ip.'"'; ?>+":8080/test/behave?name="+elemnt,
+                 timeout : 3000                 
             });
-             console.log("ok");
+             console.log("ok : "+"http://"+<?php echo '"'.$ip.'"'; ?>+":8080/test/behave?name="+elemnt);
              
         }
+        
+        function StopRobot()
+        {
+            /*$.ajax({
+                 url: "http://127.0.0.1:8080/test/behave?name=question_behave";
+             });*/
+        $.ajax({
+                 url: "http://"+<?php echo '"'.$ip.'"'; ?>+":8080/stop?presentation=off"
+                 
+            });
+             console.log("ok : "+"http://"+<?php echo '"'.$ip.'"'; ?>+":8080/stop?presentation=off");
+             
+        }
+        
         </script>
 
 <footer class="footer">

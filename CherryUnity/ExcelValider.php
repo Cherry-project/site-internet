@@ -23,7 +23,7 @@
     
     include 'simplexlsx.class.php';
     
-    print_r($_POST);
+    //print_r($_POST);
            
     $xlsx = new SimpleXLSX($_FILES['avatar']['tmp_name']);
     
@@ -49,7 +49,14 @@
     $content->setType($_type);
     
     $children =  array();
-    $children[] = array('email' => $_POST['child'], 'dateStart' => $_POST['date_debut'], 'dateEnd' => $_POST['date_fin']);
+    //echo "tabl post child  :  ";
+    //print_r($_POST['child']);echo "<br/><br/>";
+    foreach ($_POST['child'] as $a_child)
+    {
+        $children[] = array('email' => $a_child, 'dateStart' => $_POST['date_debut'], 'dateEnd' => $_POST['date_fin']);
+    }
+    //$children[] = array('email' => $_POST['child'], 'dateStart' => $_POST['date_debut'], 'dateEnd' => $_POST['date_fin']);
+    //print_r($children);
     
     $contentDao->create($content, $children);
     echo '<p style="margin-left:20px;">Votre texte a bien été enregistré.</p><br/>';

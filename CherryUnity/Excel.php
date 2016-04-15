@@ -88,11 +88,11 @@
                         $nbre_enfant++;
                         if($child->getEmail()== $_POST['valeur'][4])
                         {
-                            echo ' <p> <input type="checkbox" name="child" id="checkbox'.$nbre_enfant.'" value="'.$child->getEmail().'" checked>&nbsp;&nbsp;'. 
+                            echo ' <p> <input type="checkbox" name="child[]" id="checkbox'.$nbre_enfant.'" value="'.$child->getEmail().'" checked>&nbsp;&nbsp;'. 
                             $child->getFirstname().'&nbsp;'.$child->getLastname(). '</p>' ;
                         }
                         else
-                            echo ' <p> <input type="checkbox" name="child" id="checkbox'.$nbre_enfant.'" value="'.$child->getEmail().'">&nbsp;&nbsp;'. 
+                            echo ' <p> <input type="checkbox" name="child[]" id="checkbox'.$nbre_enfant.'" value="'.$child->getEmail().'">&nbsp;&nbsp;'. 
                             $child->getFirstname().'&nbsp;'.$child->getLastname(). '</p>' ;
                         
                     }

@@ -156,7 +156,7 @@
     <script type="text/javascript" src="http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject.js"></script>
        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript">
-       var varGlob = "";
+       /*var varGlob = "";
        function recieveData(){
             var ajaxObject = new XMLHttpRequest();
             ajaxObject.open("GET", "data.php");
@@ -170,7 +170,7 @@
             }
             ajaxObject.send();
           }
-          recieveData();
+          recieveData();*/
     
         function GetUnity() {
             if (typeof unityObject != "undefined") {                
@@ -211,7 +211,7 @@
                             Check();
                             Ecoute();
                             //StopPres();
-                            <?php $_SESSION['switch']=0;//1;// ?>
+                            <?php $_SESSION['switch']=1;//1;// ?>
                             checkTest();
                         }
 			else checkTest();
