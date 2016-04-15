@@ -47,7 +47,11 @@
     $content->setType($_type);
     
     $children =  array();
-    $children[] = array('email' => $_POST['child'], 'dateStart' => $_POST['date_debut'], 'dateEnd' => $_POST['date_fin']);
+    foreach ($_POST['child'] as $a_child)
+    {
+        $children[] = array('email' => $a_child, 'dateStart' => $_POST['date_debut'], 'dateEnd' => $_POST['date_fin']);
+    }
+    //$children[] = array('email' => $_POST['child'], 'dateStart' => $_POST['date_debut'], 'dateEnd' => $_POST['date_fin']);
     
     $contentDao->create($content, $children);
     echo '<p style="margin-left:20px;">Votre texte a bien été enregistré.</p><br/>';

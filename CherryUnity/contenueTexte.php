@@ -213,8 +213,8 @@
            <?php
                 if($_POST['valeur'][0])
                 {
-                    echo '<input type="text" class="datepicker" name="date_debut" value="'.$_POST['valeur'][5].'" required>'
-                         .'<input name="dateDebut0" value="'.$_POST['valeur'][5].'" hidden>';
+                    echo '<input type="text" class="datepicker" name="date_debut" value="'.$_POST['valeur'][4].'" required>'
+                         .'<input name="dateDebut0" value="'.$_POST['valeur'][4].'" hidden>';
                     
                 }
                 else
@@ -225,8 +225,8 @@
            <?php
                 if($_POST['valeur'][0])
                 {
-                    echo '<input type="text" class="datepicker" name="date_fin" value="'.$_POST['valeur'][6].'" required>'
-                         .'<input name="dateFin0" value="'.$_POST['valeur'][6].'" hidden>';
+                    echo '<input type="text" class="datepicker" name="date_fin" value="'.$_POST['valeur'][5].'" required>'
+                         .'<input name="dateFin0" value="'.$_POST['valeur'][5].'" hidden>';
                     
                 }
                 else
@@ -240,17 +240,19 @@
             $nbre_enfant = 0;
                 foreach($children as $child)
                     {
-                    //print_r($_POST);
+                        //print_r($_POST);
                         $nbre_enfant++;
-                        if($child->getEmail()== $_POST['valeur'][4])
+                        $check = '';
+                        foreach ($_POST['mail'] as $post_mail)
                         {
-                            echo ' <p> <input type="checkbox" name="child" id="checkbox'.$nbre_enfant.'" value="'.$child->getEmail().'" checked>&nbsp;&nbsp;'. 
-                            $child->getFirstname().'&nbsp;'.$child->getLastname(). '</p>' ;
+                            
+                            if($child->getEmail()== $post_mail)
+                            {
+                                $check = 'checked';
+                            }
                         }
-                        else
-                            echo ' <p> <input type="checkbox" name="child" id="checkbox'.$nbre_enfant.'" value="'.$child->getEmail().'">&nbsp;&nbsp;'. 
-                            $child->getFirstname().'&nbsp;'.$child->getLastname(). '</p>' ;
-                        
+                        echo ' <p><input type="checkbox" name="child[]" id="checkbox'.$nbre_enfant.'" value="'.$child->getEmail().'" '.$check.'>&nbsp;&nbsp;'
+                                    .$child->getFirstname().'&nbsp;'.$child->getLastname(). '</p>' ;
                     }
             ?>
            <br /><br /><br />

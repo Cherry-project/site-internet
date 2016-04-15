@@ -52,8 +52,10 @@
     {
         $all2[$i] = str_replace("--- ", "", $all2[$i]);
         $all2[$i+1] = str_replace("Behave : ", "", $all2[$i+1]);
-        $all2[$i+2] = str_replace("Text   : ", "", $all2[$i+2]);
-        $all2[$i+3] = str_replace("Slide          : ", "", $all2[$i+3]);
+        $all2[$i+2] = str_replace("Text : ", "", $all2[$i+2]);
+        $all2[$i+2] = str_replace("Text  : ", "", $all2[$i+2]);
+        $all2[$i+3] = str_replace("Slide        : ", "", $all2[$i+3]);
+        $all2[$i+3] = str_replace("Slide         : ", "", $all2[$i+3]);
     }
     
     //print_r($all2);echo "<br/><br/>";
@@ -153,7 +155,7 @@
         $mvt_robot.=$mvt;
         
         if($une_etape!=$tab_url[0])
-            echo "<div class='col-sm-8'><p style='margin-left: 12px;margin-top: 15px;'>".$une_etape."</div><div class='col-sm-4'><a href='Scenario.php?demo=".$mvt."' onclick='LanceRobot(\"".$mvt."\")'><img  src='".$img."' style='height: 100px; margin-bottom: 15px;' /></a></div><br/><HR size=1 width ='80%' align=center><br/>";
+            echo "<div class='col-sm-8'><p style='margin-left: 12px;margin-top: 15px;'>".$une_etape."</div><div class='col-sm-4'><a href='Scenario.php' onclick='LanceRobot(\"".$mvt."\")'><img  src='".$img."' style='height: 100px; margin-bottom: 15px;' /></a></div><br/><HR size=1 width ='80%' align=center><br/>";
     }
     
     //print_r($_POST['url']);

@@ -22,10 +22,10 @@
     <div class="jumbotron">
         <p style="text-align: center;"><img  height="60px" src="img/logo_cherry.png" style="text-align: center; height: 150px;"/> </p>
     <p>&nbsp;</p>
-    <p class="text-muted" style="text-align: justify;">Le projet Cherry est un projet communautaire visant à développer les usages en milieu hospitalier permettant de rompre l&rsquo;isolement des enfants.</p>
-    <p class="text-muted" style="text-align: justify;">Notre projet utilise le robot <a href="https://www.poppy-project.org/">Poppy</a> comme compagnon pour les enfants de maternelle/primaire hospitalisés. Cherry est là pour compenser une rupture sociale lors de l’hospitalisation. Il sert d&rsquo;intermédiaire entre l&rsquo;enfant, ses amis, sa famille et son enseignant et peut ainsi discuter avec lui ou encore lui proposer des jeux.</p>
-    <p class="text-muted" style="text-align: justify;">Il agit également sur un plan pédagogique, afin d’inciter l&rsquo;enfant à interagir avec l’espace scolaire, en lui proposant des quizz ou des jeux pédagogiques.</p>
-    <p class="text-muted" style="text-align: justify;">Un dernier axe exploité consiste à assister le personnel hospitalier dans l’éducation thérapeutique. En effet, un message est parfois mieux accepté par l&rsquo;enfant s’il est délivré par le robot plutôt que par un adulte en blouse blanche.</p>
+    <p class="text-muted" style="text-align: justify; color: white;">Le projet Cherry est un projet communautaire visant à développer les usages en milieu hospitalier permettant de rompre l&rsquo;isolement des enfants.</p>
+    <p class="text-muted" style="text-align: justify; color: white;">Notre projet utilise le robot <a href="https://www.poppy-project.org/" style='color: #134044;'>Poppy</a> comme compagnon pour les enfants de maternelle/primaire hospitalisés. Cherry est là pour compenser une rupture sociale lors de l’hospitalisation. Il sert d&rsquo;intermédiaire entre l&rsquo;enfant, ses amis, sa famille et son enseignant et peut ainsi discuter avec lui ou encore lui proposer des jeux.</p>
+    <p class="text-muted" style="text-align: justify; color: white;">Il agit également sur un plan pédagogique, afin d’inciter l&rsquo;enfant à interagir avec l’espace scolaire, en lui proposant des quizz ou des jeux pédagogiques.</p>
+    <p class="text-muted" style="text-align: justify; color: white;">Un dernier axe exploité consiste à assister le personnel hospitalier dans l’éducation thérapeutique. En effet, un message est parfois mieux accepté par l&rsquo;enfant s’il est délivré par le robot plutôt que par un adulte en blouse blanche.</p>
     </div></div>
 
     
