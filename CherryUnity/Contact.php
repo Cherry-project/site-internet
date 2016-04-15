@@ -21,10 +21,12 @@
         <h1 style="margin-left: 27px;">Contact</h1>
 
         <div class="jumbotron">
-            <p style="text-align: center;"><img  height="60px" src="img/logo_sogeti.png" style="text-align: center; "/> </p>
-            <p><span class="glyphicon glyphicon-globe" style="margin: 0 15px 0 5px;"></span><a href="http://www.fr.sogeti.com/">www.fr.sogeti.com</a></p>
-            <p><span class="glyphicon glyphicon-phone-alt" style="margin: 0 15px 0 5px;"></span>Tel : +33 (0)1 55 00 12 00</p>
-            <p><span class="glyphicon glyphicon-map-marker" style="margin: 0 15px 0 5px;"></span>Siège social : 22-24  rue du Gouverneur Général Eboué 92136 Issy-les-Moulineaux </p>
+            <p style="text-align: center; color: white;"><img  height="300px" src="img/contact.png" style="text-align: center;     margin-top: -47px;"/> </p>
+            <p style='color: white;'><span class="glyphicon glyphicon-globe" style="margin: 0 15px 0 5px;"></span><a href="http://www.asso-prima.org/" style='color: #134044;'>www.asso-prima.org</a></p>
+            <p style='color: white;'><span class="glyphicon glyphicon-envelope" style="margin: 0 15px 0 5px;"></span>projet.cherry@gmail.com</p>
+            <p style='color: white;'><span class="glyphicon glyphicon-envelope" style="margin: 0 15px 0 5px;"></span>contact.prima@laposte.net</p>
+            <p style='color: white;'><span class="glyphicon glyphicon-link" style="margin: 0 15px 0 5px;"></span>/projetcherry</p>
+            <p style='color: white;'><span class="glyphicon glyphicon-link" style="margin: 0 15px 0 5px;"></span>@projetcherry</p>
         </div>    
     </div>
     

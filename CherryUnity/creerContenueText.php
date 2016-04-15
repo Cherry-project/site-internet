@@ -19,7 +19,7 @@
     <?php
 
 
- //print_r($_POST);
+ print_r($_POST);echo "<br/><br/>";
 //echo '<br/>email : '.$_SESSION['email'].' et type : '.$_SESSION['type'].'<br/>';
 
 // INSERT SUR DYNAMO
@@ -54,6 +54,10 @@
                 //text
                 $ligne[] = $_POST['contenueTexte'.($i+1)];
                 //slide
+            /*   echo "<br/><br/> LA TEST !!!!<br/><br/>";
+                
+                echo $_POST['Slide'][($i-3)];
+                echo $_POST['contenueTexte'].($i+2);*/
                 if($_POST['Slide'][($i-3)] != "")
                 {
                     echo $_POST['Slide'][($i-3)];
@@ -75,6 +79,7 @@
             $url_excel = print_r($tab);
             echo "</div>";
         }
+        echo $url;
         $content->setUrl($url);
         $content->setEmailOwner($emailOwner);
         $name = $_POST['titreTexte'];
@@ -88,8 +93,12 @@
         echo $content->getType();*/
         
        $children =  array();
-        $children[] = array('email' => $_POST['child'], 'dateStart' => $_POST['date_debut'], 'dateEnd' => $_POST['date_fin']);
-        //print_r($children);
+       foreach ($_POST['child'] as $a_child)
+        {
+            $children[] = array('email' => $a_child, 'dateStart' => $_POST['date_debut'], 'dateEnd' => $_POST['date_fin']);
+        }
+        //$children[] = array('email' => $_POST['child'], 'dateStart' => $_POST['date_debut'], 'dateEnd' => $_POST['date_fin']);
+        print_r($children);
         //$length = count($_POST['children']);
         
         //si ce contenu existe      
@@ -102,7 +111,7 @@
         $typeExist = $contentExist->getType();
         $dateExistDebut = $_POST['dateDebut0'];
         $dateExistFin = $_POST['dateFin0'];
-        
+        echo "<br/><br/>URL EXISTANTE :<br/>".$urlExist."<br/><br/>";        
         /*echo "<br/>URL :<br/>".$url;
         echo "<br/>URL EXCEL :<br/>".$url_excel."<br/>";
         echo "<br/>URL EXIST :<br/>".$urlExist."<br/>";
