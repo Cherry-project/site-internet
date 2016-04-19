@@ -18,6 +18,7 @@ if(!$ajouter)
     if($name && !$owner)
     {
         $_SESSION['switch']= htmlspecialchars($_GET['name']);
+        $_SESSION['push']= htmlspecialchars($_GET['name']);
         //echo $name."<br/>MARCHE<br/>";
 
         //recherche un contenue ayant comme titre $name et owner "admin_off"
@@ -32,6 +33,7 @@ if(!$ajouter)
 
         //si le contenue est trouve (qu'il y a bien une url)
         if($urlExist) {
+            
             //le owner est "admin_off" ==> le change en "admin_on" (pour lancer la video)
             $contentExist->setEmailOwner("admin_on");
             $ownerExist = $contentExist->getEmailOwner();
@@ -53,6 +55,7 @@ if(!$ajouter)
     else if($owner && $name)
     {
         $_SESSION['switch']= htmlspecialchars($_GET['name']);
+        $_SESSION['push']= "Aucun.png";
         $contentDao0 = new ContentDAO(DynamoDbClientBuilder::get());
         $contentDAOExist0 = $contentDao0->get($name, $owner);
         $contentExist0 = new Content();
